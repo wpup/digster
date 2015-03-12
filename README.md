@@ -1,6 +1,6 @@
 # Digster
 
-> Twig templates for WordPress [WIP]
+> [WIP] Twig templates for WordPress
 
 Digster it's a WordPress plugin that allows you to render Twig views with a
 few Twig [filters](#twig-filters), [functions](#twig-functions) and [globals](#twig-globals).
