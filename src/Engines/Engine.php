@@ -214,7 +214,9 @@ abstract class Engine extends Container
         $preprocesses = $this->composer($template);
 
         foreach ($preprocesses as $fn) {
-            $data = array_merge($data, $fn($data));
+            if (is_callable($fn)) {
+                $data = array_merge($data, call_user_func($fn, $data));
+            }
         }
 
         return $data;
