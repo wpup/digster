@@ -16,9 +16,7 @@ Example of `page.php`
 `page.php`
 ```php
 // 'page' or 'page.twig'
-digster_render('page', [
-	'post' => get_post(get_the_ID())
-]);
+digster_render('page');
 ``
 
 `page.twig`
