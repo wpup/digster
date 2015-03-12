@@ -1,0 +1,29 @@
+language: php
+
+before_script:
+  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+  - cd ..
+  - mv wp-plugin-boilerplate /tmp/wordpress/wp-content/plugins/boilerplate
+  - cd /tmp/wordpress/wp-content/plugins/boilerplate/
+  - composer dumpautoload
+
+script: phpunit -c phpunit.xml
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 5.4
+      env: WP_VERSION=3.9
+    - php: 5.5
+      env: WP_VERSION=4.0
+    - php: 5.6
+      env: WP_VERSION=latest
+    - php: hhvm
+      env: WP_VERSION=latest
+    - php: hhvm-nightly
+      env: WP_VERSION=latest
+    - php: nightly
+      env: WP_VERSION=latest
+  allow_failures:
+    - php: hhvm-nightly
+    - php: nightly

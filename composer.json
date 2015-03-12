@@ -1,0 +1,35 @@
+{
+  "name": "frozzare/digster",
+  "type": "wordpress-plugin",
+  "description": "Twig templates for WordPress",
+  "homepage": "https://github.com/frozzare/digster",
+  "license": "MIT",
+  "keywords": ["wordpress","plugin"],
+  "require": {
+    "php": ">=5.4.0",
+		"twig/twig": "~1.18"
+  },
+  "authors": [
+    {
+      "name": "Fredrik Forsmo",
+      "email": "fredrik.forsmo@gmail.com",
+      "homepage": "https://github.com/frozzare"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/frozzare/digster/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "Digster\\": "src/"
+    },
+    "files": [
+      "src/api.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Digster\\Tests\\": "tests/"
+    }
+  }
+}

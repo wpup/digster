@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="Digster">
+  <description>Simple Twig templates for WordPress</description>
+
+  <!-- Exclude vendor directory -->
+  <exclude-pattern>vendor</exclude-pattern>
+
+  <!-- Use PSR-2 Coding standard -->
+  <rule ref="PSR2"/>
+</ruleset>
