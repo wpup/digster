@@ -5,7 +5,7 @@ before_script:
   - cd ..
   - mv digster /tmp/wordpress/wp-content/plugins/digster
   - cd /tmp/wordpress/wp-content/plugins/digster/
-  - composer dumpautoload
+  - composer install
 
 script: phpunit -c phpunit.xml
 
