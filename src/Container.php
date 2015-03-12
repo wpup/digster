@@ -142,6 +142,3 @@ class Container implements \ArrayAccess
         unset($this->keys[$id], $this->values[$id]);
     }
 }
-;
-    }
-}
