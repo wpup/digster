@@ -87,7 +87,9 @@ $view = \Digster\View::fetch('page' [, $data]);
 
 #### Register composer
 
-With Digster you can register composer with any template or a specified template.
+With Digster you can register composer with any template or a specified template. 
+
+This example is for `post` object, but Digster already have this global variable loaded.
 
 ```php
 // 'any', 'page' or 'page.twig'
