@@ -44,6 +44,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
 
     public function testLocations()
     {
-        $this->assertFalse(empty(View::config('locations')));
+        $locations = View::config('locations');
+        $this->assertFalse(empty($locations));
     }
 }
