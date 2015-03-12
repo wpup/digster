@@ -61,11 +61,12 @@ add_filter('digster/config', function ($config) {
 
 #### Twig environment options
 
-All [Twig environment options](http://twig.sensiolabs.org/doc/api.html#environment-options) is prefixed with `twig.`.
+Read about the options on the [Twig site](http://twig.sensiolabs.org/doc/api.html#environment-options)
 
+`auto_reload` example
 ```php
 add_filter('digster/config', function ($config) {
-  $config['twig.debug'] = true;
+  $config['auto_reload'] = true;
   return $config;
 });
 ```
