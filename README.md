@@ -17,7 +17,7 @@ Example of `page.php`
 ```php
 // 'page' or 'page.twig'
 digster_render('page');
-``
+```
 
 `page.twig`
 ```html
