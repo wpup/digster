@@ -2,3 +2,4 @@
 .vagrant
 tmp
 vendor
+composer.lock
