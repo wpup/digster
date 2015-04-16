@@ -22,15 +22,11 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 require 'vendor/autoload.php';
 
 /**
- * Get the Digster instance.
+ * Load Digster plugin.
  *
  * @return \Digster\PluginLoader
  */
 
-function digster()
-{
+add_action('plugins_loaded', function () {
     return \Digster\PluginLoader::instance();
-}
-
-// Initialize on plugins loaded
-add_action('plugins_loaded', 'digster', 0, 0);
+});
