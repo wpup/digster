@@ -10,7 +10,7 @@
 
 namespace Digster;
 
-use Digster\Engines\TwigEngine;
+use Digster\Engines\Twig_Engine;
 
 /**
  * View.
@@ -21,8 +21,8 @@ use Digster\Engines\TwigEngine;
  * @since 1.0.0
  */
 
-class View
-{
+class View {
+
     /**
      * Get or set configuration value.
      *
@@ -33,9 +33,8 @@ class View
      * @return mixed
      */
 
-    public static function config($key, $value = null)
-    {
-        return self::engine()->config($key, $value);
+    public static function config( $key, $value = null ) {
+        return self::engine()->config( $key, $value );
     }
 
     /**
@@ -46,9 +45,8 @@ class View
      * @return array
      */
 
-    private static function engine()
-    {
-        return TwigEngine::instance();
+    private static function engine() {
+        return Twig_Engine::instance();
     }
 
     /**
@@ -59,9 +57,8 @@ class View
      * @since 1.0.0
      */
 
-    public static function render($template, $data = array())
-    {
-        echo self::fetch($template, $data);
+    public static function render( $template, $data = array() ) {
+        echo self::fetch( $template, $data );
     }
 
     /**
@@ -74,9 +71,8 @@ class View
      * @return string
      */
 
-    public static function fetch($template, $data = array())
-    {
-        return self::engine()->render($template, $data);
+    public static function fetch( $template, $data = array() ) {
+        return self::engine()->render( $template, $data );
     }
 
     /**
@@ -87,9 +83,8 @@ class View
      * @since 1.0.0
      */
 
-    public static function composer($template, $fn = null)
-    {
-        self::engine()->composer($template, $fn);
+    public static function composer( $template, $fn = null ) {
+        self::engine()->composer( $template, $fn );
     }
 
     /**
@@ -98,8 +93,8 @@ class View
      * @since 1.0.0
      */
 
-    public static function registerExtension()
-    {
-        self::engine()->registerExtension(func_get_args());
+    public static function register_extensions() {
+        self::engine()->register_extensions( func_get_args() );
     }
+
 }

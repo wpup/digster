@@ -11,12 +11,15 @@
  */
 
 // Make sure the plugin does not expose any info if called directly
-defined('ABSPATH') || exit;
+defined( 'ABSPATH' ) || exit;
 
 // Framework requires PHP 5.4 or newer
-if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-    exit('The Digster plugin for WordPress requires PHP version 5.4 or higher.');
+if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
+    exit( 'The Digster plugin for WordPress requires PHP version 5.4 or higher.' );
 }
+
+define('WP_AUTOLOAD_PREFIX', 'Digster\\');
+define('WP_AUTOLOAD_BASE_DIR', __DIR__ . '/src');
 
 // Load Composer autoloader.
 require 'vendor/autoload.php';
@@ -24,9 +27,9 @@ require 'vendor/autoload.php';
 /**
  * Load Digster plugin.
  *
- * @return \Digster\PluginLoader
+ * @return \Digster\Plugin_Loader
  */
 
-add_action('plugins_loaded', function () {
-    return \Digster\PluginLoader::instance();
-});
+add_action( 'plugins_loaded', function () {
+    return \Digster\Plugin_Loader::instance();
+} );

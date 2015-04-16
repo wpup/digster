@@ -8,8 +8,8 @@ namespace Digster\Tests;
  * @since 1.0.0
  */
 
-class PluginTest extends \PHPUnit_Framework_TestCase
-{
+class Digster_Test extends \WP_UnitTestCase {
+
     /**
      * The action `plugins_loaded` should have the `boilerplate` hook
      * and should have a default priority of 0.
@@ -21,4 +21,5 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, has_action('plugins_loaded', 'digster'));
     }
+
 }

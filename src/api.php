@@ -18,9 +18,8 @@ use Digster\View;
  * @since 1.0.0
  */
 
-function digster_composer($template, $fn)
-{
-    View::composer($template, $fn);
+function digster_composer( $template, $fn ) {
+    View::composer( $template, $fn );
 }
 
 /**
@@ -33,9 +32,8 @@ function digster_composer($template, $fn)
  * @return string
  */
 
-function digster_fetch($template, $data = array())
-{
-    return View::fetch($template, $data);
+function digster_fetch( $template, $data = array() ) {
+    return View::fetch( $template, $data );
 }
 
 /**
@@ -44,9 +42,8 @@ function digster_fetch($template, $data = array())
  * @since 1.0.0
  */
 
-function digster_register_extension()
-{
-    View::registerExtension(func_get_args());
+function digster_register_extension() {
+    View::registerExtension( func_get_args() );
 }
 
 /**
@@ -57,7 +54,6 @@ function digster_register_extension()
  * @since 1.0.0
  */
 
-function digster_render($template, $data = array())
-{
-    View::render($template, $data);
+function digster_render( $template, $data = array() ) {
+    View::render( $template, $data );
 }

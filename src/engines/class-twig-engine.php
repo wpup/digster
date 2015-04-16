@@ -17,8 +17,8 @@ namespace Digster\Engines;
  * @since 1.0.0
  */
 
-class TwigEngine extends Engine
-{
+class Twig_Engine extends Engine {
+
     /**
      * The Twig environment instance.
      *
@@ -26,7 +26,7 @@ class TwigEngine extends Engine
      * @since 1.0.0
      */
 
-    private static $envInstance = null;
+    private static $env_instance = null;
 
     /**
      * The default extension (empty string).
@@ -45,15 +45,14 @@ class TwigEngine extends Engine
      * @return \Twig_Environment
      */
 
-    private function boot()
-    {
-        list($locations, $config) = $this->getEngineConfig();
+    private function boot() {
+        list( $locations, $config ) = $this->get_engine_config();
 
-        $loader = new \Twig_Loader_Filesystem($locations);
-        $env    = new \Twig_Environment($loader, $config);
+        $loader = new \Twig_Loader_Filesystem( $locations );
+        $env    = new \Twig_Environment( $loader, $config );
 
-        if (defined('WP_DEBUG') && WP_DEBUG) {
-            $env->addExtension(new \Twig_Extension_Debug());
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            $env->addExtension( new \Twig_Extension_Debug() );
         }
 
         return $env;
@@ -67,13 +66,12 @@ class TwigEngine extends Engine
      * @return \Twig_Environment
      */
 
-    private function envInstance()
-    {
-        if (!isset(self::$envInstance)) {
-            self::$envInstance = $this->boot();
+    private function env_instance() {
+        if ( ! isset( self::$env_instance ) ) {
+            self::$env_instance = $this->boot();
         }
 
-        return self::$envInstance;
+        return self::$env_instance;
     }
 
     /**
@@ -84,9 +82,8 @@ class TwigEngine extends Engine
      * @return array
      */
 
-    public function prepareEngineConfig()
-    {
-        return $this->prepareConfig([
+    public function prepare_engine_config() {
+        return $this->prepare_config( [
             'autoescape'          => true,
             'auto_reload'         => false,
             'base_template_class' => 'Twig_Template',
@@ -97,25 +94,24 @@ class TwigEngine extends Engine
             'debug'               => false,
             'optimizations'       => -1,
             'strict_variables'    => false
-        ]);
+        ] );
     }
 
     /**
-     * Register Twig extension that use Twig_ExtensionInterface
+     * Register Twig extensions that use `Twig_ExtensionInterface`.
      *
      * @since 1.0.0
      */
 
-    public function registerExtension()
-    {
+    public function register_extensions() {
         $extensions = func_get_args();
 
-        foreach ($extensions as $extension) {
-            if ($extension instanceof \Twig_ExtensionInterface) {
-                $this->envInstance()->addExtension($extension);
+        foreach ( $extensions as $extension ) {
+            if ( $extension instanceof \Twig_ExtensionInterface ) {
+                $this->env_instance()->addExtension( $extension );
             } else {
-                foreach ((array) $extension as $ext) {
-                    $this->registerExtension($ext);
+                foreach ( (array) $extension as $ext ) {
+                    $this->register_extensions( $ext );
                 }
             }
         }
@@ -129,12 +125,12 @@ class TwigEngine extends Engine
      * @since 1.0.0
      */
 
-    public function render($template, $data = array())
-    {
-        $template = $this->extension($template);
-        $instance = $this->envInstance();
-        $data     = $this->prepareData($template, $data);
+    public function render( $template, $data = array() ) {
+        $template = $this->extension( $template );
+        $instance = $this->env_instance();
+        $data     = $this->prepareData( $template, $data );
 
-        return $instance->render($template, $data);
+        return $instance->render( $template, $data );
     }
+
 }

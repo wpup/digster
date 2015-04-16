@@ -10,16 +10,15 @@ use Digster\Container;
  * @since 1.0.0
  */
 
-class ContainerTest extends \PHPUnit_Framework_TestCase
-{
+class Container_Test extends \WP_UnitTestCase {
+
     /**
      * Setup the test.
      *
      * @since 1.0.0
      */
 
-    public function setUp()
-    {
+    public function setUp() {
         parent::setUp();
         $this->container = new Container;
     }
@@ -30,9 +29,8 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      * @since 1.0.0
      */
 
-    public function testExists()
-    {
-        $this->assertFalse($this->container->exists('Class'));
+    public function testExists() {
+        $this->assertFalse( $this->container->exists( 'Class' ) );
     }
 
     /**
@@ -41,9 +39,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
      * @since 1.0.0
      */
 
-    public function testBindAndMake()
-    {
-        $this->container->bind('Class', new \stdClass);
-        $this->assertTrue(is_object($this->container->make('Class')));
+    public function testBindAndMake() {
+        $this->container->bind( 'Class', new \stdClass );
+        $this->assertTrue( is_object( $this->container->make( 'Class' ) ) );
     }
+
 }

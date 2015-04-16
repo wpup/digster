@@ -13,13 +13,12 @@ It's easy to register your own [extensions](#register-extension) or [preprocesse
 
 Example of `page.php`
 
-`page.php`
 ```php
 // 'page' or 'page.twig'
 digster_render('page');
 ```
 
-`page.twig`
+Example of `page.twig`
 ```html
 {% include "partials/header.twig" %}
 <div id="primary" class="content-area">
@@ -87,7 +86,7 @@ $view = \Digster\View::fetch('page' [, $data]);
 
 #### Register composer
 
-With Digster you can register composer with any template or a specified template. 
+With Digster you can register composer with any template or a specified template.
 
 This example is for `post` object, but Digster already have this global variable loaded.
 
@@ -115,11 +114,11 @@ digster_render('page', [
 Register Twig extension classes with Digster.
 
 ```php
-digster_register_extension(new MyTwigExtension());
+digster_register_extensions(new MyTwigExtension());
 
 // or
 
-\Digster\View::registerExtension(new MyTwigExtension());
+\Digster\View::register_extensions(new MyTwigExtension());
 ```
 
 #### Render a view
@@ -195,19 +194,4 @@ Append p tags to the text
 
 ```html
 <body class="{{ body_class }}">
-```
-
-## Coding Style
-
-Follow [PSR-2](http://www.php-fig.org/psr/psr-2/) with the following additional rules:
-
-- Functions that should be used in a WordPress theme should not be camelCase, instead use underscores.
-- Use short array syntax.
-
-Follow [PSR-4](http://www.php-fig.org/psr/psr-4/) for autoloading.
-
-You can check if your code passes the styleguide by installing [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) and running the following in your project directory:
-
-```
-phpcs --standard=phpcs.xml --extensions=php -n -s .
 ```

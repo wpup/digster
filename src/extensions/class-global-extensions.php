@@ -17,8 +17,8 @@ namespace Digster\Extensions;
  * @since 1.0.0
  */
 
-class GlobalsExtension extends \Twig_Extension
-{
+class Global_Extensions extends \Twig_Extension {
+
     /**
      * Get global variable.
      *
@@ -27,11 +27,10 @@ class GlobalsExtension extends \Twig_Extension
      * @return array
      */
 
-    public function getGlobals()
-    {
+    public function getGlobals() {
         return [
-            'body_class' => implode(' ', get_body_class()),
-            'post'       => get_post(get_the_ID())
+            'body_class' => implode( ' ', get_body_class() ),
+            'post'       => get_post( get_the_ID() )
         ];
     }
 
@@ -43,8 +42,8 @@ class GlobalsExtension extends \Twig_Extension
      * @return string
      */
 
-    public function getName()
-    {
+    public function getName() {
         return 'digster-globals';
     }
+
 }

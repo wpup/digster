@@ -19,8 +19,8 @@ use Digster\Container;
  * @since 1.0.0
  */
 
-abstract class Engine extends Container
-{
+abstract class Engine extends Container {
+
     /**
      * The any composer key that all template uses.
      *
@@ -28,7 +28,7 @@ abstract class Engine extends Container
      * @since 1.0.0
      */
 
-    protected $anyComposerKey = 'any';
+    protected $any_composer_key = 'any';
 
     /**
      * Engines composers.
@@ -76,22 +76,21 @@ abstract class Engine extends Container
      * @return mixed
      */
 
-    public function config($key, $value = null)
-    {
-        if (is_array($key)) {
-            foreach ($key as $id => $val) {
-                $this->config($id, $val);
+    public function config( $key, $value = null ) {
+        if ( is_array( $key ) ) {
+            foreach ( $key as $id => $val ) {
+                $this->config( $id, $val );
             }
         } else {
-            if (!is_null($value)) {
-                return $this->bind($key, $value);
+            if ( ! is_null( $value ) ) {
+                return $this->bind( $key, $value );
             }
 
-            if ($this->exists($key)) {
-                return $this->make($key);
+            if ( $this->exists( $key ) ) {
+                return $this->make( $key );
             } else {
-                $default = $this->getDefaultConfig();
-                return isset($default[$key]) ? $default[$key] : null;
+                $default = $this->get_default_config();
+                return isset( $default[$key] ) ? $default[$key] : null;
             }
         }
     }
@@ -105,9 +104,8 @@ abstract class Engine extends Container
      * @return string
      */
 
-    public function extension($template)
-    {
-        return substr($template, -strlen($this->extension)) === $this->extension
+    public function extension( $template ) {
+        return substr( $template, -strlen( $this->extension ) ) === $this->extension
             ? $template : $template . $this->extension;
     }
 
@@ -119,9 +117,8 @@ abstract class Engine extends Container
      * @return \Digster\Engine
      */
 
-    public static function instance()
-    {
-        if (!isset(self::$instance)) {
+    public static function instance() {
+        if ( ! isset( self::$instance ) ) {
             self::$instance = new static;
         }
 
@@ -137,21 +134,20 @@ abstract class Engine extends Container
      * @return array
      */
 
-    protected function getComposer($template)
-    {
-        if (is_array($template)) {
-            $template = array_shift($template);
+    protected function get_composer( $template ) {
+        if ( is_array( $template ) ) {
+            $template = array_shift( $template );
         }
 
         $composers = [];
-        $template  = $this->extension($template);
+        $template  = $this->extension( $template );
 
-        if (isset($this->composers[$template])) {
-            $composers = array_merge($res, $this->composers[$template]);
+        if ( isset( $this->composers[$template] ) ) {
+            $composers = array_merge( $res, $this->composers[$template] );
         }
 
-        if (isset($this->composers[$this->anyComposerKey])) {
-            $composers = array_merge($res, $this->composers[$this->anyComposerKey]);
+        if ( isset( $this->composers[$this->any_composer_key] ) ) {
+            $composers = array_merge( $res, $this->composers[$this->any_composer_key] );
         }
 
         return $composers;
@@ -165,8 +161,7 @@ abstract class Engine extends Container
      * @return array
      */
 
-    protected function getDefaultConfig()
-    {
+    protected function get_default_config() {
         $config = [];
 
         $config[$this->locationsKey] = [
@@ -184,16 +179,15 @@ abstract class Engine extends Container
      * @return array
      */
 
-    protected function getEngineConfig()
-    {
-        $config    = $this->prepareEngineConfig();
+    protected function get_engine_config() {
+        $config    = $this->prepare_engine_config();
         $locations = $config[$this->locationsKey];
 
-        unset($config[$this->locationsKey]);
+        unset( $config[$this->locationsKey] );
 
-        $locations = array_filter((array) $locations, function ($location) {
-            return file_exists($location);
-        });
+        $locations = array_filter( (array) $locations, function ( $location ) {
+            return file_exists( $location );
+        } );
 
         return [$locations, $config];
     }
@@ -208,14 +202,13 @@ abstract class Engine extends Container
      * @return array
      */
 
-    protected function prepareData($template, $data)
-    {
+    protected function prepare_data( $template, $data ) {
         $data         = (array) $data;
-        $preprocesses = $this->composer($template);
+        $preprocesses = $this->composer( $template );
 
-        foreach ($preprocesses as $fn) {
-            if (is_callable($fn)) {
-                $data = array_merge($data, call_user_func($fn, $data));
+        foreach ( $preprocesses as $fn ) {
+            if ( is_callable( $fn ) ) {
+                $data = array_merge( $data, call_user_func( $fn, $data ) );
             }
         }
 
@@ -233,15 +226,15 @@ abstract class Engine extends Container
      * @return string
      */
 
-    abstract public function render($template, $data);
+    abstract public function render( $template, $data );
 
     /**
-     * Register extension.
+     * Register extensions.
      *
      * @since 1.0.0
      */
 
-    abstract public function registerExtension();
+    abstract public function register_extensions();
 
     /**
      * Register preprocess with templates.
@@ -251,20 +244,19 @@ abstract class Engine extends Container
      * @since 1.0.0
      */
 
-    public function composer($template, $fn = null)
-    {
-        if (is_null($fn)) {
-            return $this->getComposer($template);
+    public function composer( $template, $fn = null ) {
+        if ( is_null( $fn ) ) {
+            return $this->get_composer( $template );
         }
 
         $template = (array) $template;
 
-        foreach ($template as $tmpl) {
-            if ($tmpl !== $this->anyPreprocessKey) {
-                $tmpl = $this->extension($tmpl);
+        foreach ( $template as $tmpl ) {
+            if ( $tmpl !== $this->anyPreprocessKey ) {
+                $tmpl = $this->extension( $tmpl );
             }
 
-            if (!isset($this->preprocesses[$tmpl])) {
+            if ( ! isset( $this->preprocesses[$tmpl] ) ) {
                 $this->preprocesses[$tmpl] = array();
             }
 
@@ -281,22 +273,21 @@ abstract class Engine extends Container
      * @return array
      */
 
-    protected function prepareConfig($arr)
-    {
+    protected function prepare_config( $arr ) {
         $result = [];
 
-        if (!is_array($arr)) {
+        if ( ! is_array( $arr ) ) {
             return $result;
         }
 
-        $arr = array_merge($this->getDefaultConfig(), $arr);
+        $arr = array_merge( $this->get_default_config(), $arr );
 
-        foreach ($arr as $key => $value) {
-            $res          = $this->config($key);
-            $result[$key] = is_null($res) ? $value : $res;
+        foreach ( $arr as $key => $value ) {
+            $res          = $this->config( $key );
+            $result[$key] = is_null( $res ) ? $value : $res;
         }
 
-        return apply_filters('digster/config', $result);
+        return apply_filters( 'digster/config', $result );
     }
 
     /**
@@ -305,5 +296,6 @@ abstract class Engine extends Container
      * @since 1.0.0
      */
 
-    abstract public function prepareEngineConfig();
+    abstract public function prepare_engine_config();
+
 }

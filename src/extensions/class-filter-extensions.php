@@ -17,8 +17,8 @@ namespace Digster\Extensions;
  * @since 1.0.0
  */
 
-class FiltersExtension extends \Twig_Extension
-{
+class Filter_Extensions extends \Twig_Extension {
+
     /**
      * Get filters.
      *
@@ -27,16 +27,15 @@ class FiltersExtension extends \Twig_Extension
      * @return array
      */
 
-    public function getFilters()
-    {
+    public function getFilters() {
         $filters = [
             'excerpt'    => 'wp_trim_words',
             'shortcodes' => 'do_shortcode',
             'wpautop'    => 'wpautop'
         ];
 
-        foreach ($filters as $filter => $callable) {
-            $filters[$filter] = new \Twig_SimpleFilter($filter, $callable);
+        foreach ( $filters as $filter => $callable ) {
+            $filters[$filter] = new \Twig_SimpleFilter( $filter, $callable );
         }
 
         return $filters;
@@ -50,8 +49,8 @@ class FiltersExtension extends \Twig_Extension
      * @return string
      */
 
-    public function getName()
-    {
+    public function getName() {
         return 'digster-filters';
     }
+
 }

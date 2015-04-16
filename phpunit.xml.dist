@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  bootstrap="vendor/frozzare/wp-test-suite/bootstrap.php"
+  backupGlobals="false"
+  colors="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+  >
+  <php>
+    <const name="WTB_PLUGIN_FILE_NAME" value="digster.php" />
+  </php>
+  <testsuites>
+    <testsuite name="Digster Test Suite">
+      <directory suffix=".php">./tests/</directory>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <log type="coverage-clover" target="./tmp/clover.xml" charset="UTF-8" />
+  </logging>
+</phpunit>

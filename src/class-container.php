@@ -17,8 +17,8 @@ namespace Digster;
  * @since 1.0.0
  */
 
-class Container implements \ArrayAccess
-{
+class Container implements \ArrayAccess {
+
     /**
      * The keys holder.
      *
@@ -45,10 +45,9 @@ class Container implements \ArrayAccess
      * @since 1.0.0
      */
 
-    public function bind($id, $value)
-    {
-        if (!$value instanceof \Clouser) {
-            $value = function() use ($value) {
+    public function bind( $id, $value ) {
+        if ( ! $value instanceof \Clouser ) {
+            $value = function() use ( $value ) {
                 return $value;
             };
         }
@@ -66,9 +65,8 @@ class Container implements \ArrayAccess
      * @return bool
      */
 
-    public function exists($id)
-    {
-        return isset($this->keys[$id]);
+    public function exists( $id ) {
+        return isset( $this->keys[$id] );
     }
 
     /**
@@ -80,13 +78,12 @@ class Container implements \ArrayAccess
      * @return mixed
      */
 
-    public function make($id)
-    {
-        if (!isset($id)) {
-            throw new \InvalidArgumentException(sprintf('Identifier [%s] is not defined', $id));
+    public function make( $id ) {
+        if ( ! isset( $id ) ) {
+            throw new \InvalidArgumentException( sprintf( 'Identifier [%s] is not defined', $id ) );
         }
 
-        return call_user_func($this->values[$id]);
+        return call_user_func( $this->values[$id] );
     }
 
     /**
@@ -98,9 +95,8 @@ class Container implements \ArrayAccess
      * @return bool
      */
 
-    public function offsetExists($id)
-    {
-        return $this->exists($id);
+    public function offsetExists( $id ) {
+        return $this->exists( $id );
     }
 
     /**
@@ -112,9 +108,8 @@ class Container implements \ArrayAccess
      * @return mixed
      */
 
-    public function offsetGet($id)
-    {
-        return $this->make($id);
+    public function offsetGet( $id ) {
+        return $this->make( $id );
     }
 
     /**
@@ -125,9 +120,8 @@ class Container implements \ArrayAccess
      * @since 1.0.0
      */
 
-    public function offsetSet($id, $value)
-    {
-        return $this->bind($id, $value);
+    public function offsetSet( $id, $value ) {
+        return $this->bind( $id, $value );
     }
 
     /**
@@ -137,8 +131,8 @@ class Container implements \ArrayAccess
      * @since 1.0.0
      */
 
-    public function offsetUnset($id)
-    {
-        unset($this->keys[$id], $this->values[$id]);
+    public function offsetUnset( $id ) {
+        unset( $this->keys[$id], $this->values[$id] );
     }
+
 }
