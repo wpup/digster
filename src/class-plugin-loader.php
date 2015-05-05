@@ -4,6 +4,8 @@ namespace Digster;
 
 /**
  * Hook the WordPress plugin into the appropriate WordPress actions and filters.
+ *
+ * @package Digster
  */
 
 final class Plugin_Loader {
@@ -12,15 +14,12 @@ final class Plugin_Loader {
      * The instance of Plugin loader class.
      *
      * @var object
-     * @since 1.0.0
      */
 
     private static $instance;
 
     /**
      * Get Plugin boilerplate loader instance.
-     *
-     * @since 1.0.0
      *
      * @return object
      */
@@ -36,8 +35,6 @@ final class Plugin_Loader {
 
     /**
      * Load Digster extensions.
-     *
-     * @since 1.0.0
      */
 
     public function load_extensions() {
@@ -54,8 +51,6 @@ final class Plugin_Loader {
 
     /**
      * Setup actions.
-     *
-     * @since 1.0.0
      */
 
     private function setup_actions() {

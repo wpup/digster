@@ -1,20 +1,11 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster\Engines;
 
 /**
  * Twig engine.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 class Twig_Engine extends Engine {
@@ -23,7 +14,6 @@ class Twig_Engine extends Engine {
      * The Twig environment instance.
      *
      * @var \Twig_Environment
-     * @since 1.0.0
      */
 
     private static $env_instance = null;
@@ -32,15 +22,12 @@ class Twig_Engine extends Engine {
      * The default extension (empty string).
      *
      * @var string
-     * @since 1.0.0
      */
 
     protected $extension = '.twig';
 
     /**
      * Boot Twig environment.
-     *
-     * @since 1.0.0
      *
      * @return \Twig_Environment
      */
@@ -51,7 +38,7 @@ class Twig_Engine extends Engine {
         $loader = new \Twig_Loader_Filesystem( $locations );
         $env    = new \Twig_Environment( $loader, $config );
 
-        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+        if ( true || defined( 'WP_DEBUG' ) && WP_DEBUG ) {
             $env->addExtension( new \Twig_Extension_Debug() );
         }
 
@@ -60,8 +47,6 @@ class Twig_Engine extends Engine {
 
     /**
      * Get the Twig environment instance.
-     *
-     * @since 1.0.0
      *
      * @return \Twig_Environment
      */
@@ -76,8 +61,6 @@ class Twig_Engine extends Engine {
 
     /**
      * Get engine config.
-     *
-     * @since 1.0.0
      *
      * @return array
      */
@@ -97,8 +80,6 @@ class Twig_Engine extends Engine {
 
     /**
      * Register Twig extensions that use `Twig_ExtensionInterface`.
-     *
-     * @since 1.0.0
      */
 
     public function register_extensions() {
@@ -120,15 +101,23 @@ class Twig_Engine extends Engine {
      *
      * @param string $template
      * @param array $data
-     * @since 1.0.0
      */
 
     public function render( $template, $data = array() ) {
         $template = $this->extension( $template );
         $instance = $this->env_instance();
         $data     = $this->prepare_data( $template, $data );
-
         return $instance->render( $template, $data );
+    }
+
+    /**
+     * Set Twig loader.
+     *
+     * @param Twig_LoaderInterface $loader
+     */
+
+    public function set_loader( \Twig_LoaderInterface $loader ) {
+        $this->env_instance()->setLoader($loader);
     }
 
 }

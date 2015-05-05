@@ -1,24 +1,15 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster;
 
 use Digster\Engines\Twig_Engine;
 
 /**
- * View.
+ * View class.
  *
  * The view is responsible for rendering a template.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 class View {
@@ -28,7 +19,6 @@ class View {
      *
      * @param string $key
      * @param mixed $value
-     * @since 1.0.0
      *
      * @return mixed
      */
@@ -40,12 +30,10 @@ class View {
     /**
      * Get template directories.
      *
-     * @since 1.0.0
-     *
      * @return array
      */
 
-    private static function engine() {
+    public static function engine() {
         return Twig_Engine::instance();
     }
 
@@ -54,7 +42,6 @@ class View {
      *
      * @param string $template
      * @param array $data
-     * @since 1.0.0
      */
 
     public static function render( $template, $data = array() ) {
@@ -66,7 +53,6 @@ class View {
      *
      * @param string $template
      * @param array $data
-     * @since 1.0.0
      *
      * @return string
      */
@@ -80,7 +66,6 @@ class View {
      *
      * @param array|string $template
      * @param callable $fn
-     * @since 1.0.0
      */
 
     public static function composer( $template, $fn = null ) {
@@ -89,8 +74,6 @@ class View {
 
     /**
      * Register extensions with template engine.
-     *
-     * @since 1.0.0
      */
 
     public static function register_extensions() {

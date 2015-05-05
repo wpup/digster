@@ -6,42 +6,36 @@ use Digster\View;
 
 /**
  * Unit tests to check so Digster is loaded correctly.
- *
- * @since 1.0.0
  */
 
 class ViewTest extends \WP_UnitTestCase {
 
     /**
-     * Test null config value.
-     *
-     * @since 1.0.0
+     * Test static `engine` method.
      */
 
-    public function testNullConfig() {
-        $this->assertEquals( null, View::config( 'null' ) );
+    public function test_engine() {
+        $this->assertTrue( is_object( View::engine() ) );
+
+        $loader = new \Twig_Loader_Array(array(
+            'index.html' => 'Hello, {{ name }}!'
+        ));
+
+        $engine = View::engine();
+        $engine->set_loader($loader);
+
+        $output = $engine->render('index.html', ['name' => 'Fredrik']);
+        $this->assertEquals( 'Hello, Fredrik!', $output );
     }
 
     /**
-     * Test key with value.
-     *
-     * @since 1.0.0
+     * Test locations config value.
      */
 
-    public function testNameConfig() {
-        View::config( 'name', 'Fredrik' );
-        $this->assertEquals( 'Fredrik', View::config( 'name' ) );
-    }
-
-    /**
-     * Test locations path
-     *
-     * @since 1.0.0
-     */
-
-    public function testLocations() {
+    public function test_locations() {
         $locations = View::config( 'locations' );
-        $this->assertFalse( empty( $locations ) );
+        $this->assertNotEmpty( $locations );
+        $this->assertTrue( strpos( $locations[0], '/views' ) !== false );
     }
 
 }

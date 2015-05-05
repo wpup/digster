@@ -1,28 +1,17 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster\Extensions;
 
 /**
  * Digster filter extension.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 class Filter_Extensions extends \Twig_Extension {
 
     /**
      * Get filters.
-     *
-     * @since 1.0.0
      *
      * @return array
      */
@@ -43,8 +32,6 @@ class Filter_Extensions extends \Twig_Extension {
 
     /**
      * Get the extension name.
-     *
-     * @since 1.0.0
      *
      * @return string
      */

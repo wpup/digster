@@ -1,28 +1,17 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster\Extensions;
 
 /**
  * Digster functions extension.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 class Function_Extensions extends \Twig_Extension {
 
     /**
      * Call WordPress action
-     *
-     * @since 1.0.0
      */
 
     public function doAction() {
@@ -31,8 +20,6 @@ class Function_Extensions extends \Twig_Extension {
 
     /**
      * Get functions.
-     *
-     * @since 1.0.0
      *
      * @return array
      */
@@ -53,8 +40,6 @@ class Function_Extensions extends \Twig_Extension {
 
     /**
      * Get the extension name.
-     *
-     * @since 1.0.0
      *
      * @return string
      */

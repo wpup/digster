@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster\Engines;
 
 use Digster\Container;
@@ -16,7 +8,6 @@ use Digster\Container;
  * Engine.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 abstract class Engine extends Container {
@@ -25,7 +16,6 @@ abstract class Engine extends Container {
      * The any composer key that all template uses.
      *
      * @var string
-     * @since 1.0.0
      */
 
     protected $any_composer_key = 'any';
@@ -34,7 +24,6 @@ abstract class Engine extends Container {
      * Engines composers.
      *
      * @var array
-     * @since 1.0.0
      */
 
     protected $composers = array();
@@ -43,7 +32,6 @@ abstract class Engine extends Container {
      * The default extension (empty string).
      *
      * @var string
-     * @since 1.0.0
      */
 
     protected $extension = '';
@@ -52,7 +40,6 @@ abstract class Engine extends Container {
      * The View instance.
      *
      * @var \Digster\Engine
-     * @since 1.0.0
      */
 
     private static $instance = null;
@@ -61,7 +48,6 @@ abstract class Engine extends Container {
      * The config locations key.
      *
      * @var string
-     * @since 1.0.0
      */
 
     protected $locationsKey = 'locations';
@@ -71,7 +57,6 @@ abstract class Engine extends Container {
      *
      * @param array|string $key
      * @param mixed $value
-     * @since 1.0.0
      *
      * @return mixed
      */
@@ -99,20 +84,21 @@ abstract class Engine extends Container {
      * Set twig extension if it don't exists on the template string.
      *
      * @param string $template
-     * @since 1.0.0
      *
      * @return string
      */
 
     public function extension( $template ) {
+        if ( preg_match( '/\.\w+$/', $template ) ) {
+            return $template;
+        }
+
         return substr( $template, -strlen( $this->extension ) ) === $this->extension
             ? $template : $template . $this->extension;
     }
 
     /**
      * Get the Engine instance.
-     *
-     * @since 1.0.0
      *
      * @return \Digster\Engine
      */
@@ -129,7 +115,6 @@ abstract class Engine extends Container {
      * Get composer by template.
      *
      * @param string $template
-     * @since 1.0.0
      *
      * @return array
      */
@@ -143,11 +128,11 @@ abstract class Engine extends Container {
         $template  = $this->extension( $template );
 
         if ( isset( $this->composers[$template] ) ) {
-            $composers = array_merge( $res, $this->composers[$template] );
+            $composers = array_merge( $composers, $this->composers[$template] );
         }
 
         if ( isset( $this->composers[$this->any_composer_key] ) ) {
-            $composers = array_merge( $res, $this->composers[$this->any_composer_key] );
+            $composers = array_merge( $composers, $this->composers[$this->any_composer_key] );
         }
 
         return $composers;
@@ -155,8 +140,6 @@ abstract class Engine extends Container {
 
     /**
      * Get default configuration.
-     *
-     * @since 1.0.0
      *
      * @return array
      */
@@ -173,8 +156,6 @@ abstract class Engine extends Container {
 
     /**
      * Get engine config.
-     *
-     * @since 1.0.0
      *
      * @return array
      */
@@ -197,7 +178,6 @@ abstract class Engine extends Container {
      *
      * @param string $template
      * @param array $data
-     * @since 1.0.0
      *
      * @return array
      */
@@ -221,8 +201,6 @@ abstract class Engine extends Container {
      * @param string $template
      * @param array $data
      *
-     * @since 1.0.0
-     *
      * @return string
      */
 
@@ -230,8 +208,6 @@ abstract class Engine extends Container {
 
     /**
      * Register extensions.
-     *
-     * @since 1.0.0
      */
 
     abstract public function register_extensions();
@@ -241,7 +217,6 @@ abstract class Engine extends Container {
      *
      * @param array|string $template
      * @param callable $fn
-     * @since 1.0.0
      */
 
     public function composer( $template, $fn = null ) {
@@ -252,15 +227,15 @@ abstract class Engine extends Container {
         $template = (array) $template;
 
         foreach ( $template as $tmpl ) {
-            if ( $tmpl !== $this->anyPreprocessKey ) {
+            if ( $tmpl !== $this->any_composer_key ) {
                 $tmpl = $this->extension( $tmpl );
             }
 
-            if ( ! isset( $this->preprocesses[$tmpl] ) ) {
-                $this->preprocesses[$tmpl] = array();
+            if ( ! isset( $this->composers[$tmpl] ) ) {
+                $this->composers[$tmpl] = array();
             }
 
-            $this->preprocesses[$tmpl][] = $fn;
+            $this->composers[$tmpl][] = $fn;
         }
     }
 
@@ -268,7 +243,6 @@ abstract class Engine extends Container {
      * Prepare the template engines real configuration.
      *
      * @param array $arr
-     * @since 1.0.0
      *
      * @return array
      */
@@ -292,8 +266,6 @@ abstract class Engine extends Container {
 
     /**
      * Register extension.
-     *
-     * @since 1.0.0
      */
 
     abstract public function prepare_engine_config();

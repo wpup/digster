@@ -6,16 +6,12 @@ use Digster\Container;
 
 /**
  * Unit tests to check so Digster is loaded correctly.
- *
- * @since 1.0.0
  */
 
 class Container_Test extends \WP_UnitTestCase {
 
     /**
      * Setup the test.
-     *
-     * @since 1.0.0
      */
 
     public function setUp() {
@@ -24,9 +20,7 @@ class Container_Test extends \WP_UnitTestCase {
     }
 
     /**
-     * Check if `Class` exists in the container or not.
-     *
-     * @since 1.0.0
+     * Check if `Class` key exists in the container or not.
      */
 
     public function testExists() {
@@ -35,8 +29,6 @@ class Container_Test extends \WP_UnitTestCase {
 
     /**
      * Test container bind and make.
-     *
-     * @since 1.0.0
      */
 
     public function testBindAndMake() {

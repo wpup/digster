@@ -4,8 +4,6 @@
  * Digister - Twig templates for WordPress.
  *
  * @package Digster
- * @license MIT
- * @version 1.0.0
  */
 
 use Digster\View;
@@ -15,7 +13,6 @@ use Digster\View;
  *
  * @param string|array $template
  * @param callable $fn
- * @since 1.0.0
  */
 
 function digster_composer( $template, $fn ) {
@@ -27,7 +24,6 @@ function digster_composer( $template, $fn ) {
  *
  * @param string $template
  * @param array $data
- * @since 1.0.0
  *
  * @return string
  */
@@ -38,8 +34,6 @@ function digster_fetch( $template, $data = array() ) {
 
 /**
  * Reigster extension with template engine.
- *
- * @since 1.0.0
  */
 
 function digster_register_extension() {
@@ -51,7 +45,6 @@ function digster_register_extension() {
  *
  * @param string $template
  * @param array $data
- * @since 1.0.0
  */
 
 function digster_render( $template, $data = array() ) {

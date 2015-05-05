@@ -1,20 +1,11 @@
 <?php
 
-/**
- * Digster - Twig templates for WordPress.
- *
- * @package Digister
- * @license MIT
- * @version 1.0.0
- */
-
 namespace Digster;
 
 /**
- * Engine.
+ * Container class.
  *
  * @package Digster
- * @since 1.0.0
  */
 
 class Container implements \ArrayAccess {
@@ -23,7 +14,6 @@ class Container implements \ArrayAccess {
      * The keys holder.
      *
      * @var array
-     * @since 1.0.0
      */
 
     protected $keys = array();
@@ -32,7 +22,6 @@ class Container implements \ArrayAccess {
      * The values holder.
      *
      * @var array
-     * @since 1.0.0
      */
 
     protected $values = array();
@@ -42,7 +31,6 @@ class Container implements \ArrayAccess {
      *
      * @param string $id
      * @param mixed  $value
-     * @since 1.0.0
      */
 
     public function bind( $id, $value ) {
@@ -60,7 +48,6 @@ class Container implements \ArrayAccess {
      * Check if identifier is set or not.
      *
      * @param string $id
-     * @since 1.0.0
      *
      * @return bool
      */
@@ -73,7 +60,6 @@ class Container implements \ArrayAccess {
      * Get value from the container.
      *
      * @param string $id
-     * @since 1.0.0
      *
      * @return mixed
      */
@@ -90,7 +76,6 @@ class Container implements \ArrayAccess {
      * Check if identifier is set or not.
      *
      * @param string $id
-     * @since 1.0.0
      *
      * @return bool
      */
@@ -103,7 +88,6 @@ class Container implements \ArrayAccess {
      * Get value from the container.
      *
      * @param string $id
-     * @since 1.0.0
      *
      * @return mixed
      */
@@ -117,7 +101,6 @@ class Container implements \ArrayAccess {
      *
      * @param string $id
      * @param mixed  $value
-     * @since 1.0.0
      */
 
     public function offsetSet( $id, $value ) {
@@ -128,7 +111,6 @@ class Container implements \ArrayAccess {
      * Unset value and key by identifier.
      *
      * @param string $id
-     * @since 1.0.0
      */
 
     public function offsetUnset( $id ) {
