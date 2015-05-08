@@ -13,9 +13,8 @@ class Digster_Test extends \WP_UnitTestCase {
      * and should have a default priority of 0.
      */
 
-    public function testPluginsLoadedAction()
-    {
-        $this->assertEquals(0, has_action('plugins_loaded', 'digster'));
+    public function testPluginsLoadedAction() {
+        $this->assertEquals( 0, has_action( 'plugins_loaded', 'digster' ) );
     }
 
 }

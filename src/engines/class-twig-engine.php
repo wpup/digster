@@ -38,7 +38,7 @@ class Twig_Engine extends Engine {
         $loader = new \Twig_Loader_Filesystem( $locations );
         $env    = new \Twig_Environment( $loader, $config );
 
-        if ( true || defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
             $env->addExtension( new \Twig_Extension_Debug() );
         }
 

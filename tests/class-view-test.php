@@ -10,7 +10,6 @@ use Digster\View;
 
 class ViewTest extends \WP_UnitTestCase {
 
-
     /**
      * Test static `fetch` method.
      */

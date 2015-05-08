@@ -33,11 +33,11 @@ function digster_fetch( $template, $data = array() ) {
 }
 
 /**
- * Reigster extension with template engine.
+ * Reigster extensions with template engine.
  */
 
-function digster_register_extension() {
-    View::registerExtension( func_get_args() );
+function digster_register_extensions() {
+    View::register_extensions( func_get_args() );
 }
 
 /**
