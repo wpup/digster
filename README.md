@@ -78,10 +78,6 @@ Fetch the view in to a string.
 
 ```php
 $view = digster_fetch('page' [, $data]);
-
-// or
-
-$view = \Digster\View::fetch('page' [, $data]);
 ```
 
 #### Register composer
@@ -93,12 +89,6 @@ This example is for `post` object, but Digster already have this global variable
 ```php
 // 'any', 'page' or 'page.twig'
 digster_composer('page', function ($vars) {
-  $vars['post'] = is_numeric($vars['post']) ?  get_page($vars['post'] ) : $vars['post'];
-  return $vars;
-});
-
-// or
-\Digster\View::composer('page', function ($vars) {
   $vars['post'] = is_numeric($vars['post']) ?  get_page($vars['post'] ) : $vars['post'];
   return $vars;
 });
@@ -115,10 +105,6 @@ Register Twig extension classes with Digster.
 
 ```php
 digster_register_extensions(new MyTwigExtension());
-
-// or
-
-\Digster\View::register_extensions(new MyTwigExtension());
 ```
 
 #### Render a view
@@ -127,10 +113,6 @@ Render the view
 
 ```php
 digster_render('page' [, $data]);
-
-// or
-
-\Digster\View::render('page' [, $data]);
 ```
 
 ## Twig filters
