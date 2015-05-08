@@ -34,17 +34,10 @@ class Twig_Engine extends Engine {
 
     protected function add_extension( \Twig_ExtensionInterface $extension ) {
         $env  = $this->env_instance();
-        $exts = $env->getExtensions();
-
-        if ( isset( $exts[$extension->getName()] ) ) {
-            return;
-        }
 
         try {
             $env->addExtension( $extension );
-        } catch( LogicException $e ) {
-            return;
-        }
+        } catch( LogicException $e ) {}
     }
 
     /**
