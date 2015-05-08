@@ -15,6 +15,17 @@ use Digster\Engines\Twig_Engine;
 class View {
 
     /**
+     * Register composer with templates.
+     *
+     * @param array|string $template
+     * @param callable $fn
+     */
+
+    public static function composer( $template, $fn = null ) {
+        self::engine()->composer( $template, $fn );
+    }
+
+    /**
      * Get or set configuration value.
      *
      * @param string $key
@@ -38,17 +49,6 @@ class View {
     }
 
     /**
-     * Render the view.
-     *
-     * @param string $template
-     * @param array $data
-     */
-
-    public static function render( $template, $data = array() ) {
-        echo self::fetch( $template, $data );
-    }
-
-    /**
      * Fetch the view to a string.
      *
      * @param string $template
@@ -62,14 +62,14 @@ class View {
     }
 
     /**
-     * Register composer with templates.
+     * Render the view.
      *
-     * @param array|string $template
-     * @param callable $fn
+     * @param string $template
+     * @param array $data
      */
 
-    public static function composer( $template, $fn = null ) {
-        self::engine()->composer( $template, $fn );
+    public static function render( $template, $data = array() ) {
+        echo self::fetch( $template, $data );
     }
 
     /**
