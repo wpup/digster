@@ -25,7 +25,7 @@ class Name_Extension extends \Twig_Extension {
      */
 
     public function getName() {
-        return '';
+        return 'name-extension-globals';
     }
 
 }

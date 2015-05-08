@@ -27,6 +27,24 @@ class Twig_Engine extends Engine {
     protected $extension = '.twig';
 
     /**
+     * Add extension without throwing a error that it exists.
+     *
+     * @param \Twig_ExtensionInterface $extension
+     */
+
+    protected function add_extension( \Twig_ExtensionInterface $extension ) {
+        $env = $this->env_instance();
+
+        try {
+            $ext = $env->getExtension( $extension->getName() );
+            return;
+        } catch ( \Twig_Error_Runtime $e ) {
+            $env->addExtension( $extension );
+
+        }
+    }
+
+    /**
      * Boot Twig environment.
      *
      * @return \Twig_Environment
@@ -87,7 +105,7 @@ class Twig_Engine extends Engine {
 
         foreach ( $extensions as $extension ) {
             if ( $extension instanceof \Twig_ExtensionInterface ) {
-                $this->env_instance()->addExtension( $extension );
+                $this->add_extension( $extension );
             } else {
                 foreach ( (array) $extension as $ext ) {
                     $this->register_extensions( $ext );
@@ -117,7 +135,7 @@ class Twig_Engine extends Engine {
      */
 
     public function set_loader( \Twig_LoaderInterface $loader ) {
-        $this->env_instance()->setLoader($loader);
+        $this->env_instance()->setLoader( $loader );
     }
 
 }
