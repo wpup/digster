@@ -87,7 +87,7 @@ With Digster you can register composer with any template or a specified template
 This example is for `post` object, but Digster already have this global variable loaded.
 
 ```php
-// 'any' or 'page.twig'
+// 'any', 'page' or 'page.twig'
 digster_composer('page', function ($vars) {
   $vars['post'] = is_numeric($vars['post']) ?  get_page($vars['post'] ) : $vars['post'];
   return $vars;
