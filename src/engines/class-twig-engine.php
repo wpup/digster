@@ -40,7 +40,11 @@ class Twig_Engine extends Engine {
             return;
         }
 
-        $env->addExtension( $extension );
+        try {
+            $env->addExtension( $extension );
+        } catch( LogicException $e ) {
+            return;
+        }
     }
 
     /**
