@@ -108,7 +108,10 @@ class ViewTest extends \WP_UnitTestCase {
         $engine = View::engine();
         $engine->set_loader( $loader );
 
-        View::register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
+        try {
+            View::register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
+        } catch(Exception $e) {
+        }
 
         $output = View::fetch( 'index.html' );
         $this->assertEquals( 'Hello, World!', $output );

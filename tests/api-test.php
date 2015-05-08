@@ -87,7 +87,10 @@ class API_Test extends \WP_UnitTestCase {
         $engine = View::engine();
         $engine->set_loader( $loader );
 
-        digster_register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
+        try {
+            digster_register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
+        } catch(Exception $e) {
+        }
 
         $output = View::fetch( 'index.html' );
         $this->assertEquals( 'Hello, World!', $output );
