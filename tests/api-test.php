@@ -73,27 +73,4 @@ class API_Test extends \WP_UnitTestCase {
         $this->expectOutputString( 'Hello Fredrik!' );
     }
 
-    /**
-     * Test `digster_register_extensions` function.
-     */
-
-    public function test_digster_register_extensions() {
-        require_once __DIR__ . '/fixtures/class-name-extension.php';
-
-        $loader = new \Twig_Loader_Array( array(
-            'index.html' => 'Hello, {{ name() }}!'
-        ) );
-
-        $engine = View::engine();
-        $engine->set_loader( $loader );
-
-        try {
-            digster_register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
-        } catch(Exception $e) {
-        }
-
-        $output = View::fetch( 'index.html' );
-        $this->assertEquals( 'Hello, World!', $output );
-    }
-
 }

@@ -94,27 +94,4 @@ class ViewTest extends \WP_UnitTestCase {
         $this->expectOutputString( 'Hello, Fredrik!' );
     }
 
-    /**
-     * Test static `register_extensions` method.
-     */
-
-    public function test_register_extensions() {
-        require_once __DIR__ . '/fixtures/class-name-extension.php';
-
-        $loader = new \Twig_Loader_Array( array(
-            'index.html' => 'Hello, {{ name() }}!'
-        ) );
-
-        $engine = View::engine();
-        $engine->set_loader( $loader );
-
-        try {
-            View::register_extensions( new \Digster\Tests\Fixtures\Name_Extension() );
-        } catch(Exception $e) {
-        }
-
-        $output = View::fetch( 'index.html' );
-        $this->assertEquals( 'Hello, World!', $output );
-    }
-
 }
