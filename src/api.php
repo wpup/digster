@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Digister - Twig templates for WordPress.
- *
- * @package Digster
- */
-
 use Digster\View;
 
 /**
