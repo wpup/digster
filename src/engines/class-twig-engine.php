@@ -27,21 +27,20 @@ class Twig_Engine extends Engine {
     protected $extension = '.twig';
 
     /**
-     * Add extension without throwing a error that it exists.
+     * Add extension if it don't exists.
      *
      * @param \Twig_ExtensionInterface $extension
      */
 
     protected function add_extension( \Twig_ExtensionInterface $extension ) {
-        $env = $this->env_instance();
+        $env  = $this->env_instance();
+        $exts = $env->getExtensions();
 
-        try {
-            $ext = $env->getExtension( $extension->getName() );
+        if ( isset( $exts[$extension->getName()] ) ) {
             return;
-        } catch ( \Twig_Error_Runtime $e ) {
-            $env->addExtension( $extension );
-
         }
+
+        $env->addExtension( $extension );
     }
 
     /**
