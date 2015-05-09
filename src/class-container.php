@@ -65,7 +65,7 @@ class Container implements \ArrayAccess {
      */
 
     public function make( $id ) {
-        if ( ! isset( $id ) ) {
+        if ( ! isset( $this->keys[$id] ) ) {
             throw new \InvalidArgumentException( sprintf( 'Identifier [%s] is not defined', $id ) );
         }
 
