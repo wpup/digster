@@ -5,7 +5,7 @@
 Digster it's a WordPress plugin that allows you to render Twig views with a
 few Twig [filters](#twig-filters), [functions](#twig-functions) and [globals](#twig-globals).
 
-It's easy to register your own [extensions](#register-extension) or [preprocesses](#register-preprocess).
+It's easy to register your own [extensions](#register-extension) or [composers](#register-composer).
 
 [![Build Status](https://travis-ci.org/frozzare/digster.svg?branch=master)](https://travis-ci.org/frozzare/digster)
 
