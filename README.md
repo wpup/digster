@@ -104,7 +104,7 @@ digster_render('page', [
 Register Twig extension classes with Digster.
 
 ```php
-digster_register_extensions(new MyTwigExtension());
+digster_register_extensions(new MyFirstTwigExtension(), new MySecondTwigExtension());
 ```
 
 #### Render a view
