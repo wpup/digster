@@ -151,13 +151,13 @@ Append p tags to the text
 #### Call wp head
 
 ```html
-{{ wp_head }}
+{{ wp_head() }}
 ```
 
 #### Call wp footer
 
 ```html
-{{ wp_footer }}
+{{ wp_footer() }}
 ```
 
 ## Twig globals
