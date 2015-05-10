@@ -184,3 +184,11 @@ Append p tags to the text
 ```html
 <body class="{{ body_class }}">
 ```
+
+## Cache
+
+Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension).
+
+# License
+
+MIT © [Fredrik Forsmo](https://github.com/frozzare)
