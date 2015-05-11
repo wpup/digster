@@ -189,7 +189,7 @@ Append p tags to the text
 
 Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension).
 
-## Code style
+## Coding style
 
 Digster has a `phpcs.rulset.xml` so you can check the source code coding style.
 
