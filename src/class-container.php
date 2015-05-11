@@ -10,111 +10,119 @@ namespace Digster;
 
 class Container implements \ArrayAccess {
 
-    /**
-     * The keys holder.
-     *
-     * @var array
-     */
+	/**
+	 * The keys holder.
+	 *
+	 * @var array
+	 */
 
-    protected $keys = array();
+	protected $keys = array();
 
-    /**
-     * The values holder.
-     *
-     * @var array
-     */
+	/**
+	 * The values holder.
+	 *
+	 * @var array
+	 */
 
-    protected $values = array();
+	protected $values = array();
 
-    /**
-     * Set a parameter or an object.
-     *
-     * @param string $id
-     * @param mixed  $value
-     */
+	/**
+	 * Set a parameter or an object.
+	 *
+	 * @param string $id
+	 * @param mixed  $value
+	 */
 
-    public function bind( $id, $value ) {
-        if ( ! $value instanceof \Clouser ) {
-            $value = function() use ( $value ) {
-                return $value;
-            };
-        }
+	public function bind( $id, $value ) {
+		if ( ! $value instanceof \Clouser ) {
+			$value = function() use ( $value ) {
+				return $value;
+			};
+		}
 
-        $this->values[$id] = $value;
-        $this->keys[$id]   = true;
-    }
+		$this->values[$id] = $value;
+		$this->keys[$id]   = true;
+	}
 
-    /**
-     * Check if identifier is set or not.
-     *
-     * @param string $id
-     *
-     * @return bool
-     */
+	/**
+	 * Check if identifier is set or not.
+	 *
+	 * @param string $id
+	 *
+	 * @return bool
+	 */
 
-    public function exists( $id ) {
-        return isset( $this->keys[$id] );
-    }
+	public function exists( $id ) {
+		return isset( $this->keys[$id] );
+	}
 
-    /**
-     * Get value from the container.
-     *
-     * @param string $id
-     *
-     * @return mixed
-     */
+	/**
+	 * Get value from the container.
+	 *
+	 * @param string $id
+	 *
+	 * @return mixed
+	 */
 
-    public function make( $id ) {
-        if ( ! isset( $this->keys[$id] ) ) {
-            throw new \InvalidArgumentException( sprintf( 'Identifier [%s] is not defined', $id ) );
-        }
+	public function make( $id ) {
+		if ( ! isset( $this->keys[$id] ) ) {
+			throw new \InvalidArgumentException( sprintf( 'Identifier [%s] is not defined', $id ) );
+		}
 
-        return call_user_func( $this->values[$id] );
-    }
+		return call_user_func( $this->values[$id] );
+	}
 
-    /**
-     * Check if identifier is set or not.
-     *
-     * @param string $id
-     *
-     * @return bool
-     */
+	/**
+	 * Check if identifier is set or not.
+	 *
+	 * @param string $id
+	 *
+	 * @return bool
+	 */
 
-    public function offsetExists( $id ) {
-        return $this->exists( $id );
-    }
+	// @codingStandardsIgnoreStart
+	public function offsetExists( $id ) {
+	// @codingStandardsIgnoreEnd
+		return $this->exists( $id );
+	}
 
-    /**
-     * Get value from the container.
-     *
-     * @param string $id
-     *
-     * @return mixed
-     */
+	/**
+	 * Get value by identifier.
+	 *
+	 * @param string $id
+	 *
+	 * @return mixed
+	 */
 
-    public function offsetGet( $id ) {
-        return $this->make( $id );
-    }
+	// @codingStandardsIgnoreStart
+	public function offsetGet( $id ) {
+	// @codingStandardsIgnoreEnd
+		return $this->make( $id );
+	}
 
-    /**
-     * Set a parameter or an object.
-     *
-     * @param string $id
-     * @param mixed  $value
-     */
+	/**
+	 * Set a parameter or an object.
+	 *
+	 * @param string $id
+	 * @param mixed $value
+	 */
 
-    public function offsetSet( $id, $value ) {
-        return $this->bind( $id, $value );
-    }
+	// @codingStandardsIgnoreStart
+	public function offsetSet( $id, $value ) {
+	// @codingStandardsIgnoreEnd
+		$this->bind( $id, $value );
+	}
 
-    /**
-     * Unset value and key by identifier.
-     *
-     * @param string $id
-     */
+	/**
+	 * Unset value by identifier.
+	 *
+	 * @param string $id
+	 */
 
-    public function offsetUnset( $id ) {
-        unset( $this->keys[$id], $this->values[$id] );
-    }
+	// @codingStandardsIgnoreStart
+	public function offsetUnset( $id ) {
+	// @codingStandardsIgnoreEnd
+		unset( $this->keys[$id], $this->values[$id] );
+	}
 
 }

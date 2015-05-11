@@ -10,51 +10,51 @@ namespace Digster;
 
 final class Plugin_Loader {
 
-    /**
-     * The instance of Plugin loader class.
-     *
-     * @var object
-     */
+	/**
+	 * The instance of Plugin loader class.
+	 *
+	 * @var object
+	 */
 
-    private static $instance;
+	private static $instance;
 
-    /**
-     * Get Plugin boilerplate loader instance.
-     *
-     * @return object
-     */
+	/**
+	 * Get Plugin boilerplate loader instance.
+	 *
+	 * @return object
+	 */
 
-    public static function instance() {
-        if ( ! isset( self::$instance ) ) {
-            self::$instance = new self;
-            self::$instance->setup_actions();
-        }
+	public static function instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self;
+			self::$instance->setup_actions();
+		}
 
-        return self::$instance;
-    }
+		return self::$instance;
+	}
 
-    /**
-     * Load Digster extensions.
-     */
+	/**
+	 * Load Digster extensions.
+	 */
 
-    public function load_extensions() {
-        $extensions = [
-            new \Digster\Extensions\Filter_Extensions(),
-            new \Digster\Extensions\Function_Extensions(),
-            new \Digster\Extensions\Global_Extensions()
-        ];
+	public function load_extensions() {
+		$extensions = [
+			new \Digster\Extensions\Filter_Extensions(),
+			new \Digster\Extensions\Function_Extensions(),
+			new \Digster\Extensions\Global_Extensions()
+		];
 
-        $extensions = apply_filters( 'digster/extensions', $extensions );
+		$extensions = apply_filters( 'digster/extensions', $extensions );
 
-        View::register_extensions( $extensions );
-    }
+		View::register_extensions( $extensions );
+	}
 
-    /**
-     * Setup actions.
-     */
+	/**
+	 * Setup actions.
+	 */
 
-    private function setup_actions() {
-        add_action( 'after_setup_theme', [$this, 'load_extensions'] );
-    }
+	private function setup_actions() {
+		add_action( 'after_setup_theme', [$this, 'load_extensions'] );
+	}
 
 }

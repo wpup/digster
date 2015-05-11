@@ -10,42 +10,42 @@ namespace Digster\Extensions;
 
 class Function_Extensions extends \Twig_Extension {
 
-    /**
-     * Call WordPress action
-     */
+	/**
+	 * Call WordPress action
+	 */
 
-    public function doAction() {
-        call_user_func_array( 'do_action', func_get_args() );
-    }
+	public function doAction() {
+		call_user_func_array( 'do_action', func_get_args() );
+	}
 
-    /**
-     * Get functions.
-     *
-     * @return array
-     */
+	/**
+	 * Get functions.
+	 *
+	 * @return array
+	 */
 
-    public function getFunctions() {
-        $callables = [
-            'action'    => [$this, 'doAction'],
-            'wp_head'   => 'wp_head',
-            'wp_footer' => 'wp_footer'
-        ];
+	public function getFunctions() {
+		$callables = [
+			'action'    => [$this, 'doAction'],
+			'wp_head'   => 'wp_head',
+			'wp_footer' => 'wp_footer'
+		];
 
-        foreach ( $callables as $fn => $callable ) {
-            $callables[$fn] = new \Twig_SimpleFunction( $fn, $callable );
-        }
+		foreach ( $callables as $fn => $callable ) {
+			$callables[$fn] = new \Twig_SimpleFunction( $fn, $callable );
+		}
 
-        return $callables;
-    }
+		return $callables;
+	}
 
-    /**
-     * Get the extension name.
-     *
-     * @return string
-     */
+	/**
+	 * Get the extension name.
+	 *
+	 * @return string
+	 */
 
-    public function getName() {
-        return 'digster-functions';
-    }
+	public function getName() {
+		return 'digster-functions';
+	}
 
 }

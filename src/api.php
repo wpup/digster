@@ -10,7 +10,7 @@ use Digster\View;
  */
 
 function digster_composer( $template, $fn ) {
-    View::composer( $template, $fn );
+	View::composer( $template, $fn );
 }
 
 /**
@@ -23,7 +23,7 @@ function digster_composer( $template, $fn ) {
  */
 
 function digster_fetch( $template, $data = array() ) {
-    return View::fetch( $template, $data );
+	return View::fetch( $template, $data );
 }
 
 /**
@@ -31,7 +31,7 @@ function digster_fetch( $template, $data = array() ) {
  */
 
 function digster_register_extensions() {
-    View::register_extensions( func_get_args() );
+	View::register_extensions( func_get_args() );
 }
 
 /**
@@ -42,5 +42,5 @@ function digster_register_extensions() {
  */
 
 function digster_render( $template, $data = array() ) {
-    View::render( $template, $data );
+	View::render( $template, $data );
 }
