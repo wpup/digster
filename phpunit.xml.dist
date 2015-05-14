@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
+<phpunit backupGlobals="false"
+  backupStaticAttributes="false"
+  beStrictAboutTestsThatDoNotTestAnything="true"
+  beStrictAboutOutputDuringTests="true"
   bootstrap="tests/bootstrap.php"
-  backupGlobals="false"
   colors="true"
   convertErrorsToExceptions="true"
   convertNoticesToExceptions="true"
   convertWarningsToExceptions="true"
+  processIsolation="false"
+  stopOnError="false"
+  stopOnFailure="false"
+  syntaxCheck="true"
+  verbose="true"
   >
   <php>
     <const name="WTB_PLUGIN_FILE_NAME" value="digster.php" />
