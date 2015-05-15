@@ -14,9 +14,6 @@
   syntaxCheck="true"
   verbose="true"
   >
-  <php>
-    <const name="WTB_PLUGIN_FILE_NAME" value="digster.php" />
-  </php>
   <testsuites>
     <testsuite name="Digster Test Suite">
       <directory suffix=".php">./tests/</directory>
