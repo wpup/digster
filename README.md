@@ -194,11 +194,11 @@ use Digster\Cache\Twig\WordPress_Cache_Adapter;
 use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
 use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 
-$cacheProvider  = new WordPress_Cache_Adapter();
-$cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
-$cacheExtension = new CacheExtension($cacheStrategy);
+$cache_provider  = new WordPress_Cache_Adapter();
+$cache_strategy  = new LifetimeCacheStrategy($cache_provider);
+$cache_extension = new CacheExtension($cache_strategy);
 
-digster_register_extensions($cacheExtension);
+digster_register_extensions($cache_extension);
 ```
 
 ## Coding style
