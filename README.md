@@ -187,7 +187,19 @@ Append p tags to the text
 
 ## Cache
 
-Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension).
+Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension). Digster has a build in Cache provider that uses the [WordPress Object cache](http://codex.wordpress.org/Class_Reference/WP_Object_Cache).
+
+```php
+use Digster\Cache\Twig\WordPress_Cache_Adapter;
+use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
+use Asm89\Twig\CacheExtension\Extension as CacheExtension;
+
+$cacheProvider  = new WordPress_Cache_Adapter();
+$cacheStrategy  = new LifetimeCacheStrategy( $cacheProvider );
+$cacheExtension = new CacheExtension( $cacheStrategy );
+
+digster_register_extensions( $cacheExtension );
+```
 
 ## Coding style
 

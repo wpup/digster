@@ -21,8 +21,9 @@
     ]
   },
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=5.4.7",
     "twig/twig": "^1.18",
+    "asm89/twig-cache-extension": "~1.0",
     "frozzare/wp-autoload": "~1.0"
   },
   "require-dev": {
