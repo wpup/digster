@@ -195,10 +195,10 @@ use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
 use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 
 $cacheProvider  = new WordPress_Cache_Adapter();
-$cacheStrategy  = new LifetimeCacheStrategy( $cacheProvider );
-$cacheExtension = new CacheExtension( $cacheStrategy );
+$cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
+$cacheExtension = new CacheExtension($cacheStrategy);
 
-digster_register_extensions( $cacheExtension );
+digster_register_extensions($cacheExtension);
 ```
 
 ## Coding style
