@@ -190,7 +190,7 @@ Takes the same arguments as `apply_filters`.
 You can send in more arguments to `fn`.
 
 ```html
-<body {{ fn('my_function') }}>
+<body {{ fn('my_function', 'a', 'b') }}>
 ```
 
 #### Call wp_footer
