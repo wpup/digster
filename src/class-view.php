@@ -57,7 +57,7 @@ class View {
 	 * @return string
 	 */
 
-	public static function fetch( $template, $data = array() ) {
+	public static function fetch( $template, array $data = [] ) {
 		return self::engine()->render( $template, $data );
 	}
 
@@ -68,7 +68,7 @@ class View {
 	 * @param array $data
 	 */
 
-	public static function render( $template, $data = array() ) {
+	public static function render( $template, array $data = [] ) {
 		echo self::fetch( $template, $data );
 	}
 

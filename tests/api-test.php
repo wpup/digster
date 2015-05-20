@@ -21,9 +21,9 @@ class API_Test extends \WP_UnitTestCase {
             return $vars;
         } );
 
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ post.post_title }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
 
@@ -40,9 +40,9 @@ class API_Test extends \WP_UnitTestCase {
      */
 
     public function test_digster_fetch() {
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -59,9 +59,9 @@ class API_Test extends \WP_UnitTestCase {
      */
 
     public function test_digster_render() {
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );

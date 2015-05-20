@@ -10,6 +10,12 @@ define( 'WP_AUTOLOAD_BASE_DIR', dirname( __DIR__ ) . '/src' );
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 
 /**
+ * Load test data file.
+ */
+
+WP_Test_Suite::load_files( __DIR__ . '/test-data.php' );
+
+/**
  * Load Papi loader file as plugin.
  */
 

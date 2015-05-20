@@ -15,9 +15,9 @@ class ViewTest extends \WP_UnitTestCase {
      */
 
     public function test_composer() {
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ firstname }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -38,9 +38,9 @@ class ViewTest extends \WP_UnitTestCase {
     public function test_engine() {
         $this->assertTrue( is_object( View::engine() ) );
 
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ name }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -54,9 +54,9 @@ class ViewTest extends \WP_UnitTestCase {
      */
 
     public function test_fetch() {
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ name }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -83,9 +83,9 @@ class ViewTest extends \WP_UnitTestCase {
      */
 
     public function test_render() {
-        $loader = new \Twig_Loader_Array( array(
+        $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ name }}!'
-        ) );
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );

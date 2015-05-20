@@ -1,6 +1,6 @@
 <?php
 
-namespace Digster\Cache\Twig;
+namespace Digster\Cache;
 
 use Asm89\Twig\CacheExtension\CacheProviderInterface;
 

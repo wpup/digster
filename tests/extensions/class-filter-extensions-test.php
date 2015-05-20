@@ -11,9 +11,9 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
      */
 
     public function test_excerpt() {
-        $loader = new \Twig_Loader_Array( array(
-            'index.html' => 'Hello, {{ text|excerpt }}'
-        ) );
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello, {{ text | excerpt }}'
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -35,9 +35,9 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
             return "foo = {$atts['foo']}";
         });
 
-        $loader = new \Twig_Loader_Array( array(
-            'index.html' => 'Hello, {{ text|shortcodes|raw }}'
-        ) );
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello, {{ text | shortcodes | raw }}'
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );
@@ -55,9 +55,9 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
      */
 
     public function test_wpautop() {
-        $loader = new \Twig_Loader_Array( array(
-            'index.html' => '{{ text|wpautop|raw }}'
-        ) );
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => '{{ text | wpautop | raw }}'
+        ] );
 
         $engine = View::engine();
         $engine->set_loader( $loader );

@@ -26,7 +26,7 @@ abstract class Engine extends Container {
 	 * @var array
 	 */
 
-	protected $composers = array();
+	protected $composers = [];
 
 	/**
 	 * The default extension (empty string).
@@ -232,7 +232,7 @@ abstract class Engine extends Container {
 			}
 
 			if ( ! isset( $this->composers[$tmpl] ) ) {
-				$this->composers[$tmpl] = array();
+				$this->composers[$tmpl] = [];
 			}
 
 			$this->composers[$tmpl][] = $fn;

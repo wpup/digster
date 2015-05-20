@@ -124,6 +124,14 @@ digster_render('page' [, $data]);
 
 ## Twig filters
 
+#### apply_filters
+
+Apply filters to Twig output.
+
+```html
+{{ '@frozzare' | apply_filters('twitter_link') }}
+```
+
 #### Excerpt
 
 Get the post summary
@@ -151,20 +159,58 @@ Append p tags to the text
 
 #### Call action
 
+You can send more arguments to `do action`.
+
 ```html
 {% do action('my_action') %}
 ```
 
-#### Call wp head
+#### Call apply_filters
+
+Takes the same arguments as `apply_filters`.
+
+```html
+{{ apply_filters() }}
+```
+
+#### Call body_class
+
+```html
+<body {{ body_class() }}>
+```
+
+#### Call language_attributes
+
+```html
+<html {{ language_attributes() }}>
+```
+
+#### Call random function
+
+You can send in more arguments to `fn`.
+
+```html
+<body {{ fn('my_function') }}>
+```
+
+#### Call wp_footer
+
+```html
+{{ wp_footer() }}
+```
+
+#### Call wp_head
 
 ```html
 {{ wp_head() }}
 ```
 
-#### Call wp footer
+#### Call wp_title
+
+Takes the same arguments as `wp_title`.
 
 ```html
-{{ wp_footer() }}
+{{ wp_title() }}
 ```
 
 ## Twig globals
@@ -177,20 +223,12 @@ Append p tags to the text
 <h1>{{ post.post_title }}</h1>
 ```
 
-#### body_class
-
-`body_class` will print the body classes.
-
-```html
-<body class="{{ body_class }}">
-```
-
 ## Cache
 
 Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension) (Digster installs the package so you don't have to install it). Digster has a build in cache provider that uses the [WordPress Object cache](http://codex.wordpress.org/Class_Reference/WP_Object_Cache).
 
 ```php
-use Digster\Cache\Twig\WordPress_Cache_Adapter;
+use Digster\Cache\WordPress_Cache_Adapter;
 use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
 use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 

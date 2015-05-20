@@ -18,8 +18,7 @@ class Global_Extensions extends \Twig_Extension {
 
 	public function getGlobals() {
 		return [
-			'body_class' => implode( ' ', get_body_class() ),
-			'post'       => get_post( get_the_ID() )
+			'post' => get_post( get_the_ID() )
 		];
 	}
 

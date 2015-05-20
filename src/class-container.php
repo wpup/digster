@@ -16,7 +16,7 @@ class Container implements \ArrayAccess {
 	 * @var array
 	 */
 
-	protected $keys = array();
+	protected $keys = [];
 
 	/**
 	 * The values holder.
@@ -24,7 +24,7 @@ class Container implements \ArrayAccess {
 	 * @var array
 	 */
 
-	protected $values = array();
+	protected $values = [];
 
 	/**
 	 * Set a parameter or an object.
