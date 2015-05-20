@@ -104,13 +104,13 @@ digster_render('page', [
 Register Twig extension classes with Digster.
 
 ```php
-digster_register_extensions(new MyFirstTwigExtension(), new MySecondTwigExtension());
+digster_register_extensions(new My_First_Twig_Extension());
 
 // or
 
 digster_register_extensions([
-	new MyFirstTwigExtension(),
-	new MySecondTwigExtension()
+	new My_First_Twig_Extension(),
+	new My_Second_Twig_Extension()
 ]);
 ```
 
