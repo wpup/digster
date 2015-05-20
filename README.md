@@ -101,7 +101,7 @@ digster_render('page', [
 
 #### Register extension
 
-Register Twig extension classes with Digster.
+Register [Twig extension](http://twig.sensiolabs.org/doc/advanced.html) classes with Digster.
 
 ```php
 digster_register_extensions(new My_First_Twig_Extension());
