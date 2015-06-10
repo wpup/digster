@@ -18,18 +18,12 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
     exit( 'The Digster plugin for WordPress requires PHP version 5.4 or higher.' );
 }
 
-if ( ! defined( 'WP_AUTOLOAD_PREFIX' ) ) {
-    define( 'WP_AUTOLOAD_PREFIX', 'Digster\\' );
-}
-
-if ( ! defined( 'WP_AUTOLOAD_BASE_DIR' ) ) {
-    define( 'WP_AUTOLOAD_BASE_DIR', __DIR__ . '/src' );
-}
-
 // Load Composer autoloader.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
     require __DIR__ . '/vendor/autoload.php';
 }
+
+register_wp_autoload( 'Digster\\', __DIR__ . '/src' );
 
 /**
  * Load Digster plugin.
