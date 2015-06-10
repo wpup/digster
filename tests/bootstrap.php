@@ -1,13 +1,16 @@
 <?php
 
-define( 'WP_AUTOLOAD_PREFIX', 'Digster\\' );
-define( 'WP_AUTOLOAD_BASE_DIR', dirname( __DIR__ ) . '/src' );
-
 /**
  * Load Composer autoloader.
  */
 
 require dirname( __DIR__ ) . '/vendor/autoload.php';
+
+/**
+ * Register autoloader.
+ */
+
+register_wp_autoload( 'Digster\\', __DIR__ . '/src' );
 
 /**
  * Load test data file.
