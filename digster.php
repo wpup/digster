@@ -7,7 +7,7 @@
  * Author URI: https://forsmo.me/
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.0.1
+ * Version: 1.2.1
  */
 
 // Make sure the plugin does not expose any info if called directly
