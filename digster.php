@@ -13,7 +13,7 @@
 // Make sure the plugin does not expose any info if called directly
 defined( 'ABSPATH' ) || exit;
 
-// Framework requires PHP 5.4 or newer
+// Digster requires PHP 5.4 or newer
 if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
     exit( 'The Digster plugin for WordPress requires PHP version 5.4 or higher.' );
 }
