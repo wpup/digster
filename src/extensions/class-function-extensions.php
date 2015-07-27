@@ -11,12 +11,22 @@ namespace Digster\Extensions;
 class Function_Extensions extends \Twig_Extension {
 
 	/**
+	 * Retrieves the translated string from the WordPress `__`.
+	 *
+	 * @return string
+	 */
+
+	public function __() {
+		return call_user_func_array( '__', func_get_args() );
+	}
+
+	/**
 	 * Call PHP function.
 	 */
 
 	public function call_function() {
-		$args  = func_get_args();
-		$name  = array_shift( $args );
+		$args = func_get_args();
+		$name = array_shift( $args );
 		return call_user_func_array( trim( $name ), $args );
 	}
 
@@ -46,6 +56,7 @@ class Function_Extensions extends \Twig_Extension {
 
 	public function getFunctions() {
 		$callables = [
+			'__'                  => [$this, '__'],
 			'action'              => [$this, 'do_action'],
 			'apply_filters'       => [$this, 'apply_filters'],
 			'body_class'          => 'body_class',
