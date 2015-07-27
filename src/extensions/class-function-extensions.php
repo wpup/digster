@@ -11,13 +11,13 @@ namespace Digster\Extensions;
 class Function_Extensions extends \Twig_Extension {
 
 	/**
-	 * Retrieves the translated string from the WordPress `__`.
+	 * Call WordPress filter.
 	 *
-	 * @return string
+	 * @return mixed
 	 */
 
-	public function __() {
-		return call_user_func_array( '__', func_get_args() );
+	public function apply_filters() {
+		return call_user_func_array( 'apply_filters', func_get_args() );
 	}
 
 	/**
@@ -39,16 +39,6 @@ class Function_Extensions extends \Twig_Extension {
 	}
 
 	/**
-	 * Call WordPress filter.
-	 *
-	 * @return mixed
-	 */
-
-	public function apply_filters() {
-		return call_user_func_array( 'apply_filters', func_get_args() );
-	}
-
-	/**
 	 * Get functions.
 	 *
 	 * @return array
@@ -56,7 +46,7 @@ class Function_Extensions extends \Twig_Extension {
 
 	public function getFunctions() {
 		$callables = [
-			'__'                  => [$this, '__'],
+			'__'                  => [$this, 'translate'],
 			'action'              => [$this, 'do_action'],
 			'apply_filters'       => [$this, 'apply_filters'],
 			'body_class'          => 'body_class',
@@ -82,6 +72,16 @@ class Function_Extensions extends \Twig_Extension {
 
 	public function getName() {
 		return 'digster-functions';
+	}
+
+	/**
+	 * Retrieves the translated string from the WordPress `__` function.
+	 *
+	 * @return string
+	 */
+
+	public function translate() {
+		return call_user_func_array( '__', func_get_args() );
 	}
 
 }

@@ -6,19 +6,6 @@ use Digster\View;
 
 class Function_Extensions_Test extends \WP_UnitTestCase {
 
-    public function test__() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html' => 'Hello, {{ __("world", "digster") }}!'
-        ] );
-
-        $engine = View::engine();
-        $engine->set_loader( $loader );
-
-        $output = View::fetch( 'index.html' );
-
-        $this->assertEquals( 'Hello, world!', $output );
-    }
-
     public function test_action() {
         add_action( 'my_action', function () {
             echo 'world';
@@ -91,6 +78,19 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
         $output = View::fetch( 'index.html' );
 
         $this->assertEquals( 'lang="en-US"', $output );
+    }
+
+    public function test_translate() {
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello, {{ __("world", "digster") }}!'
+        ] );
+
+        $engine = View::engine();
+        $engine->set_loader( $loader );
+
+        $output = View::fetch( 'index.html' );
+
+        $this->assertEquals( 'Hello, world!', $output );
     }
 
     public function test_wp_head() {
