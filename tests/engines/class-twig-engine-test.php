@@ -11,10 +11,6 @@ use Digster\Engines\Twig_Engine;
 
 class Twig_Engine_Test extends \WP_UnitTestCase {
 
-    /**
-     * Test static `engine` method.
-     */
-
     public function test_engine() {
         $this->assertEquals( View::engine(), Twig_Engine::instance() );
 

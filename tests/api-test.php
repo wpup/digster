@@ -6,10 +6,6 @@ use Digster\View;
 
 class API_Test extends \WP_UnitTestCase {
 
-    /**
-     * Test `digster_composer` function.
-     */
-
     public function test_digster_composer() {
         $post_id = $this->factory->post->create();
 
@@ -35,10 +31,6 @@ class API_Test extends \WP_UnitTestCase {
         $this->assertNotFalse( preg_match( '/Hello\sPost\s\title\s\d+/', $output ) );
     }
 
-    /**
-     * Test `digster_fetch` function.
-     */
-
     public function test_digster_fetch() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
@@ -53,10 +45,6 @@ class API_Test extends \WP_UnitTestCase {
 
         $this->assertEquals( 'Hello Fredrik!', $output );
     }
-
-    /**
-     * Test `digster_render` function.
-     */
 
     public function test_digster_render() {
         $loader = new \Twig_Loader_Array( [

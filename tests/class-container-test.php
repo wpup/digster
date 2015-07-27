@@ -10,27 +10,15 @@ use Digster\Container;
 
 class Container_Test extends \WP_UnitTestCase {
 
-    /**
-     * Setup the test.
-     */
-
     public function setUp() {
         parent::setUp();
         $this->container = new Container;
     }
 
-    /**
-     * Tear down test.
-     */
-
      public function tearDown() {
          parent::tearDown();
          unset( $this->container );
      }
-
-    /**
-     * Test `bind` method.
-     */
 
     public function test_bind() {
         $this->container->bind( 'Class', new \stdClass );
@@ -40,10 +28,6 @@ class Container_Test extends \WP_UnitTestCase {
         $this->assertNull( $this->container->make( 'Class' ) );
     }
 
-    /**
-     * Check if `Class` key exists in the container or not.
-     */
-
     public function test_exists() {
         $this->container->bind( 'Class2', new \stdClass );
         $this->assertTrue( $this->container->exists( 'Class2' ) );
@@ -51,8 +35,6 @@ class Container_Test extends \WP_UnitTestCase {
     }
 
     /**
-     * Test `make` method.
-     *
      * @expectedException InvalidArgumentException
      */
 
@@ -68,10 +50,6 @@ class Container_Test extends \WP_UnitTestCase {
         }
     }
 
-    /**
-     * Test `offsetExists` method.
-     */
-
     public function test_offset_exists() {
         $this->container->bind( 'Class4', new \stdClass );
         $this->assertTrue( isset( $this->container['Class4'] ) );
@@ -79,8 +57,6 @@ class Container_Test extends \WP_UnitTestCase {
     }
 
     /**
-     * Test `offsetGet` method.
-     *
      * @expectedException InvalidArgumentException
      */
 
@@ -96,10 +72,6 @@ class Container_Test extends \WP_UnitTestCase {
         }
     }
 
-    /**
-     * Test `offsetGet` method.
-     */
-
     public function test_offset_set() {
         $this->container['Class5'] = new \stdClass;
         $this->assertTrue( $this->container->exists( 'Class5' ) );
@@ -107,10 +79,6 @@ class Container_Test extends \WP_UnitTestCase {
         $this->container['Class5'] = null;
         $this->assertNull( $this->container['Class5'] );
     }
-
-    /**
-     * Test `offsetUnset` method.
-     */
 
     public function test_offset_unset() {
         $this->container->bind( 'Class6', new \stdClass );

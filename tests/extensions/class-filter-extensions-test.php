@@ -6,10 +6,6 @@ use Digster\View;
 
 class Filter_Extensions_Test extends \WP_UnitTestCase {
 
-    /**
-     * Test `excerpt` filter.
-     */
-
     public function test_excerpt() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ text | excerpt }}'
@@ -24,11 +20,6 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
 
         $this->assertEquals( 'Hello, Minim sunt ex leo nunclorem ac. Sagittis habitant turpis. Torquent magna massa praesent. Nisi eiusmod elit iaculis penatibus. Tincidunt facilisis aliquam blandit cras aliquet. Rhoncus ac vel. Eiusmod nisi nostrud nulla vestibulum. Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec&amp;hellip;', $output );
     }
-
-
-    /**
-     * Test `shortcodes` filter.
-     */
 
     public function test_excerpt2() {
         add_shortcode('footag', function($atts) {
@@ -48,11 +39,6 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
 
         $this->assertEquals( 'Hello, foo = bar', $output );
     }
-
-
-    /**
-     * Test `wpautop` filter.
-     */
 
     public function test_wpautop() {
         $loader = new \Twig_Loader_Array( [
