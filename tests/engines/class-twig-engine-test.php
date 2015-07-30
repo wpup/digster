@@ -8,7 +8,6 @@ use Digster\Engines\Twig_Engine;
 /**
  * Unit tests to check so Digster is loaded correctly.
  */
-
 class Twig_Engine_Test extends \WP_UnitTestCase {
 
     public function test_engine() {

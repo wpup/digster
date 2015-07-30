@@ -7,7 +7,6 @@ namespace Digster;
  *
  * @package Digster
  */
-
 class Container implements \ArrayAccess {
 
 	/**
@@ -15,7 +14,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @var array
 	 */
-
 	protected $keys = [];
 
 	/**
@@ -23,7 +21,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @var array
 	 */
-
 	protected $values = [];
 
 	/**
@@ -32,7 +29,6 @@ class Container implements \ArrayAccess {
 	 * @param string $id
 	 * @param mixed  $value
 	 */
-
 	public function bind( $id, $value ) {
 		if ( ! $value instanceof \Clouser ) {
 			$value = function() use ( $value ) {
@@ -51,7 +47,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @return bool
 	 */
-
 	public function exists( $id ) {
 		return isset( $this->keys[$id] );
 	}
@@ -63,7 +58,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @return mixed
 	 */
-
 	public function make( $id ) {
 		if ( ! isset( $this->keys[$id] ) ) {
 			throw new \InvalidArgumentException( sprintf( 'Identifier [%s] is not defined', $id ) );
@@ -79,7 +73,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @return bool
 	 */
-
 	// @codingStandardsIgnoreStart
 	public function offsetExists( $id ) {
 	// @codingStandardsIgnoreEnd
@@ -93,7 +86,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @return mixed
 	 */
-
 	// @codingStandardsIgnoreStart
 	public function offsetGet( $id ) {
 	// @codingStandardsIgnoreEnd
@@ -106,7 +98,6 @@ class Container implements \ArrayAccess {
 	 * @param string $id
 	 * @param mixed $value
 	 */
-
 	// @codingStandardsIgnoreStart
 	public function offsetSet( $id, $value ) {
 	// @codingStandardsIgnoreEnd
@@ -118,7 +109,6 @@ class Container implements \ArrayAccess {
 	 *
 	 * @param string $id
 	 */
-
 	// @codingStandardsIgnoreStart
 	public function offsetUnset( $id ) {
 	// @codingStandardsIgnoreEnd

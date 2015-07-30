@@ -7,7 +7,6 @@ use Digster\Container;
 /**
  * Unit tests to check so Digster is loaded correctly.
  */
-
 class Container_Test extends \WP_UnitTestCase {
 
     public function setUp() {
@@ -37,7 +36,6 @@ class Container_Test extends \WP_UnitTestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-
     public function test_make() {
         $this->container->bind( 'Class3', new \stdClass );
         $this->assertTrue( is_object( $this->container->make( 'Class3' ) ) );
@@ -59,7 +57,6 @@ class Container_Test extends \WP_UnitTestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-
     public function test_offset_get() {
         $this->container->bind( 'Class5', new \stdClass );
         $this->assertTrue( is_object( $this->container['Class5'] ) );

@@ -7,7 +7,6 @@ namespace Digster\Extensions;
  *
  * @package Digster
  */
-
 class Filter_Extensions extends \Twig_Extension {
 
 	/**
@@ -15,7 +14,6 @@ class Filter_Extensions extends \Twig_Extension {
 	 *
 	 * @return mixed
 	 */
-
 	public function apply_filters() {
 		$args = func_get_args();
 		$tag  = current( array_splice( $args, 1, 1 ) );
@@ -27,7 +25,6 @@ class Filter_Extensions extends \Twig_Extension {
 	 *
 	 * @return array
 	 */
-
 	public function getFilters() {
 		$filters = [
 			'apply_filters' => [$this, 'apply_filters'],
@@ -48,7 +45,6 @@ class Filter_Extensions extends \Twig_Extension {
 	 *
 	 * @return string
 	 */
-
 	public function getName() {
 		return 'digster-filters';
 	}

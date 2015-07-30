@@ -5,7 +5,6 @@ namespace Digster\Tests;
 /**
  * Unit tests to check so Digster is loaded correctly.
  */
-
 class Digster_Test extends \WP_UnitTestCase {
 
     public function test_plugins_loaded_action() {

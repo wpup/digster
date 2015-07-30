@@ -11,7 +11,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 *
 	 * @var string
 	 */
-
 	private $group;
 
 	/**
@@ -19,7 +18,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 *
 	 * @var string
 	 */
-
 	private $key_prefix;
 
 	/**
@@ -28,7 +26,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 * @param string $key_prefix
 	 * @param string $group
 	 */
-
 	public function __construct( $key_prefix = '', $group = '' ) {
 		$this->key_prefix = $key_prefix;
 		$this->group = $group;
@@ -45,7 +42,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 *
 	 * @return mixed
 	 */
-
 	public function fetch( $key ) {
 		$key = $this->get_key( $key );
 		return wp_cache_get( $key, $this->group );
@@ -58,7 +54,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 *
 	 * @return string
 	 */
-
 	private function get_key( $key ) {
 		return $this->key_prefix . $key;
 	}
@@ -70,7 +65,6 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
 	 * @param mixed $value
 	 * @param int $expire
 	 */
-
 	public function save( $key, $value, $expire = 0 ) {
 		$key = $this->get_key( $key );
 		wp_cache_set( $key, $value, $this->group, $expire );

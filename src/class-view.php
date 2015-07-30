@@ -11,7 +11,6 @@ use Digster\Engines\Twig_Engine;
  *
  * @package Digster
  */
-
 class View {
 
 	/**
@@ -20,7 +19,6 @@ class View {
 	 * @param array|string $template
 	 * @param callable $fn
 	 */
-
 	public static function composer( $template, $fn = null ) {
 		self::engine()->composer( $template, $fn );
 	}
@@ -33,7 +31,6 @@ class View {
 	 *
 	 * @return mixed
 	 */
-
 	public static function config( $key, $value = null ) {
 		return self::engine()->config( $key, $value );
 	}
@@ -43,7 +40,6 @@ class View {
 	 *
 	 * @return array
 	 */
-
 	public static function engine() {
 		return Twig_Engine::instance();
 	}
@@ -56,7 +52,6 @@ class View {
 	 *
 	 * @return string
 	 */
-
 	public static function fetch( $template, array $data = [] ) {
 		return self::engine()->render( $template, $data );
 	}
@@ -67,7 +62,6 @@ class View {
 	 * @param string $template
 	 * @param array $data
 	 */
-
 	public static function render( $template, array $data = [] ) {
 		echo self::fetch( $template, $data );
 	}
@@ -75,7 +69,6 @@ class View {
 	/**
 	 * Register extensions with template engine.
 	 */
-
 	public static function register_extensions() {
 		self::engine()->register_extensions( func_get_args() );
 	}

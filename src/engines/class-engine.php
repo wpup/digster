@@ -9,7 +9,6 @@ use Digster\Container;
  *
  * @package Digster
  */
-
 abstract class Engine extends Container {
 
 	/**
@@ -17,7 +16,6 @@ abstract class Engine extends Container {
 	 *
 	 * @var string
 	 */
-
 	protected $any_composer_key = 'any';
 
 	/**
@@ -25,7 +23,6 @@ abstract class Engine extends Container {
 	 *
 	 * @var array
 	 */
-
 	protected $composers = [];
 
 	/**
@@ -33,7 +30,6 @@ abstract class Engine extends Container {
 	 *
 	 * @var string
 	 */
-
 	protected $extension = '';
 
 	/**
@@ -41,7 +37,6 @@ abstract class Engine extends Container {
 	 *
 	 * @var \Digster\Engine
 	 */
-
 	private static $instance = null;
 
 	/**
@@ -49,7 +44,6 @@ abstract class Engine extends Container {
 	 *
 	 * @var string
 	 */
-
 	protected $locationsKey = 'locations';
 
 	/**
@@ -60,7 +54,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return mixed
 	 */
-
 	public function config( $key, $value = null ) {
 		if ( is_array( $key ) ) {
 			foreach ( $key as $id => $val ) {
@@ -87,7 +80,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return string
 	 */
-
 	public function extension( $template ) {
 		if ( preg_match( '/\.\w+$/', $template ) ) {
 			return $template;
@@ -102,7 +94,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return \Digster\Engine
 	 */
-
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new static;
@@ -118,7 +109,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return array
 	 */
-
 	protected function get_composer( $template ) {
 		if ( is_array( $template ) ) {
 			$template = array_shift( $template );
@@ -143,7 +133,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return array
 	 */
-
 	protected function get_default_config() {
 		$config = [];
 
@@ -159,7 +148,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return array
 	 */
-
 	protected function get_engine_config() {
 		$config    = $this->prepare_engine_config();
 		$locations = $config[$this->locationsKey];
@@ -181,7 +169,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return array
 	 */
-
 	protected function prepare_data( $template, $data ) {
 		$data         = (array) $data;
 		$preprocesses = $this->composer( $template );
@@ -203,13 +190,11 @@ abstract class Engine extends Container {
 	 *
 	 * @return string
 	 */
-
 	abstract public function render( $template, $data );
 
 	/**
 	 * Register extensions.
 	 */
-
 	abstract public function register_extensions();
 
 	/**
@@ -218,7 +203,6 @@ abstract class Engine extends Container {
 	 * @param array|string $template
 	 * @param callable $fn
 	 */
-
 	public function composer( $template, $fn = null ) {
 		if ( is_null( $fn ) ) {
 			return $this->get_composer( $template );
@@ -246,7 +230,6 @@ abstract class Engine extends Container {
 	 *
 	 * @return array
 	 */
-
 	protected function prepare_config( $arr ) {
 		$result = [];
 
@@ -267,7 +250,6 @@ abstract class Engine extends Container {
 	/**
 	 * Register extension.
 	 */
-
 	abstract public function prepare_engine_config();
 
 }

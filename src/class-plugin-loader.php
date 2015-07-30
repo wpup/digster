@@ -7,7 +7,6 @@ namespace Digster;
  *
  * @package Digster
  */
-
 final class Plugin_Loader {
 
 	/**
@@ -15,7 +14,6 @@ final class Plugin_Loader {
 	 *
 	 * @var object
 	 */
-
 	private static $instance;
 
 	/**
@@ -23,7 +21,6 @@ final class Plugin_Loader {
 	 *
 	 * @return object
 	 */
-
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self;
@@ -36,7 +33,6 @@ final class Plugin_Loader {
 	/**
 	 * Load Digster extensions.
 	 */
-
 	public function load_extensions() {
 		$extensions = [
 			new \Digster\Extensions\Filter_Extensions(),
@@ -52,7 +48,6 @@ final class Plugin_Loader {
 	/**
 	 * Setup actions.
 	 */
-
 	private function setup_actions() {
 		add_action( 'after_setup_theme', [$this, 'load_extensions'] );
 	}

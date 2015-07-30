@@ -7,7 +7,6 @@ use Digster\View;
 /**
  * Unit tests to check so Digster is loaded correctly.
  */
-
 class ViewTest extends \WP_UnitTestCase {
 
     public function test_composer() {

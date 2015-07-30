@@ -7,7 +7,6 @@ namespace Digster\Extensions;
  *
  * @package Digster
  */
-
 class Global_Extensions extends \Twig_Extension {
 
 	/**
@@ -15,7 +14,6 @@ class Global_Extensions extends \Twig_Extension {
 	 *
 	 * @return array
 	 */
-
 	public function getGlobals() {
 		return [
 			'post' => get_post( get_the_ID() )
@@ -27,7 +25,6 @@ class Global_Extensions extends \Twig_Extension {
 	 *
 	 * @return string
 	 */
-
 	public function getName() {
 		return 'digster-globals';
 	}

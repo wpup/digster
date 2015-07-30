@@ -7,7 +7,6 @@ namespace Digster\Engines;
  *
  * @package Digster
  */
-
 class Twig_Engine extends Engine {
 
 	/**
@@ -15,7 +14,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @var \Twig_Environment
 	 */
-
 	private static $env_instance = null;
 
 	/**
@@ -23,7 +21,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @var string
 	 */
-
 	protected $extension = '.twig';
 
 	/**
@@ -31,7 +28,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @param \Twig_ExtensionInterface $extension
 	 */
-
 	protected function add_extension( \Twig_ExtensionInterface $extension ) {
 		$env  = $this->env_instance();
 		$exts = $env->getExtensions();
@@ -52,7 +48,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @return \Twig_Environment
 	 */
-
 	private function boot() {
 		list( $locations, $config ) = $this->get_engine_config();
 
@@ -71,7 +66,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @return \Twig_Environment
 	 */
-
 	private function env_instance() {
 		if ( ! isset( self::$env_instance ) ) {
 			self::$env_instance = $this->boot();
@@ -85,7 +79,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @return array
 	 */
-
 	public function prepare_engine_config() {
 		return $this->prepare_config( [
 			'autoescape'          => true,
@@ -102,7 +95,6 @@ class Twig_Engine extends Engine {
 	/**
 	 * Register Twig extensions that use `Twig_ExtensionInterface`.
 	 */
-
 	public function register_extensions() {
 		$extensions = func_get_args();
 
@@ -123,7 +115,6 @@ class Twig_Engine extends Engine {
 	 * @param string $template
 	 * @param array $data
 	 */
-
 	public function render( $template, $data = array() ) {
 		$template = $this->extension( $template );
 		$instance = $this->env_instance();
@@ -136,7 +127,6 @@ class Twig_Engine extends Engine {
 	 *
 	 * @param Twig_LoaderInterface $loader
 	 */
-
 	public function set_loader( \Twig_LoaderInterface $loader ) {
 		$this->env_instance()->setLoader( $loader );
 	}

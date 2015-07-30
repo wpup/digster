@@ -8,7 +8,6 @@ use Digster\View;
  * @param string|array $template
  * @param callable $fn
  */
-
 function digster_composer( $template, $fn ) {
 	View::composer( $template, $fn );
 }
@@ -21,7 +20,6 @@ function digster_composer( $template, $fn ) {
  *
  * @return string
  */
-
 function digster_fetch( $template, $data = array() ) {
 	return View::fetch( $template, $data );
 }
@@ -29,7 +27,6 @@ function digster_fetch( $template, $data = array() ) {
 /**
  * Reigster extensions with template engine.
  */
-
 function digster_register_extensions() {
 	View::register_extensions( func_get_args() );
 }
@@ -40,7 +37,6 @@ function digster_register_extensions() {
  * @param string $template
  * @param array $data
  */
-
 function digster_render( $template, $data = array() ) {
 	View::render( $template, $data );
 }
