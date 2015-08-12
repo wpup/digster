@@ -22,9 +22,9 @@
   },
   "require": {
     "php": ">=5.4.7",
-    "twig/twig": "^1.18",
+    "twig/twig": "~1.0",
     "asm89/twig-cache-extension": "~1.0",
-    "frozzare/wp-autoload": "^2.0.0"
+    "frozzare/wp-autoload": "~2.0"
   },
   "require-dev": {
     "frozzare/wp-test-suite": "~1.0",
