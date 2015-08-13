@@ -96,7 +96,7 @@ digster_composer('page', function ($vars) {
 // Only need to get the post ID
 digster_render('page', [
   'post' => get_the_ID()
-])
+]);
 ```
 
 #### Register extension
