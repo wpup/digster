@@ -17,11 +17,11 @@ class Twig_Engine extends Engine {
 	private static $env_instance = null;
 
 	/**
-	 * The default extension (empty string).
+	 * Twig extension.
 	 *
 	 * @var string
 	 */
-	protected $extension = '.twig';
+	protected $extensions = ['.twig', '.html'];
 
 	/**
 	 * Add extension if it don't exists.

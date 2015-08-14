@@ -24,4 +24,23 @@ class Twig_Engine_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello, Fredrik!', $output );
     }
 
+    public function test_extensions() {
+        $engine = Twig_Engine::instance();
+
+        $this->assertEquals( 'profile.twig', $engine->extension( 'profile' ) );
+        $this->assertEquals( 'admin/profile.twig', $engine->extension( 'admin/profile' ) );
+        $this->assertEquals( 'admin/profile.html', $engine->extension( 'admin/profile/html' ) );
+        $this->assertEquals( 'admin/profile.twig', $engine->extension( 'admin/profile/twig' ) );
+    }
+
+    public function test_template() {
+        $engine = Twig_Engine::instance();
+
+        $this->assertEquals( 'profile.twig', $engine->template( 'profile' ) );
+        $this->assertEquals( 'admin/profile.twig', $engine->template( 'admin/profile' ) );
+        $this->assertEquals( 'admin/profile.twig', $engine->template( 'admin.profile' ) );
+        $this->assertEquals( 'admin/profile.html', $engine->template( 'admin.profile.html' ) );
+        $this->assertEquals( 'admin/profile.twig', $engine->template( 'admin.profile.twig' ) );
+    }
+
 }

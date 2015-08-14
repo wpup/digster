@@ -30,7 +30,7 @@ abstract class Engine extends Container {
 	 *
 	 * @var string
 	 */
-	protected $extension = '';
+	protected $extensions = ['html'];
 
 	/**
 	 * The View instance.
@@ -74,19 +74,35 @@ abstract class Engine extends Container {
 	}
 
 	/**
-	 * Set twig extension if it don't exists on the template string.
+	 * Add extension to the template string if it don't exists.
 	 *
 	 * @param string $template
 	 *
 	 * @return string
 	 */
 	public function extension( $template ) {
-		if ( preg_match( '/\.\w+$/', $template ) ) {
+		// Fix extension for dot template strings that replaces all '.' to '/'.
+		$end_slash_regex = '/\/(\w+)+$/';
+		preg_match( $end_slash_regex, $template, $matches );
+
+		if ( count( $matches ) > 1 ) {
+			foreach ( $this->extensions as $ext ) {
+				if ( substr( $ext, 1 ) === $matches[1] ) {
+					$template = preg_replace( $end_slash_regex, $ext, $template );
+					break;
+				}
+			}
+		}
+
+		// Return if a valid extension exists in the template string.
+		$ext_reg = '/(' . implode( '|', $this->extensions ) . ')+$/';
+		if ( preg_match( $ext_reg, $template ) ) {
 			return $template;
 		}
 
-		return substr( $template, -strlen( $this->extension ) ) === $this->extension
-			? $template : $template . $this->extension;
+		// Add extension to template string if it don't exists.
+		return substr( $template, -strlen( $this->extensions[0] ) ) === $this->extensions[0]
+			? $template : $template . $this->extensions[0];
 	}
 
 	/**
@@ -251,5 +267,16 @@ abstract class Engine extends Container {
 	 * Register extension.
 	 */
 	abstract public function prepare_engine_config();
+
+	/**
+	 * Get the right template string that should be loaded.
+	 *
+	 * @param string $template
+	 *
+	 * @return string
+	 */
+	public function template( $template ) {
+		return $this->extension( str_replace( '.', '/', $template ) );
+	}
 
 }
