@@ -82,12 +82,12 @@ $view = digster_fetch('page' [, $data]);
 
 #### Register composer
 
-With Digster you can register composer with any template or a specified template.
+With Digster you can register composer with wildcard template or a specified template.
 
 This example is for `post` object, but Digster already have this global variable loaded.
 
 ```php
-// 'any', 'page' or 'page.twig'
+// '*', 'page' or 'page.twig'
 digster_composer('page', function ($vars) {
   $vars['post'] = is_numeric($vars['post']) ?  get_page($vars['post'] ) : $vars['post'];
   return $vars;
