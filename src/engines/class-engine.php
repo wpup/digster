@@ -37,7 +37,7 @@ abstract class Engine extends Container {
 	 *
 	 * @var string
 	 */
-	protected $locationsKey = 'locations';
+	protected $locations_key = 'locations';
 
 	/**
 	 * The wildcard composer key that all template uses.
@@ -152,7 +152,7 @@ abstract class Engine extends Container {
 	protected function get_default_config() {
 		$config = [];
 
-		$config[$this->locationsKey] = [
+		$config[$this->locations_key] = [
 			get_template_directory() . '/views'
 		];
 
@@ -166,9 +166,9 @@ abstract class Engine extends Container {
 	 */
 	protected function get_engine_config() {
 		$config    = $this->prepare_engine_config();
-		$locations = $config[$this->locationsKey];
+		$locations = $config[$this->locations_key];
 
-		unset( $config[$this->locationsKey] );
+		unset( $config[$this->locations_key] );
 
 		$locations = array_filter( (array) $locations, function ( $location ) {
 			return file_exists( $location );
