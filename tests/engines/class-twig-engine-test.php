@@ -24,6 +24,20 @@ class Twig_Engine_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello, Fredrik!', $output );
     }
 
+    public function test_engine_dot() {
+        $this->assertEquals( View::engine(), Twig_Engine::instance() );
+
+        $loader = new \Twig_Loader_Array( [
+            'admin/profile.html' => 'Hello, {{ name }}!'
+        ] );
+
+        $engine = Twig_Engine::instance();
+        $engine->set_loader( $loader );
+
+        $output = $engine->render( 'admin.profile.html', ['name' => 'Fredrik'] );
+        $this->assertEquals( 'Hello, Fredrik!', $output );
+    }
+
     public function test_extensions() {
         $engine = Twig_Engine::instance();
 

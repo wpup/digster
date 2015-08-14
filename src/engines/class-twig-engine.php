@@ -116,7 +116,7 @@ class Twig_Engine extends Engine {
 	 * @param array $data
 	 */
 	public function render( $template, $data = array() ) {
-		$template = $this->extension( $template );
+		$template = $this->template( $template );
 		$instance = $this->env_instance();
 		$data     = $this->prepare_data( $template, $data );
 		return $instance->render( $template, $data );
