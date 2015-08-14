@@ -13,11 +13,6 @@
 // Make sure the plugin does not expose any info if called directly
 defined( 'ABSPATH' ) || exit;
 
-// Digster requires PHP 5.4 or newer
-if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
-    exit( 'The Digster plugin for WordPress requires PHP version 5.4 or higher.' );
-}
-
 // Load Composer autoloader.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
     require __DIR__ . '/vendor/autoload.php';
