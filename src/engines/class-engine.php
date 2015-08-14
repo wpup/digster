@@ -12,13 +12,6 @@ use Digster\Container;
 abstract class Engine extends Container {
 
 	/**
-	 * The any composer key that all template uses.
-	 *
-	 * @var string
-	 */
-	protected $any_composer_key = 'any';
-
-	/**
 	 * Engines composers.
 	 *
 	 * @var array
@@ -45,6 +38,13 @@ abstract class Engine extends Container {
 	 * @var string
 	 */
 	protected $locationsKey = 'locations';
+
+	/**
+	 * The wildcard composer key that all template uses.
+	 *
+	 * @var string
+	 */
+	protected $wildcard_composer_key = '*';
 
 	/**
 	 * Get or set configuration values.
@@ -137,8 +137,8 @@ abstract class Engine extends Container {
 			$composers = array_merge( $composers, $this->composers[$template] );
 		}
 
-		if ( isset( $this->composers[$this->any_composer_key] ) ) {
-			$composers = array_merge( $composers, $this->composers[$this->any_composer_key] );
+		if ( isset( $this->composers[$this->wildcard_composer_key] ) ) {
+			$composers = array_merge( $composers, $this->composers[$this->wildcard_composer_key] );
 		}
 
 		return $composers;
@@ -227,7 +227,7 @@ abstract class Engine extends Container {
 		$template = (array) $template;
 
 		foreach ( $template as $tmpl ) {
-			if ( $tmpl !== $this->any_composer_key ) {
+			if ( $tmpl !== $this->wildcard_composer_key ) {
 				$tmpl = $this->extension( $tmpl );
 			}
 
