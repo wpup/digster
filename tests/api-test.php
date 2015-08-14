@@ -9,7 +9,7 @@ class API_Test extends \WP_UnitTestCase {
     public function test_digster_composer() {
         $post_id = $this->factory->post->create();
 
-        digster_composer( 'any', function ( $vars ) {
+        digster_composer( '*', function ( $vars ) {
             if ( isset( $vars['post'] ) ) {
                 $vars['post'] = isset( $vars['post'] ) && is_numeric( $vars['post'] ) ?  get_page( $vars['post'] ) : $vars['post'];
             }
@@ -28,7 +28,7 @@ class API_Test extends \WP_UnitTestCase {
             'post' => $post_id
         ] );
 
-        $this->assertNotFalse( preg_match( '/Hello\sPost\s\title\s\d+/', $output ) );
+        $this->assertNotFalse( strpos( $output, 'Hello Post title' ) );
     }
 
     public function test_digster_fetch() {
