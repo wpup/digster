@@ -81,19 +81,6 @@ abstract class Engine extends Container {
 	 * @return string
 	 */
 	public function extension( $template ) {
-		// Fix extension for dot template strings that replaces all '.' to '/'.
-		$end_slash_regex = '/\/(\w+)+$/';
-		preg_match( $end_slash_regex, $template, $matches );
-
-		if ( count( $matches ) > 1 ) {
-			foreach ( $this->extensions as $ext ) {
-				if ( substr( $ext, 1 ) === $matches[1] ) {
-					$template = preg_replace( $end_slash_regex, $ext, $template );
-					break;
-				}
-			}
-		}
-
 		// Return if a valid extension exists in the template string.
 		$ext_reg = '/(' . implode( '|', $this->extensions ) . ')+$/';
 		if ( preg_match( $ext_reg, $template ) ) {
@@ -276,6 +263,10 @@ abstract class Engine extends Container {
 	 * @return string
 	 */
 	public function template( $template ) {
+		if ( preg_match( '/\.\w+$/', $template, $matches ) && in_array( $matches[0], $this->extensions ) ) {
+			return str_replace( '.', '/', preg_replace( '/' . $matches[0] . '$/', '', $template ) ) . $matches[0];
+		}
+
 		return $this->extension( str_replace( '.', '/', $template ) );
 	}
 

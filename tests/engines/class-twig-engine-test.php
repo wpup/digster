@@ -43,8 +43,6 @@ class Twig_Engine_Test extends \WP_UnitTestCase {
 
         $this->assertEquals( 'profile.twig', $engine->extension( 'profile' ) );
         $this->assertEquals( 'admin/profile.twig', $engine->extension( 'admin/profile' ) );
-        $this->assertEquals( 'admin/profile.html', $engine->extension( 'admin/profile/html' ) );
-        $this->assertEquals( 'admin/profile.twig', $engine->extension( 'admin/profile/twig' ) );
     }
 
     public function test_template() {
