@@ -79,7 +79,7 @@ class Twig_Engine extends Engine {
 	 *
 	 * @return array
 	 */
-	public function prepare_engine_config() {
+	protected function prepare_engine_config() {
 		return $this->prepare_config( [
 			'autoescape'          => true,
 			'auto_reload'         => false,
