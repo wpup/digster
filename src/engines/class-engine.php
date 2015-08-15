@@ -2,7 +2,7 @@
 
 namespace Digster\Engines;
 
-use Digster\Container;
+use Frozzare\Tank\Container;
 
 /**
  * Engine.

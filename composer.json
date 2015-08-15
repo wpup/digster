@@ -24,7 +24,8 @@
     "php": ">=5.4.7",
     "twig/twig": "~1.0",
     "asm89/twig-cache-extension": "~1.0",
-    "frozzare/wp-autoload": "~2.0"
+    "frozzare/wp-autoload": "~2.0",
+    "frozzare/tank": "dev-master"
   },
   "require-dev": {
     "frozzare/wp-test-suite": "~1.0",
@@ -33,5 +34,7 @@
   "scripts": {
     "post-install-cmd": "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs",
     "post-update-cmd" : "\"vendor/bin/phpcs\" --config-set installed_paths vendor/wp-coding-standards/wpcs"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
