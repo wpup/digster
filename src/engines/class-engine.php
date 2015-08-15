@@ -19,6 +19,13 @@ abstract class Engine extends Container {
 	protected $composers = [];
 
 	/**
+	 * Count how many composers that has been called.
+	 *
+	 * @var array
+	 */
+	protected $composers_called = 0;
+
+	/**
 	 * The default extension (empty string).
 	 *
 	 * @var string
@@ -45,6 +52,32 @@ abstract class Engine extends Container {
 	 * @var string
 	 */
 	protected $wildcard_composer_key = '*';
+
+	/**
+	 * Register preprocess with templates.
+	 *
+	 * @param array|string $template
+	 * @param callable $fn
+	 */
+	public function composer( $template, $fn = null ) {
+		if ( is_null( $fn ) ) {
+			return $this->get_composer( $template );
+		}
+
+		$template = (array) $template;
+
+		foreach ( $template as $tmpl ) {
+			if ( $tmpl !== $this->wildcard_composer_key ) {
+				$tmpl = $this->extension( $tmpl );
+			}
+
+			if ( ! isset( $this->composers[$tmpl] ) ) {
+				$this->composers[$tmpl] = [];
+			}
+
+			$this->composers[$tmpl][] = $fn;
+		}
+	}
 
 	/**
 	 * Get or set configuration values.
@@ -93,6 +126,13 @@ abstract class Engine extends Container {
 	}
 
 	/**
+	 * Flush data.
+	 */
+	protected function flush() {
+		$this->composers_called = 0;
+	}
+
+	/**
 	 * Get the Engine instance.
 	 *
 	 * @return \Digster\Engine
@@ -101,6 +141,8 @@ abstract class Engine extends Container {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new static;
 		}
+
+		self::$instance->flush();
 
 		return self::$instance;
 	}
@@ -175,55 +217,24 @@ abstract class Engine extends Container {
 	protected function prepare_data( $template, $data ) {
 		$data         = (array) $data;
 		$preprocesses = $this->composer( $template );
+		$preprocesses = array_slice( $preprocesses, $this->composers_called );
 
 		foreach ( $preprocesses as $fn ) {
 			if ( is_callable( $fn ) ) {
-				$data = array_merge( $data, call_user_func( $fn, $data ) );
+				$output = call_user_func( $fn, $data );
+				if ( is_array( $output ) ) {
+					$data = array_merge( $data, $output );
+				}
 			}
+		}
+
+		$this->composers_called += count( $preprocesses );
+
+		if ( count( $this->composer( $template ) ) > $this->composers_called ) {
+			return $this->prepare_data( $template, $data );
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Render template with given data.
-	 *
-	 * @param string $template
-	 * @param array $data
-	 *
-	 * @return string
-	 */
-	abstract public function render( $template, $data );
-
-	/**
-	 * Register extensions.
-	 */
-	abstract public function register_extensions();
-
-	/**
-	 * Register preprocess with templates.
-	 *
-	 * @param array|string $template
-	 * @param callable $fn
-	 */
-	public function composer( $template, $fn = null ) {
-		if ( is_null( $fn ) ) {
-			return $this->get_composer( $template );
-		}
-
-		$template = (array) $template;
-
-		foreach ( $template as $tmpl ) {
-			if ( $tmpl !== $this->wildcard_composer_key ) {
-				$tmpl = $this->extension( $tmpl );
-			}
-
-			if ( ! isset( $this->composers[$tmpl] ) ) {
-				$this->composers[$tmpl] = [];
-			}
-
-			$this->composers[$tmpl][] = $fn;
-		}
 	}
 
 	/**
@@ -253,7 +264,22 @@ abstract class Engine extends Container {
 	/**
 	 * Register extension.
 	 */
-	abstract public function prepare_engine_config();
+	abstract protected function prepare_engine_config();
+
+	/**
+	 * Render template with given data.
+	 *
+	 * @param string $template
+	 * @param array $data
+	 *
+	 * @return string
+	 */
+	abstract public function render( $template, $data );
+
+	/**
+	 * Register extensions.
+	 */
+	abstract public function register_extensions();
 
 	/**
 	 * Get the right template string that should be loaded.
@@ -263,6 +289,10 @@ abstract class Engine extends Container {
 	 * @return string
 	 */
 	public function template( $template ) {
+		// Replace dots with slashes so the render engine understands which file that should be render.
+		// 
+		// admin.profile      => admin/profile.twig
+		// admin.profile.html => admin/profile.html
 		if ( preg_match( '/\.\w+$/', $template, $matches ) && in_array( $matches[0], $this->extensions ) ) {
 			return str_replace( '.', '/', preg_replace( '/' . $matches[0] . '$/', '', $template ) ) . $matches[0];
 		}
