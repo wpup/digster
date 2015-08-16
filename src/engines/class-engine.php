@@ -47,7 +47,9 @@ abstract class Engine extends Container {
      */
     protected function get_default_config() {
         return [
-            'locations' => get_template_directory() . '/views'
+            'locations' => [
+                get_template_directory() . '/views'
+            ]
         ];
     }
 
