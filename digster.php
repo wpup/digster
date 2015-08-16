@@ -23,10 +23,17 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 register_wp_autoload( 'Digster\\', __DIR__ . '/src' );
 
 /**
+ * Get the Digster instance.
+ *
+ * @return \Digster\Digster
+ */
+function digster() {
+    return \Digster\Digster::instance();
+}
+
+/**
  * Load Digster plugin.
  *
  * @return \Digster\Digster
  */
-add_action( 'plugins_loaded', function () {
-    return \Digster\Digster::instance();
-} );
+add_action( 'plugins_loaded', 'digster' );
