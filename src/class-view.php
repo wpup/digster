@@ -189,7 +189,7 @@ class View implements ArrayAccess {
 	// @codingStandardsIgnoreStart
 	public function offsetSet( $key, $value ) {
 	// @codingStandardsIgnoreEnd
-	   $this->with( $key, $value );
+        $this->with( $key, $value );
     }
 
 	/**
