@@ -23,13 +23,6 @@ class Factory {
     protected $composers = [];
 
     /**
-     * Number of composers called during rendering.
-     *
-     * @var int
-     */
-    protected $composers_called = 0;
-
-    /**
      * Shared data for the views.
      *
      * @var array
