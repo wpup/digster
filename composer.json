@@ -17,7 +17,8 @@
   },
   "autoload": {
     "files": [
-      "src/api.php"
+      "src/api.php",
+      "src/helpers.php"
     ]
   },
   "require": {

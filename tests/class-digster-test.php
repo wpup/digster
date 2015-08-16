@@ -6,10 +6,20 @@ use Digster\Digster;
 
 class Digster_Test extends \WP_UnitTestCase {
 
-    public function test_composer() {
+    public function test_config() {
+        $locations = Digster::config( 'locations' );
+        $this->assertNotEmpty( $locations );
+        $this->assertTrue( strpos( $locations[0], '/views' ) !== false );
+
+        Digster::config( 'locations', '/path/to/views' );
+        $this->assertEquals( Digster::config( 'locations' ), '/path/to/views' );
+    }
+
+
+    public function test_digster_composer() {
         $post_id = $this->factory->post->create();
 
-        Digster::composer( '*', function ( $vars ) {
+        digster_composer( '*', function ( $vars ) {
             if ( isset( $vars['post'] ) ) {
                 $vars['post'] = isset( $vars['post'] ) && is_numeric( $vars['post'] ) ?  get_page( $vars['post'] ) : $vars['post'];
             }
@@ -31,16 +41,7 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertNotFalse( strpos( $output, 'Hello Post title' ) );
     }
 
-    public function test_config() {
-        $locations = Digster::config( 'locations' );
-        $this->assertNotEmpty( $locations );
-        $this->assertTrue( strpos( $locations[0], '/views' ) !== false );
-
-        Digster::config( 'locations', '/path/to/views' );
-        $this->assertEquals( Digster::config( 'locations' ), '/path/to/views' );
-    }
-
-    public function test_fetch() {
+    public function test_digster_fetch() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
@@ -55,7 +56,7 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello Fredrik!', $output );
     }
 
-    public function test_render() {
+    public function test_digster_render() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
@@ -78,7 +79,7 @@ class Digster_Test extends \WP_UnitTestCase {
 		$this->assertEquals( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
 	}
 
-    public function test_view() {
+    public function test_digster_view() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
