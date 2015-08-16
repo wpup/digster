@@ -107,7 +107,7 @@ abstract class Engine extends Container {
     }
 
     /**
-     * Register extension.
+     * Prepare engine config.
      */
     abstract protected function prepare_engine_config();
 
