@@ -3,3 +3,4 @@
 tmp
 vendor
 composer.lock
+test.php
