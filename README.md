@@ -14,11 +14,15 @@ It's easy to register your own [extensions](#register-extension) or [composers](
 Example of `page.php`
 
 ```php
-// 'page' or 'page.twig'
-digster_render( 'page' );
+/**
+ * Render page.
+ */
+
+echo view( 'page' );
 ```
 
 Example of `page.twig`
+
 ```html
 {% include "partials/header.twig" %}
 <div id="primary" class="content-area">
@@ -72,18 +76,14 @@ add_filter( 'digster/config', function ( $config ) {
 
 ## API functions
 
+All functions below can also be called as a static method on `\Digster\Digster` class. Replace `digster_` with `Digster::`.
+
 ##### Fetch view
 
 Fetch the view in to a string.
 
 ```php
 $view = digster_fetch( 'page' [, $data = [] ] );
-
-// or
-
-use Digster\Digster;
-
-$view = Digster::fetch( 'page', [, $data = []] );
 ```
 
 #### Get the view instance
@@ -92,16 +92,6 @@ Every view in digster is a instance of the view class and this can be accessed.
 
 ```php
 $view = digster_view( 'page', [, $data = [] ] );
-
-echo $view;
-
-// or
-
-use Digster\Digster;
-
-$view = Digster::view( 'page', [, $data = [] ] );
-
-echo $view;
 
 // or (only if `view` function don't exists.)
 $view = view( 'page', [, $data = [] ] );
@@ -126,21 +116,6 @@ digster_composer( 'page', function ( $vars ) {
 digster_render( 'page', [
   'post' => get_the_ID()
 ] );
-
-// or
-
-use Digster\Digster;
-
-// '*', 'page' or 'page.twig'
-Digster::composer( 'page', function ( $vars ) {
-  $vars['post'] = is_numeric( $vars['post'] ) ?  get_page( $vars['post'] ) : $vars['post'];
-  return $vars;
-} );
-
-// Only need to get the post ID
-Digster::render( 'page', [
-  'post' => get_the_ID()
-] );
 ```
 
 #### Register extension
@@ -156,13 +131,6 @@ digster_register_extensions( [
 	new My_First_Twig_Extension(),
 	new My_Second_Twig_Extension()
 ] );
-
-// or
-
-Digster::register_extensions( [
-	new My_First_Twig_Extension(),
-	new My_Second_Twig_Extension()
-] );
 ```
 
 #### Render a view
@@ -171,12 +139,6 @@ Render a view
 
 ```php
 digster_render( 'page' [, $data = []] );
-
-// or
-
-use Digster\Digster;
-
-Digster::render( 'page', [, $data = []] );
 ```
 
 ## Twig filters
@@ -294,12 +256,6 @@ $cache_strategy  = new LifetimeCacheStrategy($cache_provider);
 $cache_extension = new CacheExtension($cache_strategy);
 
 digster_register_extensions( $cache_extension );
-
-// or
-
-use Digster\Digster;
-
-Digster::register_extensions( $cache_extension );
 ```
 
 ## Coding style
