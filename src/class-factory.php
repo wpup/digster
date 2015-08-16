@@ -84,6 +84,26 @@ class Factory {
     }
 
     /**
+     * Determine if a given view exists.
+     *
+     * @param string $view
+     *
+     * @return bool
+     */
+    public function exists( $view ) {
+        $view      = $this->view( $view );
+        $locations = $this->engine->get_locations();
+
+        foreach ( $locations as $location ) {
+            if ( file_exists( $location . '/' . $view ) ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Add extension to the view string if it don't exists.
      *
      * @param string $view
