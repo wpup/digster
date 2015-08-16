@@ -7,6 +7,8 @@ use Digster\Digster;
 class Helpers_Test extends \WP_UnitTestCase {
 
     public function test_view() {
+        $this->assertEquals( view(), Digster::factory() );
+
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );

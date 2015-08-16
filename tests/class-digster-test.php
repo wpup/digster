@@ -97,6 +97,8 @@ class Digster_Test extends \WP_UnitTestCase {
     }
 
     public function test_view() {
+        $this->assertEquals( Digster::view(), Digster::factory() );
+
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
