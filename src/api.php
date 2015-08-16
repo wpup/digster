@@ -40,3 +40,15 @@ function digster_register_extensions() {
 function digster_render( $view, array $data = [] ) {
     echo Digster::render( $view, $data );
 }
+
+/**
+ * Get the view class.
+ *
+ * @param string $view
+ * @param array $data
+ *
+ * @return string
+ */
+function digster_view( $view, array $data = [] ) {
+	return Digster::view( $view, $data );
+}

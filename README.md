@@ -86,6 +86,29 @@ use Digster\Digster;
 $view = Digster::fetch( 'page', [, $data = []] );
 ```
 
+#### Get the view instance
+
+Every view in digster is a instance of the view class and this can be accessed.
+
+```php
+$view = digster_view( 'page', [, $data = [] ] );
+
+echo $view;
+
+// or
+
+use Digster\Digster;
+
+$view = Digster::view( 'page', [, $data = [] ] );
+
+echo $view;
+
+// or (only if `view` function don't exists.)
+$view = view( 'page', [, $data = [] ] );
+
+echo $view;
+```
+
 #### Register composer
 
 With Digster you can register composer with wildcard template or a specified template.

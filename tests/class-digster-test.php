@@ -16,7 +16,7 @@ class Digster_Test extends \WP_UnitTestCase {
     }
 
 
-    public function test_digster_composer() {
+    public function test_composer() {
         $post_id = $this->factory->post->create();
 
         digster_composer( '*', function ( $vars ) {
@@ -41,7 +41,7 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertNotFalse( strpos( $output, 'Hello Post title' ) );
     }
 
-    public function test_digster_fetch() {
+    public function test_fetch() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
@@ -56,7 +56,7 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello Fredrik!', $output );
     }
 
-    public function test_digster_render() {
+    public function test_render() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );
@@ -79,7 +79,7 @@ class Digster_Test extends \WP_UnitTestCase {
 		$this->assertEquals( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
 	}
 
-    public function test_digster_view() {
+    public function test_view() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
         ] );

@@ -61,4 +61,19 @@ class API_Test extends \WP_UnitTestCase {
         $this->expectOutputString( 'Hello Fredrik!' );
     }
 
+    public function test_digster_view() {
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello {{ name }}!'
+        ] );
+
+        $engine = Digster::factory()->engine();
+        $engine->set_loader( $loader );
+
+        $view = digster_view( 'index.html', [
+            'name' => 'Fredrik'
+        ] );
+
+        $this->assertEquals( 'Hello Fredrik!', $view->render() );
+    }
+
 }
