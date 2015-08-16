@@ -67,9 +67,10 @@ class View {
 
             if ( is_array( $value ) ) {
                 $this->data = $result = $value;
-            } else if ( is_string( $value ) && class_exists( $value ) ) {
-                $class = new $value();
-                $class->compose( $this );
+            } else if ( is_string( $value ) && class_exists( $this->get_composer_class( $value ) ) ) {
+                $value = $this->get_composer_class( $value );
+				$class = new $value();
+				$class->compose( $this );
                 $result = array_merge( $result, $this->data );
             }
         }
@@ -82,6 +83,19 @@ class View {
 
         return $result;
     }
+
+	/**
+	 * Get composer class name.
+	 * @param  [type] $class [description]
+	 * @return [type]        [description]
+	 */
+	protected function get_composer_class( $class ) {
+		if ( ! preg_match( '/\_Composer$/', $class ) ) {
+			return $class . '_Composer';
+		}
+
+		return $class;
+	}
 
     /**
      * Get the view name.
