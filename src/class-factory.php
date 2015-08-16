@@ -210,7 +210,7 @@ class Factory {
      *
      * @return string
      */
-    public function view( $view ) {
+    protected function view( $view ) {
         if ( preg_match( '/\.\w+$/', $view, $matches ) && in_array( $matches[0], $this->extensions() ) ) {
             return str_replace( '.', '/', preg_replace( '/' . $matches[0] . '$/', '', $view ) ) . $matches[0];
         }

@@ -109,13 +109,7 @@ class View implements ArrayAccess {
      * @return $this
      */
     public function nest( $key, $view_name, array $data = [] ) {
-        $view = $this->factory->make( $view_name, $data );
-
-        if ( $view->get_name() === $this->factory->view( $view_name ) ) {
-            return $this;
-        }
-
-        return $this->with( $key, $view );
+        return $this->with( $key, $this->factory->make( $view_name, $data ) );
     }
 
     /**

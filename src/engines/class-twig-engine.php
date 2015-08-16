@@ -84,9 +84,9 @@ class Twig_Engine extends Engine {
     protected function prepare_engine_config() {
         return $this->prepare_config( [
             'autoescape'          => true,
-            'auto_reload'         => false,
+            'auto_reload'         => true,
             'base_template_class' => 'Twig_Template',
-            'cache'               => WP_CONTENT_DIR . '/cache/twig',
+            'cache'               => false,//WP_CONTENT_DIR . '/cache/twig',
             'charset'             => 'utf-8',
             'debug'               => false,
             'optimizations'       => -1,
