@@ -86,15 +86,14 @@ class View {
 
 	/**
 	 * Get composer class name.
-	 * @param  [type] $class [description]
-	 * @return [type]        [description]
+	 *
+	 * @param string $class
+	 *
+	 * @return string
 	 */
 	protected function get_composer_class( $class ) {
-		if ( ! preg_match( '/\_Composer$/', $class ) ) {
-			return $class . '_Composer';
-		}
-
-		return $class;
+		return preg_match( '/\_Composer$/', $class ) ?
+			$class : $class . '_Composer';
 	}
 
     /**
