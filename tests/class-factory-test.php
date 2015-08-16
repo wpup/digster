@@ -49,4 +49,13 @@ class Factory_Engine_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello, Fredrik!', $view->render() );
     }
 
+    public function test_view() {
+        $factory = Digster::factory();
+        $this->assertEquals( 'profile.twig', $factory->view( 'profile' ) );
+        $this->assertEquals( 'admin/profile.twig', $factory->view( 'admin/profile' ) );
+        $this->assertEquals( 'admin/profile.twig', $factory->view( 'admin.profile' ) );
+        $this->assertEquals( 'admin/profile.html', $factory->view( 'admin.profile.html' ) );
+        $this->assertEquals( 'admin/profile.twig', $factory->view( 'admin.profile.twig' ) );
+    }
+
 }
