@@ -2,131 +2,147 @@
 
 namespace Digster;
 
-use Digster\Engines\Twig_Engine;
+use Digster\Engines\Engine;
 
-/**
- * View class.
- *
- * The view is responsible for rendering a template.
- *
- * @package Digster
- */
 class View {
 
-	/**
-	 * The template key.
-	 *
-	 * @var string
-	 */
-	private $template;
+    /**
+     * The view engine instance.
+     *
+     * @var \Digster\Factory
+     */
+    protected $engine;
 
-	/**
-	 * The constructor.
-	 *
-	 * @param string $template
-	 *
-	 * @throws InvalidArgumentException if an argument is not of the expected type.
-	 */
-	public function __construct( $template ) {
-		if ( ! is_string( $template ) ) {
-			throw new InvalidArgumentException( 'Invalid argument. Must be string.' );
-		}
+    /**
+     * The array of view data.
+     *
+     * @var array
+     */
+    protected $data;
 
-		$this->template = $template;
-	}
+    /**
+     * The view factory instance.
+     *
+     * @var \Digster\Factory
+     */
+    protected $factory;
 
-	/**
-	 * Register composer with templates.
-	 *
-	 * @param array|string $template
-	 * @param mixed $value
-	 */
-	public static function composer( $template, $value = null ) {
-		if ( ! is_string( $template ) ) {
-			throw new InvalidArgumentException( 'Invalid argument. `$template` must be string.' );
-		}
+    /**
+     * The name of the view.
+     *
+     * @var string
+     */
+    protected $view;
 
-		if ( is_string( $value ) && class_exists( $value ) ) {
-			$value = function ( $vars ) use( $template, $value ) {
-				$class = new $value();
-				$class->compose( new View( $template ) );
-			};
-		}
+    /**
+     * The constructor.
+     *
+     * @param string $view
+     *
+     * @throws InvalidArgumentException if an argument is not of the expected type.
+     */
+    public function __construct( Factory $factory, Engine $engine, $view, $data = [] ) {
+        $this->factory = $factory;
+        $this->engine  = $engine;
+        $this->view    = $view;
+        $this->data    = $data;
+    }
 
-		self::engine()->composer( $template, $value );
-	}
+    /**
+     * Gather the data that should be used when render.
+     *
+     * @return array
+     */
+    protected function gather_data() {
+        $data    = array_merge( $this->factory->get_composer( $this ), $this->data );
+        $data    = array_merge( $this->factory->get_shared(), $data );
+        $result  = $data;
 
-	/**
-	 * Get or set configuration value.
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 *
-	 * @return mixed
-	 */
-	public static function config( $key, $value = null ) {
-		return self::engine()->config( $key, $value );
-	}
+        foreach ( $data as $index => $callback ) {
+            if ( is_callable( $callback ) ) {
+                $value = call_user_func( $callback, $result );
+            } else {
+                $value = $callback;
+            }
 
-	/**
-	 * Get template directories.
-	 *
-	 * @return array
-	 */
-	public static function engine() {
-		return Twig_Engine::instance();
-	}
+            if ( is_array( $value ) ) {
+                $this->data = $result = $value;
+            } else if ( is_string( $value ) && class_exists( $value ) ) {
+                $class = new $value();
+                $class->compose( $this );
+                $result = array_merge( $result, $this->data );
+            }
+        }
 
-	/**
-	 * Fetch the view to a string.
-	 *
-	 * @param string $template
-	 * @param array $data
-	 *
-	 * @return string
-	 */
-	public static function fetch( $template, array $data = [] ) {
-		return self::engine()->render( $template, $data );
-	}
+        foreach ( $result as $key => $value ) {
+            if ( $value instanceof View ) {
+                $result[$key] = $value->render();
+            }
+        }
 
-	/**
-	 * Render the view.
-	 *
-	 * @param string $template
-	 * @param array $data
-	 */
-	public static function render( $template, array $data = [] ) {
-		echo self::fetch( $template, $data );
-	}
+        return $result;
+    }
 
-	/**
-	 * Register extensions with template engine.
-	 */
-	public static function register_extensions() {
-		self::engine()->register_extensions( func_get_args() );
-	}
+    /**
+     * Get the view name.
+     *
+     * @return string
+     */
+    public function get_name() {
+        return $this->view;
+    }
 
-	/**
-	 * Add composer from a composer class.
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 *
-	 * @throws InvalidArgumentException if an argument is not of the expected type.
-	 */
-	public function with( $key, $value ) {
-		if ( ! is_string( $key ) ) {
-			throw new InvalidArgumentException( 'Invalid argument. `$key` must be string.' );
-		}
+    /**
+     * Add a view instance to the view data.
+     *
+     * @param string $key
+     * @param string $view
+     * @param array $data
+     *
+     * @return $this
+     */
+    public function nest( $key, $view, array $data = [] ) {
+        return $this->with( $key, $this->factory->make( $view, $data ) );
+    }
 
-		if ( $value instanceof Closure === false ) {
-			$value = function( $vars ) use( $key, $value ) {
-				$vars[$key] = $value;
-				return $vars;
-			};
-		}
+    /**
+     * Render the view.
+     *
+     * @return string
+     */
+    public function render() {
+        return $this->engine->render( $this->view, $this->gather_data() );
+    }
 
-		self::composer( $this->template, $value );
-	}
+    /**
+     * Add a piece of data to the view.
+     *
+     * @param array|string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function with( $key, $value = null ) {
+        if ( is_array( $key ) ) {
+            $this->data = array_merge( $this->data, $key );
+        } else {
+            $this->data[$key] = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get the string contents of the view.
+     *
+     * @return string
+     */
+    public function __toString() {
+        try {
+            return $this->render();
+        } catch ( \Exception $e ) {
+            return '';
+        }
+    }
 
 }

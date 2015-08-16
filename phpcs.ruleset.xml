@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?php xml version="1.0"?>
 <ruleset name="Digster">
 	<description>Sniffs for the coding standards of the Digster plugin</description>
 
@@ -8,5 +8,13 @@
 		<exclude name="WordPress.PHP.YodaConditions" />
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterStructureOpen" />
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" />
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
 	</rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="4"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
 </ruleset>

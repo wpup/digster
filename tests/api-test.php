@@ -2,7 +2,7 @@
 
 namespace Digster\Tests;
 
-use Digster\View;
+use Digster\Digster;
 
 class API_Test extends \WP_UnitTestCase {
 
@@ -21,10 +21,10 @@ class API_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello {{ post.post_title }}!'
         ] );
 
-        $engine = View::engine();
-
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
-        $output = $engine->render( 'index.html', [
+
+        $output = digster_fetch( 'index.html', [
             'post' => $post_id
         ] );
 
@@ -36,7 +36,7 @@ class API_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello {{ name }}!'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
         $output = digster_fetch( 'index.html', [
@@ -51,7 +51,7 @@ class API_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello {{ name }}!'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
         digster_render( 'index.html', [

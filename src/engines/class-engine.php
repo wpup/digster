@@ -4,300 +4,124 @@ namespace Digster\Engines;
 
 use Frozzare\Tank\Container;
 
-/**
- * Engine.
- *
- * @package Digster
- */
 abstract class Engine extends Container {
 
-	/**
-	 * Engines composers.
-	 *
-	 * @var array
-	 */
-	protected $composers = [];
+    /**
+     * The default extensions.
+     *
+     * @var string
+     */
+    protected $extensions = ['html'];
 
-	/**
-	 * Count how many composers that has been called.
-	 *
-	 * @var array
-	 */
-	protected $composers_called = 0;
+    /**
+     * Get or set configuration values.
+     *
+     * @param array|string $key
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function config( $key, $value = null ) {
+        if ( is_array( $key ) ) {
+            foreach ( $key as $id => $val ) {
+                $this->config( $id, $val );
+            }
+        } else {
+            if ( ! is_null( $value ) ) {
+                return $this->bind( $key, $value );
+            }
 
-	/**
-	 * The default extension (empty string).
-	 *
-	 * @var string
-	 */
-	protected $extensions = ['html'];
+            if ( $this->exists( $key ) ) {
+                return $this->make( $key );
+            } else {
+                $default = $this->get_default_config();
+                return isset( $default[$key] ) ? $default[$key] : null;
+            }
+        }
+    }
 
-	/**
-	 * The View instance.
-	 *
-	 * @var \Digster\Engine
-	 */
-	private static $instance = null;
+    /**
+     * Get default configuration.
+     *
+     * @return array
+     */
+    protected function get_default_config() {
+        $config = [];
 
-	/**
-	 * The config locations key.
-	 *
-	 * @var string
-	 */
-	protected $locations_key = 'locations';
+        $config['locations'] = [
+            get_template_directory() . '/views'
+        ];
 
-	/**
-	 * The wildcard composer key that all template uses.
-	 *
-	 * @var string
-	 */
-	protected $wildcard_composer_key = '*';
+        return $config;
+    }
 
-	/**
-	 * Register preprocess with templates.
-	 *
-	 * @param array|string $template
-	 * @param callable $fn
-	 */
-	public function composer( $template, $fn = null ) {
-		if ( is_null( $fn ) ) {
-			return $this->get_composer( $template );
-		}
+    /**
+     * Get the file extensions.
+     *
+     * @return array
+     */
+    public function extensions() {
+        return $this->extensions;
+    }
 
-		$template = (array) $template;
+    /**
+     * Get engine config.
+     *
+     * @return array
+     */
+    protected function get_engine_config() {
+        $config    = $this->prepare_engine_config();
+        $locations = $config['locations'];
 
-		foreach ( $template as $tmpl ) {
-			if ( $tmpl !== $this->wildcard_composer_key ) {
-				$tmpl = $this->extension( $tmpl );
-			}
+        unset( $config['locations'] );
 
-			if ( ! isset( $this->composers[$tmpl] ) ) {
-				$this->composers[$tmpl] = [];
-			}
+        $locations = array_filter( (array) $locations, function ( $location ) {
+            return file_exists( $location );
+        } );
 
-			$this->composers[$tmpl][] = $fn;
-		}
-	}
+        return [$locations, $config];
+    }
 
-	/**
-	 * Get or set configuration values.
-	 *
-	 * @param array|string $key
-	 * @param mixed $value
-	 *
-	 * @return mixed
-	 */
-	public function config( $key, $value = null ) {
-		if ( is_array( $key ) ) {
-			foreach ( $key as $id => $val ) {
-				$this->config( $id, $val );
-			}
-		} else {
-			if ( ! is_null( $value ) ) {
-				return $this->bind( $key, $value );
-			}
+    /**
+     * Prepare the template engines real configuration.
+     *
+     * @param array $arr
+     *
+     * @return array
+     */
+    protected function prepare_config( $arr ) {
+        $result = [];
 
-			if ( $this->exists( $key ) ) {
-				return $this->make( $key );
-			} else {
-				$default = $this->get_default_config();
-				return isset( $default[$key] ) ? $default[$key] : null;
-			}
-		}
-	}
+        if ( ! is_array( $arr ) ) {
+            return $result;
+        }
 
-	/**
-	 * Add extension to the template string if it don't exists.
-	 *
-	 * @param string $template
-	 *
-	 * @return string
-	 */
-	public function extension( $template ) {
-		// Return if a valid extension exists in the template string.
-		$ext_reg = '/(' . implode( '|', $this->extensions ) . ')+$/';
-		if ( preg_match( $ext_reg, $template ) ) {
-			return $template;
-		}
+        $arr = array_merge( $this->get_default_config(), $arr );
 
-		// Add extension to template string if it don't exists.
-		return substr( $template, -strlen( $this->extensions[0] ) ) === $this->extensions[0]
-			? $template : $template . $this->extensions[0];
-	}
+        foreach ( $arr as $key => $value ) {
+            $res          = $this->config( $key );
+            $result[$key] = is_null( $res ) ? $value : $res;
+        }
 
-	/**
-	 * Flush data.
-	 */
-	protected function flush() {
-		$this->composers_called = 0;
-	}
+        return apply_filters( 'digster/config', $result );
+    }
 
-	/**
-	 * Get the Engine instance.
-	 *
-	 * @return \Digster\Engine
-	 */
-	public static function instance() {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new static;
-		}
+    /**
+     * Register extension.
+     */
+    abstract protected function prepare_engine_config();
 
-		self::$instance->flush();
+    /**
+     * Register extensions.
+     */
+    abstract public function register_extensions();
 
-		return self::$instance;
-	}
-
-	/**
-	 * Get composer by template.
-	 *
-	 * @param string $template
-	 *
-	 * @return array
-	 */
-	protected function get_composer( $template ) {
-		if ( is_array( $template ) ) {
-			$template = array_shift( $template );
-		}
-
-		$composers = [];
-		$template  = $this->extension( $template );
-
-		if ( isset( $this->composers[$template] ) ) {
-			$composers = array_merge( $composers, $this->composers[$template] );
-		}
-
-		if ( isset( $this->composers[$this->wildcard_composer_key] ) ) {
-			$composers = array_merge( $composers, $this->composers[$this->wildcard_composer_key] );
-		}
-
-		return $composers;
-	}
-
-	/**
-	 * Get default configuration.
-	 *
-	 * @return array
-	 */
-	protected function get_default_config() {
-		$config = [];
-
-		$config[$this->locations_key] = [
-			get_template_directory() . '/views'
-		];
-
-		return $config;
-	}
-
-	/**
-	 * Get engine config.
-	 *
-	 * @return array
-	 */
-	protected function get_engine_config() {
-		$config    = $this->prepare_engine_config();
-		$locations = $config[$this->locations_key];
-
-		unset( $config[$this->locations_key] );
-
-		$locations = array_filter( (array) $locations, function ( $location ) {
-			return file_exists( $location );
-		} );
-
-		return [$locations, $config];
-	}
-
-	/**
-	 * Prepare template data with preprocesses.
-	 *
-	 * @param string $template
-	 * @param array $data
-	 *
-	 * @return array
-	 */
-	protected function prepare_data( $template, $data ) {
-		$data         = (array) $data;
-		$preprocesses = $this->composer( $template );
-		$preprocesses = array_slice( $preprocesses, $this->composers_called );
-
-		foreach ( $preprocesses as $fn ) {
-			if ( is_callable( $fn ) ) {
-				$output = call_user_func( $fn, $data );
-				if ( is_array( $output ) ) {
-					$data = array_merge( $data, $output );
-				}
-			}
-		}
-
-		$this->composers_called += count( $preprocesses );
-
-		if ( count( $this->composer( $template ) ) > $this->composers_called ) {
-			return $this->prepare_data( $template, $data );
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Prepare the template engines real configuration.
-	 *
-	 * @param array $arr
-	 *
-	 * @return array
-	 */
-	protected function prepare_config( $arr ) {
-		$result = [];
-
-		if ( ! is_array( $arr ) ) {
-			return $result;
-		}
-
-		$arr = array_merge( $this->get_default_config(), $arr );
-
-		foreach ( $arr as $key => $value ) {
-			$res          = $this->config( $key );
-			$result[$key] = is_null( $res ) ? $value : $res;
-		}
-
-		return apply_filters( 'digster/config', $result );
-	}
-
-	/**
-	 * Register extension.
-	 */
-	abstract protected function prepare_engine_config();
-
-	/**
-	 * Render template with given data.
-	 *
-	 * @param string $template
-	 * @param array $data
-	 *
-	 * @return string
-	 */
-	abstract public function render( $template, $data );
-
-	/**
-	 * Register extensions.
-	 */
-	abstract public function register_extensions();
-
-	/**
-	 * Get the right template string that should be loaded.
-	 *
-	 * @param string $template
-	 *
-	 * @return string
-	 */
-	public function template( $template ) {
-		// Replace dots with slashes so the render engine understands which file that should be render.
-		// 
-		// admin.profile      => admin/profile.twig
-		// admin.profile.html => admin/profile.html
-		if ( preg_match( '/\.\w+$/', $template, $matches ) && in_array( $matches[0], $this->extensions ) ) {
-			return str_replace( '.', '/', preg_replace( '/' . $matches[0] . '$/', '', $template ) ) . $matches[0];
-		}
-
-		return $this->extension( str_replace( '.', '/', $template ) );
-	}
+    /**
+     * Get the rendered view string.
+     *
+     * @param string $view
+     * @param array $data
+     */
+    abstract public function render( $view, array $data = [] );
 
 }

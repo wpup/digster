@@ -2,7 +2,7 @@
 
 namespace Digster\Tests\Extensions;
 
-use Digster\View;
+use Digster\Digster;
 
 class Function_Extensions_Test extends \WP_UnitTestCase {
 
@@ -15,10 +15,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello, {% do action("my_action") %}!'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'Hello, world!', $output );
     }
@@ -32,10 +32,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ apply_filters(\'hello\', \'world\') }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'Hello, world!', $output );
 
@@ -46,10 +46,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ body_class() }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'class=""', $output );
     }
@@ -59,10 +59,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ fn(\'fn_hello\', \'world\') }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'Hello, world!', $output );
     }
@@ -72,10 +72,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ language_attributes() }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'lang="en-US"', $output );
     }
@@ -85,10 +85,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello, {{ __("world", "digster") }}!'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'Hello, world!', $output );
     }
@@ -98,10 +98,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ wp_head() }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertNotEmpty( $output );
     }
@@ -111,10 +111,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ wp_footer() }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertNotEmpty( $output );
     }
@@ -124,10 +124,10 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ wp_title() }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html' );
+        $output = Digster::fetch( 'index.html' );
 
         $this->assertNotEmpty( $output );
     }

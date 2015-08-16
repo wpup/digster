@@ -7,7 +7,7 @@
  * Author URI: https://forsmo.me/
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.2.1
+ * Version: 1.3.0-dev
  */
 
 // Make sure the plugin does not expose any info if called directly
@@ -18,14 +18,15 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
     require __DIR__ . '/vendor/autoload.php';
 }
 
+// Register the Digster namespace with the WordPress autoload
+// that understands `class-` prefix.
 register_wp_autoload( 'Digster\\', __DIR__ . '/src' );
 
 /**
  * Load Digster plugin.
  *
- * @return \Digster\Plugin_Loader
+ * @return \Digster\Digster
  */
-
 add_action( 'plugins_loaded', function () {
-    return \Digster\Plugin_Loader::instance();
+    return \Digster\Digster::instance();
 } );

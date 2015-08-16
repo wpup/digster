@@ -1,42 +1,42 @@
 <?php
 
-use Digster\View;
+use Digster\Digster;
 
 /**
  * Register composer with template engine.
  *
- * @param string|array $template
- * @param callable $fn
+ * @param array|string $views
+ * @param \Closure $callback
  */
-function digster_composer( $template, $fn ) {
-	View::composer( $template, $fn );
+function digster_composer( $views, $callback ) {
+    Digster::composer( $views, $callback );
 }
 
 /**
- * Fetch rendered template string.
+ * Fetch rendered view string.
  *
- * @param string $template
+ * @param string $view
  * @param array $data
  *
  * @return string
  */
-function digster_fetch( $template, $data = array() ) {
-	return View::fetch( $template, $data );
+function digster_fetch( $view, array $data = [] ) {
+    return Digster::fetch( $view, $data );
 }
 
 /**
- * Reigster extensions with template engine.
+ * Reigster extensions with view engine.
  */
 function digster_register_extensions() {
-	View::register_extensions( func_get_args() );
+    Digster::register_extensions( func_get_args() );
 }
 
 /**
  * Render the view.
  *
- * @param string $template
+ * @param string $view
  * @param array $data
  */
-function digster_render( $template, $data = array() ) {
-	View::render( $template, $data );
+function digster_render( $view, array $data = [] ) {
+    echo Digster::render( $view, $data );
 }

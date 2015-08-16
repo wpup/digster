@@ -15,7 +15,7 @@ Example of `page.php`
 
 ```php
 // 'page' or 'page.twig'
-digster_render('page');
+digster_render( 'page' );
 ```
 
 Example of `page.twig`
@@ -41,9 +41,9 @@ Example of `page.twig`
 Digster has a few WordPress filters, one is the config filter.
 
 ```php
-add_filter('digster/config', function ($config) {
+add_filter( 'digster/config', function ( $config ) {
   return $config;
-});
+} );
 ```
 
 #### Locations
@@ -52,10 +52,10 @@ A array with the locations of the views. By default
 the `get_templates_directory() . '/views'` is registered.
 
 ```php
-add_filter('digster/config', function ($config) {
+add_filter( 'digster/config', function ( $config ) {
   $config['locations'] = 'path/to/locations';
   return $config;
-});
+} );
 ```
 
 #### Twig environment options
@@ -64,10 +64,10 @@ Read about the options on the [Twig site](http://twig.sensiolabs.org/doc/api.htm
 
 `auto_reload` example
 ```php
-add_filter('digster/config', function ($config) {
+add_filter( 'digster/config', function ( $config ) {
   $config['auto_reload'] = true;
   return $config;
-});
+} );
 ```
 
 ## API functions
@@ -77,7 +77,13 @@ add_filter('digster/config', function ($config) {
 Fetch the view in to a string.
 
 ```php
-$view = digster_fetch('page' [, $data]);
+$view = digster_fetch( 'page' [, $data = [] ] );
+
+// or
+
+use Digster\Digster;
+
+$view = Digster::fetch( 'page', [, $data = []] );
 ```
 
 #### Register composer
@@ -88,15 +94,30 @@ This example is for `post` object, but Digster already have this global variable
 
 ```php
 // '*', 'page' or 'page.twig'
-digster_composer('page', function ($vars) {
-  $vars['post'] = is_numeric($vars['post']) ?  get_page($vars['post'] ) : $vars['post'];
+digster_composer( 'page', function ( $vars ) {
+  $vars['post'] = is_numeric( $vars['post'] ) ?  get_page( $vars['post'] ) : $vars['post'];
   return $vars;
 });
 
 // Only need to get the post ID
-digster_render('page', [
+digster_render( 'page', [
   'post' => get_the_ID()
-]);
+] );
+
+// or
+
+use Digster\Digster;
+
+// '*', 'page' or 'page.twig'
+Digster::composer( 'page', function ( $vars ) {
+  $vars['post'] = is_numeric( $vars['post'] ) ?  get_page( $vars['post'] ) : $vars['post'];
+  return $vars;
+} );
+
+// Only need to get the post ID
+Digster::render( 'page', [
+  'post' => get_the_ID()
+] );
 ```
 
 #### Register extension
@@ -104,22 +125,35 @@ digster_render('page', [
 Register [Twig extension](http://twig.sensiolabs.org/doc/advanced.html) classes with Digster.
 
 ```php
-digster_register_extensions(new My_First_Twig_Extension());
+digster_register_extensions( new My_First_Twig_Extension() );
 
 // or
 
-digster_register_extensions([
+digster_register_extensions( [
 	new My_First_Twig_Extension(),
 	new My_Second_Twig_Extension()
-]);
+] );
+
+// or
+
+Digster::register_extensions( [
+	new My_First_Twig_Extension(),
+	new My_Second_Twig_Extension()
+] );
 ```
 
 #### Render a view
 
-Render the view
+Render a view
 
 ```php
-digster_render('page' [, $data]);
+digster_render( 'page' [, $data = []] );
+
+// or
+
+use Digster\Digster;
+
+Digster::render( 'page', [, $data = []] );
 ```
 
 ## Twig filters
@@ -236,7 +270,13 @@ $cache_provider  = new WordPress_Cache_Adapter();
 $cache_strategy  = new LifetimeCacheStrategy($cache_provider);
 $cache_extension = new CacheExtension($cache_strategy);
 
-digster_register_extensions($cache_extension);
+digster_register_extensions( $cache_extension );
+
+// or
+
+use Digster\Digster;
+
+Digster::register_extensions( $cache_extension );
 ```
 
 ## Coding style

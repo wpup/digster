@@ -2,7 +2,7 @@
 
 namespace Digster\Tests\Extensions;
 
-use Digster\View;
+use Digster\Digster;
 
 class Filter_Extensions_Test extends \WP_UnitTestCase {
 
@@ -11,10 +11,10 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello, {{ text | excerpt }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html', [
+        $output = Digster::fetch( 'index.html', [
             'text' => 'Minim sunt ex leo nunclorem ac. Sagittis habitant turpis. Torquent magna massa praesent. Nisi eiusmod elit iaculis penatibus. Tincidunt facilisis aliquam blandit cras aliquet. Rhoncus ac vel. Eiusmod nisi nostrud nulla vestibulum. Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.Esse habitant anim. At urna luctus praesent fames. Velit ipsum nec orci risus.'
         ] );
 
@@ -30,10 +30,10 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => 'Hello, {{ text | shortcodes | raw }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html', [
+        $output = Digster::fetch( 'index.html', [
             'text' => '[footag foo="bar"]'
         ] );
 
@@ -45,10 +45,10 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
             'index.html' => '{{ text | wpautop | raw }}'
         ] );
 
-        $engine = View::engine();
+        $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $output = View::fetch( 'index.html', [
+        $output = Digster::fetch( 'index.html', [
             'text' => 'Hello, world!'
         ] );
 
