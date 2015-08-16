@@ -118,6 +118,10 @@ class Twig_Engine extends Engine {
      * @param array $data
      */
     public function render( $view, array $data = [] ) {
+        if ( in_array( $view, $this->extensions ) ) {
+            return '';
+        }
+
         return $this->instance()->render( $view, $data );
     }
 
