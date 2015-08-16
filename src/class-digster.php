@@ -47,9 +47,11 @@ final class Digster {
      *
      * @param array|string $views
      * @param \Closure $callback
+     *
+     * @return \Digster\Factory
      */
     public static function composer( $views, $callback ) {
-        self::factory()->composer( $views, $callback );
+        return self::factory()->composer( $views, $callback );
     }
 
     /**
@@ -124,6 +126,18 @@ final class Digster {
      */
     private function setup_actions() {
         add_action( 'after_setup_theme', [$this, 'load_extensions'] );
+    }
+
+    /**
+     * Add shared data to the environment.
+     *
+     * @param array|string $key
+     * @param mixed $value
+     *
+     * @return \Digster\Factory
+     */
+    public static function share( $key, $value ) {
+        return self::factory()->share( $key, $value );
     }
 
     /**

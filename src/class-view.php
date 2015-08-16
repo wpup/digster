@@ -55,8 +55,7 @@ class View implements ArrayAccess {
      * @return array
      */
     protected function gather_data() {
-        $data = array_merge( $this->factory->get_composer( $this ), $this->data );
-        $data = array_merge( $this->factory->get_shared(), $data );
+        $data = $this->factory->gather_data( $this );
 
         foreach ( $data as $index => $callback ) {
             if ( is_callable( $callback ) ) {
@@ -79,6 +78,15 @@ class View implements ArrayAccess {
             }
         }
 
+        return array_merge( $this->factory->get_shared(), $this->data );
+    }
+
+    /**
+     * Get view data.
+     *
+     * @return array
+     */
+    public function get_data() {
         return $this->data;
     }
 

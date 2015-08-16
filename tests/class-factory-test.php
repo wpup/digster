@@ -49,6 +49,13 @@ class Factory_Engine_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'Hello, Fredrik!', $view->render() );
     }
 
+    public function test_share() {
+        $factory = Digster::factory();
+        $factory->share( 'name', 'Fredrik' );
+        $shared = $factory->get_shared();
+        $this->assertEquals( 'Fredrik', $shared['name'] );
+    }
+
     public function test_view() {
         $factory = Digster::factory();
         $this->assertEquals( 'profile.twig', $factory->view( 'profile' ) );

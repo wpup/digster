@@ -20,7 +20,9 @@ class Factory {
      *
      * @var array
      */
-    protected $composers = [];
+    protected $composers = [
+        '*' => []
+    ];
 
     /**
      * Shared data for the views.
@@ -39,10 +41,33 @@ class Factory {
     }
 
     /**
+     * Add shared data to the environment.
+     *
+     * @param array|string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function share( $key, $value ) {
+        if ( ! is_array( $key ) ) {
+            $this->shared[$key] = $value;
+            return $this;
+        }
+
+        foreach ( $key as $innerKey => $innerValue ) {
+            $this->share( $innerKey, $innerValue );
+        }
+
+        return $this;
+    }
+
+    /**
      * Register preprocess with views.
      *
      * @param array|string $views
      * @param \Closure $fn
+     *
+     * @return $this
      */
     public function composer( $views, $callback ) {
         foreach ( (array) $views as $view ) {
@@ -53,7 +78,7 @@ class Factory {
             }
 
             if ( $view === '*' ) {
-                $this->shared[] = $callback;
+                $this->composers['*'][] = $callback;
                 continue;
             }
 
@@ -65,6 +90,8 @@ class Factory {
 
             $this->composers[$view][] = $callback;
         }
+
+        return $this;
     }
 
     /**
@@ -118,6 +145,18 @@ class Factory {
     }
 
     /**
+     * Gather the data that should be used when render.
+     *
+     * @param View $view
+     *
+     * @return array
+     */
+    public function gather_data( View $view ) {
+        $data = array_merge( $this->get_composer( $view ), $view->get_data() );
+        return array_merge( $this->get_wildcard_composer(), $data );
+    }
+
+    /**
      * Call composer.
      *
      * @param \Digster\View $view
@@ -141,6 +180,15 @@ class Factory {
      */
     public function get_shared() {
         return $this->shared;
+    }
+
+    /**
+     * Get wildcard composer.
+     *
+     * @return array
+     */
+    public function get_wildcard_composer() {
+        return $this->composers['*'];
     }
 
     /**

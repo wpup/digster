@@ -42,6 +42,18 @@ function digster_render( $view, array $data = [] ) {
 }
 
 /**
+ * Add shared data to the environment.
+ *
+ * @param array|string $key
+ * @param mixed $value
+ *
+ * @return \Digster\Factory
+ */
+function digster_share( $key, $value ) {
+    return Digster::share( $key, $value );
+}
+
+/**
  * Get the view class.
  *
  * @param string $view
