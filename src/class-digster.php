@@ -148,7 +148,11 @@ final class Digster {
      *
      * @return string
      */
-	public static function view( $view, array $data = [] ) {
+	public static function view( $view = null, array $data = [] ) {
+        if ( func_num_args() === 0 ) {
+            return self::factory();
+        }
+
 		return self::factory()->make( $view, $data );
 	}
 
