@@ -84,16 +84,7 @@ class Factory {
      * @return bool
      */
     public function exists( $view ) {
-        $view      = $this->view( $view );
-        $locations = $this->engine->get_locations();
-
-        foreach ( $locations as $location ) {
-            if ( file_exists( $location . '/' . $view ) ) {
-                return true;
-            }
-        }
-
-        return false;
+        return $this->engine()->view_exists( $this->view( $view ) );
     }
 
     /**

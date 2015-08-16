@@ -134,4 +134,15 @@ class Twig_Engine extends Engine {
         $this->instance()->setLoader( $loader );
     }
 
+    /**
+     * Determine if a given view exists.
+     *
+     * @param string $view
+     *
+     * @return bool
+     */
+    public function view_exists( $view ) {
+        return $this->instance()->getLoader()->exists( $view );
+    }
+
 }

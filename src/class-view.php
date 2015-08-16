@@ -42,7 +42,7 @@ class View implements ArrayAccess {
      *
      * @throws InvalidArgumentException if an argument is not of the expected type.
      */
-    public function __construct( Factory $factory, Engine $engine, $view, $data = [] ) {
+    public function __construct( Factory $factory, Engine $engine, $view, array $data = [] ) {
         $this->factory = $factory;
         $this->engine  = $engine;
         $this->view    = $view;

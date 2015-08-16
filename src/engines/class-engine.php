@@ -82,16 +82,6 @@ abstract class Engine extends Container {
         return [$locations, $config];
     }
 
-	/**
-	 * Get view locations.
-	 *
-	 * @return array
-	 */
-	public function get_locations() {
-		list( $locations, $config ) = $this->get_engine_config();
-		return $locations;
-	}
-
     /**
      * Prepare the template engines real configuration.
      *
@@ -133,5 +123,14 @@ abstract class Engine extends Container {
      * @param array $data
      */
     abstract public function render( $view, array $data = [] );
+
+    /**
+     * Determine if a given view exists.
+     *
+     * @param string $view
+     *
+     * @return bool
+     */
+    abstract public function view_exists( $view );
 
 }
