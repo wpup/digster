@@ -11,7 +11,7 @@ abstract class Engine extends Container {
      *
      * @var string
      */
-    protected $extensions = ['html'];
+    protected $extensions = ['.html'];
 
     /**
      * Get or set configuration values.
