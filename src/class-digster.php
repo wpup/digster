@@ -126,4 +126,16 @@ final class Digster {
         add_action( 'after_setup_theme', [$this, 'load_extensions'] );
     }
 
+    /**
+     * Get the view class.
+     *
+     * @param string $view
+     * @param array $data
+     *
+     * @return string
+     */
+	public static function view( $view, array $data = [] ) {
+		return self::factory()->make( $view, $data );
+	}
+
 }

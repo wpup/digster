@@ -78,4 +78,19 @@ class Digster_Test extends \WP_UnitTestCase {
 		$this->assertEquals( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
 	}
 
+    public function test_view() {
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello {{ name }}!'
+        ] );
+
+        $engine = Digster::factory()->engine();
+        $engine->set_loader( $loader );
+
+        $view = Digster::view( 'index.html', [
+            'name' => 'Fredrik'
+        ] );
+
+        $this->assertEquals( 'Hello Fredrik!', $view->render() );
+    }
+
 }
