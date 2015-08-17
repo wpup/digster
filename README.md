@@ -160,7 +160,7 @@ digster_render( 'page' [, $data = []] );
 `digster_view` or `view` will return the view instance so you can use the `nest` method.
 
 ```php
-echo digster_view( 'user.profile' )
+echo view( 'user.profile' )
   ->nest( 'picture', 'user.profile.picture', [
     'url' => 'http://site.com/user/1/profile.png'  
   ] );
