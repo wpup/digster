@@ -8,6 +8,7 @@ few Twig [filters](#twig-filters), [functions](#twig-functions) and [globals](#t
 It's easy to register your own [extensions](#register-extension) or [composers](#register-composer).
 
 [![Build Status](https://travis-ci.org/frozzare/wp-digster.svg?branch=master)](https://travis-ci.org/frozzare/wp-digster)
+[![License](https://img.shields.io/packagist/l/frozzare/tank.svg)](https://packagist.org/packages/frozzare/tank)
 
 ## Install
 
