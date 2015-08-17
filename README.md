@@ -99,6 +99,37 @@ $view = view( 'page', [, $data = [] ] );
 echo $view;
 ```
 
+#### Nested views
+
+`digster_view` or `view` will return the view instance so you can use the `nest` method.
+
+```php
+echo digster_view( 'user.profile' )
+  ->nest( 'picture', 'user.profile.picture', [
+    'url' => 'http://site.com/user/1/profile.png'  
+  ] );
+```
+
+```twig
+{# views/user/profile.twig #}
+{{ picture }}
+```
+
+```twig
+{# views/user/profile/picture.twig #}
+<img src="{{ url }}" alt="Profile picture" />
+```
+
+You can do the same with `digster_render` and `digster_fetch`
+
+```php
+digster_render( 'user.profile', [
+  'picture' => digster_fetch( 'user.profile.picture', [
+      'url' => 'http://site.com/user/1/profile.png'
+  ] )
+] );
+```
+
 #### Register composer
 
 With Digster you can register composer with wildcard template or a specified template.
@@ -116,6 +147,20 @@ digster_composer( 'page', function ( $vars ) {
 digster_render( 'page', [
   'post' => get_the_ID()
 ] );
+```
+
+You can also create a composer class that you can add with `digster_composer`. The only method that is required on a composer class is `compose` that takes a view argument.
+
+```php
+class Profile_Composer {
+
+  public function compose( $view ) {
+    $view->with( 'job', 'developer' );
+  }
+
+}
+
+digster_compose( 'user.profile', 'Profile_Composer' );
 ```
 
 #### Register extension
