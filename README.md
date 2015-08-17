@@ -76,7 +76,7 @@ add_filter( 'digster/config', function ( $config ) {
 
 ## API functions
 
-All functions below can also be called as a static method on `\Digster\Digster` class. Replace `digster_` with `Digster::`
+All functions that has `digster_` prefix can also be called as a static method on `\Digster\Digster` class. Just replace `digster_` with `Digster::`
 
 ##### Fetch view
 
