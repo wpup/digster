@@ -99,37 +99,6 @@ $view = view( 'page', [, $data = [] ] );
 echo $view;
 ```
 
-#### Nested views
-
-`digster_view` or `view` will return the view instance so you can use the `nest` method.
-
-```php
-echo digster_view( 'user.profile' )
-  ->nest( 'picture', 'user.profile.picture', [
-    'url' => 'http://site.com/user/1/profile.png'  
-  ] );
-```
-
-```twig
-{# views/user/profile.twig #}
-{{ picture }}
-```
-
-```twig
-{# views/user/profile/picture.twig #}
-<img src="{{ url }}" alt="Profile picture" />
-```
-
-You can do the same with `digster_render` and `digster_fetch`
-
-```php
-digster_render( 'user.profile', [
-  'picture' => digster_fetch( 'user.profile.picture', [
-      'url' => 'http://site.com/user/1/profile.png'
-  ] )
-] );
-```
-
 #### Register composer
 
 With Digster you can register composer with wildcard template or a specified template.
@@ -184,6 +153,37 @@ Render a view
 
 ```php
 digster_render( 'page' [, $data = []] );
+```
+
+### Nested views
+
+`digster_view` or `view` will return the view instance so you can use the `nest` method.
+
+```php
+echo digster_view( 'user.profile' )
+  ->nest( 'picture', 'user.profile.picture', [
+    'url' => 'http://site.com/user/1/profile.png'  
+  ] );
+```
+
+```twig
+{# views/user/profile.twig #}
+{{ picture }}
+```
+
+```twig
+{# views/user/profile/picture.twig #}
+<img src="{{ url }}" alt="Profile picture" />
+```
+
+You can do the same with `digster_render` and `digster_fetch`
+
+```php
+digster_render( 'user.profile', [
+  'picture' => digster_fetch( 'user.profile.picture', [
+      'url' => 'http://site.com/user/1/profile.png'
+  ] )
+] );
 ```
 
 ## Twig filters
