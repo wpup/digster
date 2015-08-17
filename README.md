@@ -9,6 +9,12 @@ It's easy to register your own [extensions](#register-extension) or [composers](
 
 [![Build Status](https://travis-ci.org/frozzare/digster.svg?branch=master)](https://travis-ci.org/frozzare/digster)
 
+## Install
+
+```
+$ composer require frozzare/digster
+```
+
 ## Example
 
 Example of `page.php`
@@ -76,7 +82,7 @@ add_filter( 'digster/config', function ( $config ) {
 
 ## API functions
 
-All functions that has `digster_` prefix can also be called as a static method on `\Digster\Digster` class. Just replace `digster_` with `Digster::`
+All functions that has `digster_` prefix can also be called as a static method on `\Digster\Digster` class. Just replace `digster_` with `\Digster\Digster::`
 
 ##### Fetch view
 
