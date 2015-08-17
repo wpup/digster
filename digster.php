@@ -20,20 +20,20 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 
 // Register the Digster namespace with the WordPress autoload
 // that understands `class-` prefix.
-register_wp_autoload( 'Digster\\', __DIR__ . '/src' );
+register_wp_autoload( 'Frozzare\\Digster\\', __DIR__ . '/src' );
 
 /**
  * Get the Digster instance.
  *
- * @return \Digster\Digster
+ * @return \Frozzare\Digster\Digster
  */
 function digster() {
-    return \Digster\Digster::instance();
+    return \Frozzare\Digster\Digster::instance();
 }
 
 /**
  * Load Digster plugin.
  *
- * @return \Digster\Digster
+ * @return \Frozzare\Digster\Digster
  */
 add_action( 'plugins_loaded', 'digster' );

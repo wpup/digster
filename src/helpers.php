@@ -10,7 +10,7 @@ if ( ! function_exists( 'view' ) ) {
      * @return \Digster\View
      */
     function view( $view = null, array $data = [] ) {
-        $factory = \Digster\Digster::factory();
+        $factory = \Frozzare\Digster\Digster::factory();
 
         if ( func_num_args() === 0 ) {
             return $factory;

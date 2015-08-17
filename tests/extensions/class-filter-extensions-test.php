@@ -1,8 +1,8 @@
 <?php
 
-namespace Digster\Tests\Extensions;
+namespace Frozzare\Tests\Digster\Extensions;
 
-use Digster\Digster;
+use Frozzare\Digster\Digster;
 
 class Filter_Extensions_Test extends \WP_UnitTestCase {
 

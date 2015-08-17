@@ -1,10 +1,10 @@
 <?php
 
-namespace Digster\Tests;
+namespace Frozzare\Tests\Digster;
 
-use Digster\Digster;
-use Digster\Engines\Twig_Engine;
-use Digster\View;
+use Frozzare\Digster\Digster;
+use Frozzare\Digster\Engines\Twig_Engine;
+use Frozzare\Digster\View;
 
 class Factory_Engine_Test extends \WP_UnitTestCase {
 

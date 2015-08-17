@@ -1,6 +1,6 @@
 <?php
 
-namespace Digster\Engines;
+namespace Frozzare\Digster\Engines;
 
 use Twig_Environment;
 use Twig_ExtensionInterface;
@@ -86,7 +86,7 @@ class Twig_Engine extends Engine {
             'autoescape'          => true,
             'auto_reload'         => true,
             'base_template_class' => 'Twig_Template',
-            'cache'               => false,//WP_CONTENT_DIR . '/cache/twig',
+            'cache'               => false, //WP_CONTENT_DIR . '/cache/twig',
             'charset'             => 'utf-8',
             'debug'               => false,
             'optimizations'       => -1,

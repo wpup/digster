@@ -1,8 +1,8 @@
 <?php
 
-namespace Digster\Tests;
+namespace Frozzare\Tests\Digster;
 
-use Digster\Digster;
+use Frozzare\Digster\Digster;
 
 class Digster_Test extends \WP_UnitTestCase {
 

@@ -82,7 +82,7 @@ add_filter( 'digster/config', function ( $config ) {
 
 ## API functions
 
-All functions that has `digster_` prefix can also be called as a static method on `\Digster\Digster` class. Just replace `digster_` with `\Digster\Digster::`
+All functions that has `digster_` prefix can also be called as a static method on `\Frozzare\Digster\Digster` class. Just replace `digster_` with `Digster::`, make sure that you have in your code `use Frozzare\Digster\Digster`
 
 ##### Fetch view
 
@@ -306,7 +306,7 @@ Takes the same arguments as `wp_title`.
 Look at [Twig cache extension](https://github.com/asm89/twig-cache-extension) (Digster installs the package so you don't have to install it). Digster has a build in cache provider that uses the [WordPress Object cache](http://codex.wordpress.org/Class_Reference/WP_Object_Cache).
 
 ```php
-use Digster\Cache\WordPress_Cache_Adapter;
+use Frozzare\Digster\Cache\WordPress_Cache_Adapter;
 use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
 use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 

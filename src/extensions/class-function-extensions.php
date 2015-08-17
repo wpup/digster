@@ -1,6 +1,6 @@
 <?php
 
-namespace Digster\Extensions;
+namespace Frozzare\Digster\Extensions;
 
 class Function_Extensions extends \Twig_Extension {
 

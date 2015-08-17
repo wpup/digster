@@ -1,6 +1,6 @@
 <?php
 
-use Digster\Digster;
+use Frozzare\Digster\Digster;
 
 /**
  * Register composer with template engine.

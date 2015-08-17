@@ -1,6 +1,6 @@
 <?php
 
-namespace Digster\Engines;
+namespace Frozzare\Digster\Engines;
 
 use Frozzare\Tank\Container;
 

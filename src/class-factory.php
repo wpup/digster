@@ -1,17 +1,17 @@
 <?php
 
-namespace Digster;
+namespace Frozzare\Digster;
 
 use Closure;
-use Digster\Engines\Engine;
-use Digster\Finder;
+use Frozzare\Digster\Engines\Engine;
+use Frozzare\Digster\Finder;
 
 class Factory {
 
     /**
      * The engine in use.
      *
-     * @var \Digster\View\Engines\Engine
+     * @var \Frozzare\Digster\Engines\Engine
      */
     protected $engine;
 
@@ -34,7 +34,7 @@ class Factory {
     /**
      * The constructor.
      *
-     * @param \Digster\Engine $engine
+     * @param \Frozzare\Digster\Engine $engine
      */
     public function __construct( Engine $engine ) {
         $this->engine = $engine;
@@ -97,7 +97,7 @@ class Factory {
     /**
      * Get the view engine.
      *
-     * @return \Digster\Engine
+     * @return \Frozzare\Digster\Engine
      */
     public function engine() {
         return $this->engine;
@@ -159,7 +159,7 @@ class Factory {
     /**
      * Call composer.
      *
-     * @param \Digster\View $view
+     * @param \Frozzare\Digster\View $view
      *
      * @return string
      */
@@ -197,7 +197,7 @@ class Factory {
      * @param string $view
      * @param array $data
      *
-     * @return \Digster\View
+     * @return \Frozzare\Digster\View
      */
     public function make( $view, array $data = [] ) {
         return new View( $this, $this->engine, $this->view( $view ), $data );

@@ -1,15 +1,15 @@
 <?php
 
-namespace Digster;
+namespace Frozzare\Digster;
 
-use Digster\Engines\Twig_Engine;
+use Frozzare\Digster\Engines\Twig_Engine;
 
 final class Digster {
 
     /**
      * The view factory instance.
      *
-     * @var \Digster\Factory
+     * @var \Frozzare\Digster\Factory
      */
     private $factory;
 
@@ -48,7 +48,7 @@ final class Digster {
      * @param array|string $views
      * @param \Closure $callback
      *
-     * @return \Digster\Factory
+     * @return \Frozzare\Digster\Factory
      */
     public static function composer( $views, $callback ) {
         return self::factory()->composer( $views, $callback );
@@ -69,7 +69,7 @@ final class Digster {
     /**
      * Get the view factory instance.
      *
-     * @return \Digster\Factory
+     * @return \Frozzare\Digster\Factory
      */
     public static function factory() {
         return self::instance()->factory;
@@ -92,9 +92,9 @@ final class Digster {
      */
     public function load_extensions() {
         $extensions = [
-            new \Digster\Extensions\Filter_Extensions(),
-            new \Digster\Extensions\Function_Extensions(),
-            new \Digster\Extensions\Global_Extensions()
+            new \Frozzare\Digster\Extensions\Filter_Extensions(),
+            new \Frozzare\Digster\Extensions\Function_Extensions(),
+            new \Frozzare\Digster\Extensions\Global_Extensions()
         ];
 
         $extensions = apply_filters( 'digster/extensions', $extensions );
@@ -134,7 +134,7 @@ final class Digster {
      * @param array|string $key
      * @param mixed $value
      *
-     * @return \Digster\Factory
+     * @return \Frozzare\Digster\Factory
      */
     public static function share( $key, $value ) {
         return self::factory()->share( $key, $value );

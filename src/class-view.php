@@ -1,16 +1,16 @@
 <?php
 
-namespace Digster;
+namespace Frozzare\Digster;
 
 use ArrayAccess;
-use Digster\Engines\Engine;
+use Frozzare\Digster\Engines\Engine;
 
 class View implements ArrayAccess {
 
     /**
      * The view engine instance.
      *
-     * @var \Digster\Factory
+     * @var \Frozzare\Digster\Factory
      */
     protected $engine;
 
@@ -24,7 +24,7 @@ class View implements ArrayAccess {
     /**
      * The view factory instance.
      *
-     * @var \Digster\Factory
+     * @var \Frozzare\Digster\Factory
      */
     protected $factory;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Digster\Tests;
+namespace Frozzare\Tests\Digster;
 
-use Digster\Digster;
-use Digster\Engines\Twig_Engine;
+use Frozzare\Digster\Digster;
+use Frozzare\Digster\Engines\Twig_Engine;
 
 class Twig_Engine_Test extends \WP_UnitTestCase {
 

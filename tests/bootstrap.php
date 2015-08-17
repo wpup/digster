@@ -4,7 +4,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // Register autoloader.
-register_wp_autoload( 'Digster\\', __DIR__ . '/../src' );
+register_wp_autoload( 'Frozzare\\Digster\\', __DIR__ . '/../src' );
 
 // Load test data file.
 WP_Test_Suite::load_files( __DIR__ . '/test-data.php' );
