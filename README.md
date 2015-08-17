@@ -1,4 +1,7 @@
-# Digster [![Build Status](https://travis-ci.org/frozzare/wp-digster.svg?branch=master)](https://travis-ci.org/frozzare/wp-digster)
+# Digster
+
+[![Build Status](https://travis-ci.org/frozzare/wp-digster.svg?branch=master)](https://travis-ci.org/frozzare/wp-digster)
+[![License](https://img.shields.io/packagist/l/frozzare/tank.svg)](https://packagist.org/packages/frozzare/tank)
 
 > Twig templates for WordPress
 
