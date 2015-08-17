@@ -1,15 +1,15 @@
 # Digster
 
+[![Build Status](https://travis-ci.org/frozzare/wp-digster.svg?branch=master)](https://travis-ci.org/frozzare/wp-digster)
+[![Dependency Status](https://gemnasium.com/frozzare/wp-digster.svg)](https://gemnasium.com/frozzare/wp-digster)
+[![License](https://img.shields.io/packagist/l/frozzare/tank.svg)](https://packagist.org/packages/frozzare/tank)
+
 > Twig templates for WordPress
 
 Digster it's a WordPress plugin that allows you to render Twig views with a
 few Twig [filters](#twig-filters), [functions](#twig-functions) and [globals](#twig-globals).
 
 It's easy to register your own [extensions](#register-extension) or [composers](#register-composer).
-
-[![Build Status](https://travis-ci.org/frozzare/wp-digster.svg?branch=master)](https://travis-ci.org/frozzare/wp-digster)
-[![Dependency Status](https://gemnasium.com/frozzare/wp-digster.svg)](https://gemnasium.com/frozzare/wp-digster)
-[![License](https://img.shields.io/packagist/l/frozzare/tank.svg)](https://packagist.org/packages/frozzare/tank)
 
 ## Install
 
