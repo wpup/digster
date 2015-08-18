@@ -61,11 +61,17 @@ class View implements ArrayAccess {
             if ( is_callable( $callback ) ) {
                 $value = call_user_func( $callback, $this );
             } else {
-                $value = $callback;
+                continue;
             }
 
             if ( is_array( $value ) ) {
-                $this->data = $value;
+                $this->data = array_merge( $this->data, $value );
+                $keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
+                foreach ( $keys as $key ) {
+                    if ( isset( $this->data[$key] ) ) {
+                        unset( $this->data[$key] );
+                    }
+                }
             } else if ( is_string( $value ) && class_exists( $value ) ) {
 				$class = new $value();
 				$class->compose( $this );
