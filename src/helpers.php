@@ -4,10 +4,10 @@ if ( ! function_exists( 'view' ) ) {
     /**
      * Get the evaluated view contents for the given view.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array  $data
      *
-     * @return \Digster\View
+     * @return \Frozzare\Digster\View
      */
     function view( $view = null, array $data = [] ) {
         $factory = \Frozzare\Digster\Digster::factory();

@@ -6,7 +6,7 @@ use Frozzare\Digster\Digster;
  * Register composer with template engine.
  *
  * @param array|string $views
- * @param \Closure $callback
+ * @param \Closure     $callback
  */
 function digster_composer( $views, $callback ) {
     Digster::composer( $views, $callback );
@@ -15,8 +15,8 @@ function digster_composer( $views, $callback ) {
 /**
  * Fetch rendered view string.
  *
- * @param string $view
- * @param array $data
+ * @param  string $view
+ * @param  array  $data
  *
  * @return string
  */
@@ -35,7 +35,7 @@ function digster_register_extensions() {
  * Render the view.
  *
  * @param string $view
- * @param array $data
+ * @param array  $data
  */
 function digster_render( $view, array $data = [] ) {
     echo Digster::render( $view, $data );
@@ -44,10 +44,10 @@ function digster_render( $view, array $data = [] ) {
 /**
  * Add shared data to the environment.
  *
- * @param array|string $key
- * @param mixed $value
+ * @param  array|string $key
+ * @param  mixed        $value
  *
- * @return \Digster\Factory
+ * @return \Frozzare\Digster\Factory
  */
 function digster_share( $key, $value ) {
     return Digster::share( $key, $value );
@@ -56,10 +56,10 @@ function digster_share( $key, $value ) {
 /**
  * Get the view class.
  *
- * @param string $view
- * @param array $data
+ * @param  string $view
+ * @param  array  $data
  *
- * @return string
+ * @return \Frozzare\Digster\View
  */
 function digster_view( $view, array $data = [] ) {
 	return Digster::view( $view, $data );

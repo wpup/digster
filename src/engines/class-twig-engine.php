@@ -115,7 +115,7 @@ class Twig_Engine extends Engine {
      * Get the rendered view string.
      *
      * @param string $view
-     * @param array $data
+     * @param array  $data
      */
     public function render( $view, array $data = [] ) {
         if ( in_array( $view, $this->extensions ) ) {
@@ -137,7 +137,7 @@ class Twig_Engine extends Engine {
     /**
      * Determine if a given view exists.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @return bool
      */

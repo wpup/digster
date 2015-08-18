@@ -33,7 +33,5 @@ function digster() {
 
 /**
  * Load Digster plugin.
- *
- * @return \Frozzare\Digster\Digster
  */
 add_action( 'plugins_loaded', 'digster' );

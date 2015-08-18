@@ -16,8 +16,8 @@ abstract class Engine extends Container {
     /**
      * Get or set configuration values.
      *
-     * @param array|string $key
-     * @param mixed $value
+     * @param  array|string $key
+     * @param  mixed $value
      *
      * @return mixed
      */
@@ -83,7 +83,7 @@ abstract class Engine extends Container {
     /**
      * Prepare the template engines real configuration.
      *
-     * @param array $arr
+     * @param  array $arr
      *
      * @return array
      */
@@ -125,7 +125,7 @@ abstract class Engine extends Container {
     /**
      * Determine if a given view exists.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @return bool
      */

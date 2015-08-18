@@ -38,7 +38,7 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
     /**
      * Fetch cache data.
      *
-     * @param string $key
+     * @param  string $key
      *
      * @return mixed
      */
@@ -50,7 +50,7 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
     /**
      * Get key with key prefix.
      *
-     * @param string
+     * @param  string $key
      *
      * @return string
      */

@@ -38,7 +38,7 @@ class View implements ArrayAccess {
     /**
      * The constructor.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @throws InvalidArgumentException if an argument is not of the expected type.
      */
@@ -66,7 +66,7 @@ class View implements ArrayAccess {
 
             if ( is_array( $value ) ) {
                 $this->data = array_merge( $this->data, $value );
-                $keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
+            gl    $keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
                 foreach ( $keys as $key ) {
                     if ( isset( $this->data[$key] ) ) {
                         unset( $this->data[$key] );
@@ -108,9 +108,9 @@ class View implements ArrayAccess {
     /**
      * Add a view instance to the view data.
      *
-     * @param string $key
-     * @param string $view_name
-     * @param array $data
+     * @param  string $key
+     * @param  string $view_name
+     * @param  array  $data
      *
      * @return $this
      */
@@ -134,8 +134,8 @@ class View implements ArrayAccess {
     /**
      * Add a piece of data to the view.
      *
-     * @param array|string $key
-     * @param mixed $value
+     * @param  array|string $key
+     * @param  mixed        $value
      *
      * @return $this
      */
@@ -165,7 +165,7 @@ class View implements ArrayAccess {
 	/**
 	 * Determine if key exists in view data.
 	 *
-	 * @param string $key
+	 * @param  string $key
 	 *
 	 * @return bool
 	 */
@@ -178,7 +178,7 @@ class View implements ArrayAccess {
 	/**
 	 * Get value from view data.
 	 *
-	 * @param string $key
+	 * @param  string $key
 	 *
 	 * @return mixed
 	 */
@@ -192,7 +192,7 @@ class View implements ArrayAccess {
 	 * Set a value to the view data.
 	 *
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed  $value
 	 */
 	// @codingStandardsIgnoreStart
 	public function offsetSet( $key, $value ) {
@@ -214,7 +214,7 @@ class View implements ArrayAccess {
 	/**
 	 * Get value from view data.
 	 *
-	 * @param string $key
+	 * @param  string $key
 	 *
 	 * @return mixed
 	 */
@@ -225,7 +225,7 @@ class View implements ArrayAccess {
 	/**
 	 * Determine if key exists in view data.
 	 *
-	 * @param string $key
+	 * @param  string $key
 	 *
 	 * @return bool
 	 */
@@ -237,7 +237,7 @@ class View implements ArrayAccess {
 	 * Set a value to the view data.
 	 *
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed  $value
 	 */
     public function __set( $key, $value ) {
         $this->with( $key, $value );

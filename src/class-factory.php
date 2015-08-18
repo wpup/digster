@@ -43,8 +43,8 @@ class Factory {
     /**
      * Add shared data to the environment.
      *
-     * @param array|string $key
-     * @param mixed $value
+     * @param  array|string $key
+     * @param  mixed        $value
      *
      * @return $this
      */
@@ -64,8 +64,8 @@ class Factory {
     /**
      * Register preprocess with views.
      *
-     * @param array|string $views
-     * @param \Closure $fn
+     * @param  array|string $views
+     * @param  \Closure     $callback
      *
      * @return $this
      */
@@ -106,7 +106,7 @@ class Factory {
     /**
      * Determine if a given view exists.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @return bool
      */
@@ -117,7 +117,7 @@ class Factory {
     /**
      * Add extension to the view string if it don't exists.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @return string
      */
@@ -147,7 +147,7 @@ class Factory {
     /**
      * Gather the data that should be used when render.
      *
-     * @param View $view
+     * @param  \Frozzare\Digster\View $view
      *
      * @return array
      */
@@ -159,7 +159,7 @@ class Factory {
     /**
      * Call composer.
      *
-     * @param \Frozzare\Digster\View $view
+     * @param  \Frozzare\Digster\View $view
      *
      * @return string
      */
@@ -194,8 +194,8 @@ class Factory {
     /**
      * Get the evaluated view contents for the given view.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array  $data
      *
      * @return \Frozzare\Digster\View
      */
@@ -206,7 +206,7 @@ class Factory {
     /**
      * Get the right view string from dot view or view that missing extension.
      *
-     * @param string $view
+     * @param  string $view
      *
      * @return string
      */

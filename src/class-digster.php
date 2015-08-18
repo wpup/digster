@@ -45,8 +45,8 @@ final class Digster {
     /**
      * Register composer with template engine.
      *
-     * @param array|string $views
-     * @param \Closure $callback
+     * @param  array|string $views
+     * @param  \Closure     $callback
      *
      * @return \Frozzare\Digster\Factory
      */
@@ -57,8 +57,8 @@ final class Digster {
     /**
      * Get or set configuration value.
      *
-     * @param array|string $key
-     * @param mixed $value
+     * @param  array|string $key
+     * @param  mixed        $value
      *
      * @return mixed
      */
@@ -78,8 +78,8 @@ final class Digster {
     /**
      * Fetch rendered view string.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array  $data
      *
      * @return string
      */
@@ -112,8 +112,8 @@ final class Digster {
     /**
      * Render the view.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array  $data
      *
      * @return string
      */
@@ -131,8 +131,8 @@ final class Digster {
     /**
      * Add shared data to the environment.
      *
-     * @param array|string $key
-     * @param mixed $value
+     * @param  array|string $key
+     * @param  mixed        $value
      *
      * @return \Frozzare\Digster\Factory
      */
@@ -143,8 +143,8 @@ final class Digster {
     /**
      * Get the view class.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array  $data
      *
      * @return string
      */
