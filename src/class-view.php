@@ -66,7 +66,7 @@ class View implements ArrayAccess {
 
             if ( is_array( $value ) ) {
                 $this->data = array_merge( $this->data, $value );
-            gl    $keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
+                $keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
                 foreach ( $keys as $key ) {
                     if ( isset( $this->data[$key] ) ) {
                         unset( $this->data[$key] );
