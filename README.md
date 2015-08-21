@@ -246,7 +246,7 @@ The same argument as WordPress's [__](https://codex.wordpress.org/Function_Refer
 
 #### Call action
 
-You can send more arguments to `do action`.
+You can send more arguments to `do action`
 
 ```html
 {% do action('my_action') %}
@@ -254,7 +254,7 @@ You can send more arguments to `do action`.
 
 #### Call apply_filters
 
-Takes the same arguments as `apply_filters`.
+Takes the same arguments as `apply_filters`
 
 ```html
 {{ apply_filters() }}
@@ -274,7 +274,7 @@ Takes the same arguments as `apply_filters`.
 
 #### Call random function
 
-You can send in more arguments to `fn`.
+You can send in more arguments to `fn`
 
 ```html
 <body {{ fn('my_function', 'a', 'b') }}>
@@ -294,7 +294,7 @@ You can send in more arguments to `fn`.
 
 #### Call wp_title
 
-Takes the same arguments as `wp_title`.
+Takes the same arguments as `wp_title`
 
 ```html
 {{ wp_title() }}
