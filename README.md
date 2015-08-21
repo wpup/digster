@@ -236,6 +236,14 @@ Append p tags to the text
 
 ## Twig functions
 
+#### Call `__`
+
+The same argument as WordPress's [__](https://codex.wordpress.org/Function_Reference/_2).
+
+```html
+{{ __( 'Hello World!', 'mytextdomain' ) }}
+```
+
 #### Call action
 
 You can send more arguments to `do action`.
