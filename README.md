@@ -328,7 +328,7 @@ digster_register_extensions( $cache_extension );
 
 ## Coding style
 
-Digster has a `phpcs.rulset.xml` so you can check the source code coding style.
+Digster has a `phpcs.xml` so you can check the source code coding style.
 
 ```
 $ vendor/bin/phpcs -s --extensions=php --standard=phpcs.xml src/
