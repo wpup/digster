@@ -103,6 +103,8 @@ class Twig_Engine extends Engine {
         foreach ( $extensions as $extension ) {
             if ( $extension instanceof Twig_ExtensionInterface ) {
                 $this->add_extension( $extension );
+            } else if ( is_string( $extension ) && class_exists( $extension ) ) {
+                $this->add_extension( new $extension );
             } else {
                 foreach ( (array) $extension as $ext ) {
                     $this->register_extensions( $ext );
