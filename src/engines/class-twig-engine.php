@@ -83,11 +83,11 @@ class Twig_Engine extends Engine {
      */
     protected function prepare_engine_config() {
         return $this->prepare_config( [
-            'autoescape'          => true,
-            'auto_reload'         => false,
+            'autoescape'          => 'html',
+            'auto_reload'         => null,
             'base_template_class' => 'Twig_Template',
-            'cache'               => WP_CONTENT_DIR . '/cache/twig',
-            'charset'             => 'utf-8',
+            'cache'               => false,
+            'charset'             => 'UTF-8',
             'debug'               => false,
             'optimizations'       => -1,
             'strict_variables'    => false
