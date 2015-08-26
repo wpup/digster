@@ -22,9 +22,8 @@ Example of `page.php`
 
 ```php
 /**
- * Render page.
+ * Render page view.
  */
-
 echo view( 'page' );
 ```
 
