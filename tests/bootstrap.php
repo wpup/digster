@@ -9,7 +9,7 @@ register_wp_autoload( 'Frozzare\\Digster\\', __DIR__ . '/../src' );
 // Load test data file.
 WP_Test_Suite::load_files( __DIR__ . '/test-data.php' );
 
-// Load Papi loader file as plugin.
+// Load Digster loader file as a plugin.
 WP_Test_Suite::load_plugins( __DIR__ . '/../digster.php' );
 
 // Run the WordPress test suite.
