@@ -29,7 +29,7 @@ echo view( 'page' );
 
 Example of `page.twig`
 
-```html
+```jinja
 {% include "partials/header.twig" %}
 <div id="primary" class="content-area">
 	<main id="main" class="site-main" role="main">
@@ -116,12 +116,12 @@ echo view( 'user.profile' )
   ] );
 ```
 
-```twig
+```jinja
 {# views/user/profile.twig #}
 {{ picture }}
 ```
 
-```twig
+```jinja
 {# views/user/profile/picture.twig #}
 <img src="{{ url }}" alt="Profile picture" />
 ```
@@ -206,7 +206,7 @@ digster_share( 'site_name', 'Example' );
 
 Apply filters to Twig output.
 
-```html
+```jinja
 {{ '@frozzare' | apply_filters('twitter_link') }}
 ```
 
@@ -214,7 +214,7 @@ Apply filters to Twig output.
 
 Get the post summary
 
-```html
+```jinja
 {{ post.post_content | excerpt }}
 ```
 
@@ -222,14 +222,14 @@ Get the post summary
 
 Run WordPress shortcodes on the text
 
-```html
+```jinja
 {{ post.post_content | shortcodes | raw }}
 ```
 #### wpautop
 
 Append p tags to the text
 
-```html
+```jinja
 {{ post.post_content | wpautop | raw }}
 ```
 
@@ -241,7 +241,7 @@ The same argument as WordPress's [__](https://codex.wordpress.org/Function_Refer
 
 Digster has full support for Twig i18n, [read more about it](#twig-i18n).
 
-```html
+```jinja
 {{ __( 'Hello World!', 'your_textdomain' ) }}
 ```
 
@@ -251,15 +251,15 @@ The same argument as WordPress's [_n](https://codex.wordpress.org/Function_Refer
 
 Digster has full support for Twig i18n, [read more about it](#twig-i18n).
 
-```html
-{{ _n('%s star', '%s stars', rating, 'your_textdomain')|format(rating) }}
+```jinja
+{{ _n('%s star', '%s stars', rating, 'your_textdomain') | format(rating) }}
 ```
 
 #### Call action
 
 You can send more arguments to `do action`
 
-```html
+```jinja
 {% do action('my_action') %}
 ```
 
@@ -267,19 +267,19 @@ You can send more arguments to `do action`
 
 Takes the same arguments as `apply_filters`
 
-```html
+```jinja
 {{ apply_filters() }}
 ```
 
 #### Call body_class
 
-```html
+```jinja
 <body {{ body_class() }}>
 ```
 
 #### Call language_attributes
 
-```html
+```jinja
 <html {{ language_attributes() }}>
 ```
 
@@ -287,19 +287,19 @@ Takes the same arguments as `apply_filters`
 
 You can send in more arguments to `fn`
 
-```html
+```jinja
 <body {{ fn('my_function', 'a', 'b') }}>
 ```
 
 #### Call wp_footer
 
-```html
+```jinja
 {{ wp_footer() }}
 ```
 
 #### Call wp_head
 
-```html
+```jinja
 {{ wp_head() }}
 ```
 
@@ -307,7 +307,7 @@ You can send in more arguments to `fn`
 
 Takes the same arguments as `wp_title`
 
-```html
+```jinja
 {{ wp_title() }}
 ```
 
@@ -317,13 +317,23 @@ Takes the same arguments as `wp_title`
 
 `post` is global when `get_the_ID()` returns a id.
 
-```html
+```jinja
 <h1>{{ post.post_title }}</h1>
 ```
 
 ## Twig i18n
 
 Digster has full support for Twig [i18n](http://twig.sensiolabs.org/doc/extensions/i18n.html) extensions. You don't have to do anything to enable it, just use it! It will load the theme text domain automatic. Don't forget to add it to your `style.css`.
+
+```jinja
+{% trans "Hello World!" %}
+
+{% trans string_var %}
+
+{% trans %}
+    Hello World!
+{% endtrans %}
+```
 
 ## Cache
 
