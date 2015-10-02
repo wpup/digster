@@ -325,7 +325,7 @@ Takes the same arguments as `wp_title`
 
 Digster has full support for Twig [i18n](http://twig.sensiolabs.org/doc/extensions/i18n.html) extensions. You don't have to do anything to enable it, just use it! It will load the theme text domain automatic. Don't forget to add it to your `style.css`.
 
-Using [Poedit](https://poedit.net)? You should look at [Twig Gettext Extractor](https://github.com/umpirsky/Twig-Gettext-Extractor)!
+Using [Poedit](https://poedit.net)? You should look at [Twig Gettext Extractor](https://github.com/umpirsky/Twig-Gettext-Extractor)! Digster will install Twig Gettext Extractor so you don't have to do it!
 
 ```jinja
 {% trans "Hello World!" %}
