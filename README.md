@@ -239,6 +239,8 @@ Append p tags to the text
 
 The same argument as WordPress's [__](https://codex.wordpress.org/Function_Reference/_2).
 
+Digster has full support for Twig i18n, [read more about it](#twig-i18n).
+
 ```html
 {{ __( 'Hello World!', 'your_textdomain' ) }}
 ```
@@ -246,6 +248,8 @@ The same argument as WordPress's [__](https://codex.wordpress.org/Function_Refer
 #### Call `_n`
 
 The same argument as WordPress's [_n](https://codex.wordpress.org/Function_Reference/_n).
+
+Digster has full support for Twig i18n, [read more about it](#twig-i18n).
 
 ```html
 {{ _n('%s star', '%s stars', rating, 'your_textdomain')|format(rating) }}
@@ -316,6 +320,10 @@ Takes the same arguments as `wp_title`
 ```html
 <h1>{{ post.post_title }}</h1>
 ```
+
+## Twig i18n
+
+Digster has full support for Twig [i18n](http://twig.sensiolabs.org/doc/extensions/i18n.html) extensions. You don't have to do anything to enable it, just use it! It will load the theme text domain automatic. Don't forget to add it to your `style.css`.
 
 ## Cache
 
