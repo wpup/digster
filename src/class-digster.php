@@ -94,7 +94,8 @@ final class Digster {
         $extensions = [
             new \Frozzare\Digster\Extensions\Filter_Extensions(),
             new \Frozzare\Digster\Extensions\Function_Extensions(),
-            new \Frozzare\Digster\Extensions\Global_Extensions()
+            new \Frozzare\Digster\Extensions\Global_Extensions(),
+            new \Frozzare\Digster\Extensions\I18n_Extensions()
         ];
 
         $extensions = apply_filters( 'digster/extensions', $extensions );

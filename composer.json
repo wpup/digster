@@ -27,7 +27,8 @@
     "asm89/twig-cache-extension": "~1.0",
     "frozzare/wp-autoload": "~2.0",
     "frozzare/tank": "~1.0",
-    "composer/installers": "~1.0"
+    "composer/installers": "~1.0",
+    "twig/extensions": "^1.3@dev"
   },
   "require-dev": {
     "frozzare/wp-test-suite": "~1.0",

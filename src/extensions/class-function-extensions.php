@@ -36,7 +36,8 @@ class Function_Extensions extends \Twig_Extension {
      */
     public function getFunctions() {
         $callables = [
-            '__'                  => [$this, 'translate'],
+            '__'                  => [$this, 'gettext'],
+            '_n'                  => [$this, 'ngettext'],
             'action'              => [$this, 'do_action'],
             'apply_filters'       => [$this, 'apply_filters'],
             'body_class'          => 'body_class',
@@ -68,8 +69,17 @@ class Function_Extensions extends \Twig_Extension {
      *
      * @return string
      */
-    public function translate() {
+    public function gettext() {
         return call_user_func_array( '__', func_get_args() );
+    }
+
+    /**
+     * Retrieves the translated string from the WordPress `_n` function.
+     *
+     * @return string
+     */
+    public function ngettext() {
+        return call_user_func_array( '_n', func_get_args() );
     }
 
 }

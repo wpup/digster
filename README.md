@@ -240,7 +240,15 @@ Append p tags to the text
 The same argument as WordPress's [__](https://codex.wordpress.org/Function_Reference/_2).
 
 ```html
-{{ __( 'Hello World!', 'mytextdomain' ) }}
+{{ __( 'Hello World!', 'your_textdomain' ) }}
+```
+
+#### Call `_n`
+
+The same argument as WordPress's [_n](https://codex.wordpress.org/Function_Reference/_n).
+
+```html
+{{ _n('%s star', '%s stars', rating, 'your_textdomain')|format(rating) }}
 ```
 
 #### Call action

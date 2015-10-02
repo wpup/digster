@@ -80,7 +80,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
         $this->assertEquals( 'lang="en-US"', $output );
     }
 
-    public function test_translate() {
+    public function test_gettext() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ __("world", "digster") }}!'
         ] );
@@ -91,6 +91,32 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
         $output = Digster::fetch( 'index.html' );
 
         $this->assertEquals( 'Hello, world!', $output );
+    }
+
+    public function test_ngettext_1() {
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello, {{ _n("%s star", "%s stars", "1", "digster")|format(1) }}!'
+        ] );
+
+        $engine = Digster::factory()->engine();
+        $engine->set_loader( $loader );
+
+        $output = Digster::fetch( 'index.html' );
+
+        $this->assertEquals( 'Hello, 1 star!', $output );
+    }
+
+    public function test_ngettext_2() {
+        $loader = new \Twig_Loader_Array( [
+            'index.html' => 'Hello, {{ _n("%s star", "%s stars", "2", "digster")|format(2) }}!'
+        ] );
+
+        $engine = Digster::factory()->engine();
+        $engine->set_loader( $loader );
+
+        $output = Digster::fetch( 'index.html' );
+
+        $this->assertEquals( 'Hello, 2 stars!', $output );
     }
 
     public function test_wp_head() {
