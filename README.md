@@ -166,7 +166,7 @@ class Profile_Composer {
 
 }
 
-digster_compose( 'user.profile', 'Profile_Composer' );
+digster_composer( 'user.profile', 'Profile_Composer' );
 ```
 
 #### Register extension
