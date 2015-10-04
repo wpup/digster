@@ -41,6 +41,10 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertNotFalse( strpos( $output, 'Hello Post title' ) );
     }
 
+    public function test_digster() {
+        $this->assertEquals( Digster::instance(), digster() );
+    }
+
     public function test_fetch() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
