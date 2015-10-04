@@ -46,6 +46,12 @@ class API_Test extends \WP_UnitTestCase {
         $this->assertSame( 'Hello Fredrik!', $output );
     }
 
+    public function test_digster_register_extensions() {
+        require_once __DIR__ . '/fixtures/class-test-extensions.php';
+        $out = digster_register_extensions( new \Test_Extensions );
+        $this->assertNull( $out );
+    }
+
     public function test_digster_render() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'

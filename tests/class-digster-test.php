@@ -60,6 +60,22 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertSame( 'Hello Fredrik!', $output );
     }
 
+    public function test_load_extensions() {
+        $digster = Digster::instance();
+        tests_add_filter( 'digster/extensions', function ( $arr ) {
+            $this->assertNotEmpty( $arr );
+            return $arr;
+        } );
+        $digster->load_extensions();
+    }
+
+    public function test_register_extensions() {
+        require_once __DIR__ . '/fixtures/class-test-extensions.php';
+        $digster = Digster::instance();
+        $out = $digster->register_extensions( new \Test_Extensions );
+        $this->assertNull( $out );
+    }
+
     public function test_render() {
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
