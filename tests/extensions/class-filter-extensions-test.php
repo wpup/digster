@@ -22,9 +22,9 @@ class Filter_Extensions_Test extends \WP_UnitTestCase {
     }
 
     public function test_excerpt2() {
-        add_shortcode('footag', function($atts) {
+        add_shortcode( 'footag', function( $atts ) {
             return "foo = {$atts['foo']}";
-        });
+        } );
 
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello, {{ text | shortcodes | raw }}'
