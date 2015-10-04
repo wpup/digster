@@ -73,8 +73,8 @@ class View implements ArrayAccess {
                     }
                 }
             } else if ( is_string( $value ) && class_exists( $value ) ) {
-				$class = new $value();
-				$class->compose( $this );
+                $class = new $value();
+                $class->compose( $this );
             }
         }
 
@@ -162,92 +162,92 @@ class View implements ArrayAccess {
         }
     }
 
-	/**
-	 * Determine if key exists in view data.
-	 *
-	 * @param  string $key
-	 *
-	 * @return bool
-	 */
-	// @codingStandardsIgnoreStart
-	public function offsetExists( $key ) {
-	// @codingStandardsIgnoreEnd
-		return array_key_exists( $key, $this->data );
-	}
+    /**
+     * Determine if key exists in view data.
+     *
+     * @param  string $key
+     *
+     * @return bool
+     */
+    // @codingStandardsIgnoreStart
+    public function offsetExists( $key ) {
+    // @codingStandardsIgnoreEnd
+        return array_key_exists( $key, $this->data );
+    }
 
-	/**
-	 * Get value from view data.
-	 *
-	 * @param  string $key
-	 *
-	 * @return mixed
-	 */
-	// @codingStandardsIgnoreStart
-	public function offsetGet( $key ) {
-	// @codingStandardsIgnoreEnd
-		return $this->data[$key];
-	}
+    /**
+     * Get value from view data.
+     *
+     * @param  string $key
+     *
+     * @return mixed
+     */
+    // @codingStandardsIgnoreStart
+    public function offsetGet( $key ) {
+    // @codingStandardsIgnoreEnd
+        return $this->data[$key];
+    }
 
-	/**
-	 * Set a value to the view data.
-	 *
-	 * @param string $key
-	 * @param mixed  $value
-	 */
-	// @codingStandardsIgnoreStart
-	public function offsetSet( $key, $value ) {
-	// @codingStandardsIgnoreEnd
+    /**
+     * Set a value to the view data.
+     *
+     * @param string $key
+     * @param mixed  $value
+     */
+    // @codingStandardsIgnoreStart
+    public function offsetSet( $key, $value ) {
+    // @codingStandardsIgnoreEnd
         $this->with( $key, $value );
     }
 
-	/**
-	 * Unset value from view data.
-	 *
-	 * @param string $id
-	 */
-	// @codingStandardsIgnoreStart
-	public function offsetUnset( $key ) {
-	// @codingStandardsIgnoreEnd
-		unset( $this->data[$key] );
-	}
+    /**
+     * Unset value from view data.
+     *
+     * @param string $id
+     */
+    // @codingStandardsIgnoreStart
+    public function offsetUnset( $key ) {
+    // @codingStandardsIgnoreEnd
+        unset( $this->data[$key] );
+    }
 
-	/**
-	 * Get value from view data.
-	 *
-	 * @param  string $key
-	 *
-	 * @return mixed
-	 */
+    /**
+     * Get value from view data.
+     *
+     * @param  string $key
+     *
+     * @return mixed
+     */
     public function &__get( $key ) {
         return $this->data[$key];
     }
 
-	/**
-	 * Determine if key exists in view data.
-	 *
-	 * @param  string $key
-	 *
-	 * @return bool
-	 */
+    /**
+     * Determine if key exists in view data.
+     *
+     * @param  string $key
+     *
+     * @return bool
+     */
     public function __isset( $key ) {
         return array_key_exists( $key, $this->data );
     }
 
-	/**
-	 * Set a value to the view data.
-	 *
-	 * @param string $key
-	 * @param mixed  $value
-	 */
+    /**
+     * Set a value to the view data.
+     *
+     * @param string $key
+     * @param mixed  $value
+     */
     public function __set( $key, $value ) {
         $this->with( $key, $value );
     }
 
-	/**
-	 * Unset value from view data.
-	 *
-	 * @param string $id
-	 */
+    /**
+     * Unset value from view data.
+     *
+     * @param string $id
+     */
     public function __unset( $key ) {
         unset( $this->data[$key] );
     }
