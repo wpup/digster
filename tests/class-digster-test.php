@@ -12,7 +12,7 @@ class Digster_Test extends \WP_UnitTestCase {
         $this->assertTrue( strpos( $locations[0], '/views' ) !== false );
 
         Digster::config( 'locations', '/path/to/views' );
-        $this->assertEquals( Digster::config( 'locations' ), '/path/to/views' );
+        $this->assertSame( Digster::config( 'locations' ), '/path/to/views' );
     }
 
 
@@ -42,7 +42,7 @@ class Digster_Test extends \WP_UnitTestCase {
     }
 
     public function test_digster() {
-        $this->assertEquals( Digster::instance(), digster() );
+        $this->assertSame( Digster::instance(), digster() );
     }
 
     public function test_fetch() {
@@ -57,7 +57,7 @@ class Digster_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Hello Fredrik!', $output );
+        $this->assertSame( 'Hello Fredrik!', $output );
     }
 
     public function test_render() {
@@ -80,7 +80,7 @@ class Digster_Test extends \WP_UnitTestCase {
 
 	public function test_setup_actions() {
 		$plugin_loader = Digster::instance();
-		$this->assertEquals( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
+		$this->assertSame( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
 	}
 
     public function test_share() {
@@ -97,11 +97,11 @@ class Digster_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Fredrik works as developer!', $view->render() );
+        $this->assertSame( 'Fredrik works as developer!', $view->render() );
     }
 
     public function test_view() {
-        $this->assertEquals( Digster::view(), Digster::factory() );
+        $this->assertSame( Digster::view(), Digster::factory() );
 
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
@@ -114,7 +114,7 @@ class Digster_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Hello Fredrik!', $view->render() );
+        $this->assertSame( 'Hello Fredrik!', $view->render() );
     }
 
 }

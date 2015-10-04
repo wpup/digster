@@ -16,7 +16,7 @@ class Twig_Engine_Test extends \WP_UnitTestCase {
         $engine->set_loader( $loader );
 
         $output = Digster::fetch( 'index.html', ['name' => 'Fredrik'] );
-        $this->assertEquals( 'Hello, Fredrik!', $output );
+        $this->assertSame( 'Hello, Fredrik!', $output );
     }
 
     public function test_engine_dot() {
@@ -28,7 +28,7 @@ class Twig_Engine_Test extends \WP_UnitTestCase {
         $engine->set_loader( $loader );
 
         $output = Digster::fetch( 'admin.profile.html', ['name' => 'Fredrik'] );
-        $this->assertEquals( 'Hello, Fredrik!', $output );
+        $this->assertSame( 'Hello, Fredrik!', $output );
     }
 
 }

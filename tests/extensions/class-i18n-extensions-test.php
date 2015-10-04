@@ -20,7 +20,7 @@ class I18n_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
     }
 
     public function test_trans_2() {
@@ -37,7 +37,7 @@ class I18n_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
     }
 
 }

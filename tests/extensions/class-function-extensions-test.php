@@ -20,7 +20,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
     }
 
     public function test_apply_filters() {
@@ -37,7 +37,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
 
     }
 
@@ -51,7 +51,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'class=""', $output );
+        $this->assertSame( 'class=""', $output );
     }
 
     public function test_fn() {
@@ -64,7 +64,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
     }
 
     public function test_language_attributes() {
@@ -77,7 +77,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'lang="en-US"', $output );
+        $this->assertSame( 'lang="en-US"', $output );
     }
 
     public function test_gettext() {
@@ -90,7 +90,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, world!', $output );
+        $this->assertSame( 'Hello, world!', $output );
     }
 
     public function test_ngettext_1() {
@@ -103,7 +103,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, 1 star!', $output );
+        $this->assertSame( 'Hello, 1 star!', $output );
     }
 
     public function test_ngettext_2() {
@@ -116,7 +116,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertEquals( 'Hello, 2 stars!', $output );
+        $this->assertSame( 'Hello, 2 stars!', $output );
     }
 
     public function test_wp_head() {

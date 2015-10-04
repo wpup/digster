@@ -53,39 +53,39 @@ class View_Test extends \WP_UnitTestCase {
 
     public function test_array_data() {
         $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name }}!'
+            'index.html'   => 'Hello {{ name2 }}!'
         ] );
 
         $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
         $view = Digster::view( 'index.html' );
-        $view['name'] = 'Fredrik';
+        $view['name2'] = 'Fredrik';
 
-        $this->assertSame( 'Fredrik', $view['name'] );
+        $this->assertSame( 'Fredrik', $view['name2'] );
         $this->assertSame( 'Hello Fredrik!', $view->render() );
-        $this->assertTrue( isset( $view['name'] ) );
+        $this->assertTrue( isset( $view['name2'] ) );
 
-        unset( $view['name'] );
+        unset( $view['name2'] );
         $this->assertSame( 'Hello !', $view->render() );
     }
 
     public function test_object_data() {
         $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name }}!'
+            'index.html'   => 'Hello {{ name2 }}!'
         ] );
 
         $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
         $view = Digster::view( 'index.html' );
-        $view->name = 'Fredrik';
+        $view->name2 = 'Fredrik';
 
-        $this->assertSame( 'Fredrik', $view->name );
+        $this->assertSame( 'Fredrik', $view->name2 );
         $this->assertSame( 'Hello Fredrik!', $view->render() );
-        $this->assertTrue( isset( $view->name ) );
+        $this->assertTrue( isset( $view->name2 ) );
 
-        unset( $view->name );
+        unset( $view->name2 );
         $this->assertSame( 'Hello !', $view->render() );
     }
 }

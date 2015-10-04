@@ -7,7 +7,7 @@ use Frozzare\Digster\Digster;
 class Helpers_Test extends \WP_UnitTestCase {
 
     public function test_view() {
-        $this->assertEquals( view(), Digster::factory() );
+        $this->assertSame( view(), Digster::factory() );
 
         $loader = new \Twig_Loader_Array( [
             'index.html' => 'Hello {{ name }}!'
@@ -20,7 +20,7 @@ class Helpers_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Hello Fredrik!', $view->render() );
+        $this->assertSame( 'Hello Fredrik!', $view->render() );
     }
 
 }

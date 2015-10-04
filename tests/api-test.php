@@ -43,7 +43,7 @@ class API_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Hello Fredrik!', $output );
+        $this->assertSame( 'Hello Fredrik!', $output );
     }
 
     public function test_digster_render() {
@@ -75,7 +75,7 @@ class API_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Fredrik works as developer!', $view->render() );
+        $this->assertSame( 'Fredrik works as developer!', $view->render() );
     }
 
     public function test_digster_view() {
@@ -90,7 +90,7 @@ class API_Test extends \WP_UnitTestCase {
             'name' => 'Fredrik'
         ] );
 
-        $this->assertEquals( 'Hello Fredrik!', $view->render() );
+        $this->assertSame( 'Hello Fredrik!', $view->render() );
     }
 
 }

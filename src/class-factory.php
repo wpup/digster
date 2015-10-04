@@ -48,7 +48,7 @@ class Factory {
      *
      * @return $this
      */
-    public function share( $key, $value ) {
+    public function share( $key, $value = null ) {
         if ( ! is_array( $key ) ) {
             $this->shared[$key] = $value;
             return $this;
