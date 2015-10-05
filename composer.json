@@ -2,7 +2,7 @@
   "name": "frozzare/digster",
   "type": "wordpress-plugin",
   "description": "Twig templates for WordPress",
-  "homepage": "https://github.com/frozzare/digster",
+  "homepage": "https://github.com/frozzare/wp-digster",
   "license": "MIT",
   "keywords": ["wordpress","plugin"],
   "authors": [
@@ -13,7 +13,7 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/frozzare/digster/issues"
+    "issues": "https://github.com/frozzare/wp-digster/issues"
   },
   "autoload": {
     "files": [
