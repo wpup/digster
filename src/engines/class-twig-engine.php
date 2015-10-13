@@ -124,7 +124,12 @@ class Twig_Engine extends Engine {
             return '';
         }
 
-        return $this->instance()->render( $view, $data );
+        try {
+            return $this->instance()->render( $view, $data );
+        } catch ( \Exception $e ) {
+            do_action( 'digster/twig_render_exception', $e );
+            throw $e;
+        }
     }
 
     /**

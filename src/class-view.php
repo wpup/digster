@@ -158,6 +158,7 @@ class View implements ArrayAccess {
         try {
             return $this->render();
         } catch ( \Exception $e ) {
+            trigger_error( $e->getMessage(), E_USER_ERROR );
             return '';
         }
     }
