@@ -126,7 +126,7 @@ final class Digster {
      * Setup actions.
      */
     private function setup_actions() {
-        add_action( 'after_setup_theme', [$this, 'load_extensions'] );
+        add_action( 'after_setup_theme', [$this, 'load_extensions'], 15 );
     }
 
     /**
