@@ -96,7 +96,7 @@ class Digster_Test extends \WP_UnitTestCase {
 
 	public function test_setup_actions() {
 		$plugin_loader = Digster::instance();
-		$this->assertSame( 10, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
+		$this->assertSame( 15, has_action( 'after_setup_theme', [$plugin_loader, 'load_extensions'] ) );
 	}
 
     public function test_share() {
