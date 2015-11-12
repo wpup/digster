@@ -142,7 +142,6 @@ class Trans extends Twig_Node
             }
 
             $compiler->raw(");\n");
-            var_dump($compiler->getSource());
         }
     }
 
