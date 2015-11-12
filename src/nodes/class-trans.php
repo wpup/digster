@@ -64,7 +64,7 @@ class Trans extends Twig_Node
         }
 
         // Modified row to work with WordPress.
-        $function = null === $this->getNode('plural') ? '__' : '_x';
+        $function = null === $this->getNode('plural') ? '__' : '_n';
 
         if (null !== $notes = $this->getNode('notes')) {
             $message = trim($notes->getAttribute('data'));
@@ -112,12 +112,12 @@ class Trans extends Twig_Node
 
             $compiler->raw("));\n");
         } else {
-            $compiler
-                ->write('echo '.$function.'(')
-                ->subcompile($msg)
-            ;
-
             if (null !== $this->getNode('plural')) {
+                $compiler
+                    ->write('echo sprintf( '.$function.'(')
+                    ->subcompile($msg)
+                ;
+
                 $compiler
                     ->raw(', ')
                     ->subcompile($msg1)
@@ -125,9 +125,24 @@ class Trans extends Twig_Node
                     ->subcompile($this->getNode('count'))
                     ->raw(')')
                 ;
+            } else {
+                $compiler
+                    ->write('echo '.$function.'(')
+                    ->subcompile($msg)
+                ;
+            }
+
+            $theme  = wp_get_theme();
+            $domain = $theme->get('TextDomain');
+            $compiler->raw(', "' . $domain . '"');
+
+            if (null !== $this->getNode('plural')) {
+                $compiler->raw(') , ')
+                    ->subcompile($this->getNode('count'));
             }
 
             $compiler->raw(");\n");
+            var_dump($compiler->getSource());
         }
     }
 
