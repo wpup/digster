@@ -1,8 +1,6 @@
 <?php
 
-use Frozzare\Digster\Contracts\Model;
-
-class Model_Data implements Model {
+class Model_Data {
 
     /**
      * Get model instance as a array.
