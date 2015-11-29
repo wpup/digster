@@ -9,7 +9,7 @@ if ( ! function_exists( 'view' ) ) {
      *
      * @return \Frozzare\Digster\View
      */
-    function view( $view = null, array $data = [] ) {
+    function view( $view = null, $data = [] ) {
         $factory = \Frozzare\Digster\Digster::factory();
 
         if ( func_num_args() === 0 ) {
