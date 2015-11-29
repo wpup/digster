@@ -35,7 +35,7 @@ class Helpers_Test extends \WP_UnitTestCase {
         $engine = Digster::factory()->engine();
         $engine->set_loader( $loader );
 
-        $model = new Model_Data;
+        $model = new \Model_Data;
         $view  = view( 'index.html', $model );
 
         $this->assertSame( 'Hello Fredrik!', $view->render() );
