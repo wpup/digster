@@ -215,7 +215,6 @@ class Factory {
      * @return \Frozzare\Digster\View
      */
     public function make( $view, $data = [] ) {
-var_dump( $this->create_data( $data ) );
         return new View( $this, $this->engine, $this->view( $view ), $this->create_data( $data ) );
     }
 
