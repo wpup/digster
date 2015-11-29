@@ -5,6 +5,7 @@ namespace Frozzare\Digster;
 use Closure;
 use Frozzare\Digster\Engines\Engine;
 use Frozzare\Digster\Finder;
+use Frozzare\Digster\Contracts\Model;
 
 class Factory {
 
@@ -145,6 +146,21 @@ class Factory {
     }
 
     /**
+     * Create view data.
+     *
+     * @param  mixed $data
+     *
+     * @return array
+     */
+    public function create_data( $data = [] ) {
+        if ( $data instanceof Model ) {
+            return $data->to_array();
+        }
+
+        return is_array( $data ) ? $data : [];
+    }
+
+    /**
      * Gather the data that should be used when render.
      *
      * @param  \Frozzare\Digster\View $view
@@ -194,13 +210,13 @@ class Factory {
     /**
      * Get the evaluated view contents for the given view.
      *
-     * @param  string $view
-     * @param  array  $data
+     * @param  string       $view
+     * @param  array|object $data
      *
      * @return \Frozzare\Digster\View
      */
-    public function make( $view, array $data = [] ) {
-        return new View( $this, $this->engine, $this->view( $view ), $data );
+    public function make( $view, $data = [] ) {
+        return new View( $this, $this->engine, $this->view( $view ), $this->create_data( $data ) );
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Frozzare\Digster;
 
 use ArrayAccess;
 use Frozzare\Digster\Engines\Engine;
+use Frozzare\Digster\Contracts\Model;
 
 class View implements ArrayAccess {
 
@@ -114,7 +115,7 @@ class View implements ArrayAccess {
      *
      * @return $this
      */
-    public function nest( $key, $view_name, array $data = [] ) {
+    public function nest( $key, $view_name, $data = [] ) {
         return $this->with( $key, $this->factory->make( $view_name, $data ) );
     }
 
@@ -142,6 +143,8 @@ class View implements ArrayAccess {
     public function with( $key, $value = null ) {
         if ( is_array( $key ) ) {
             $this->data = array_merge( $this->data, $key );
+        } else if ($key instanceof Model) {
+            $this->data = array_merge( $this->data, $key->to_array() );
         } else {
             $this->data[$key] = $value;
         }
@@ -166,49 +169,49 @@ class View implements ArrayAccess {
     /**
      * Determine if key exists in view data.
      *
+     * @codingStandardsIgnore
+     *
      * @param  string $key
      *
      * @return bool
      */
-    // @codingStandardsIgnoreStart
     public function offsetExists( $key ) {
-    // @codingStandardsIgnoreEnd
         return array_key_exists( $key, $this->data );
     }
 
     /**
      * Get value from view data.
      *
+     * @codingStandardsIgnore
+     *
      * @param  string $key
      *
      * @return mixed
      */
-    // @codingStandardsIgnoreStart
     public function offsetGet( $key ) {
-    // @codingStandardsIgnoreEnd
         return $this->data[$key];
     }
 
     /**
      * Set a value to the view data.
      *
+     * @codingStandardsIgnore
+     *
      * @param string $key
      * @param mixed  $value
      */
-    // @codingStandardsIgnoreStart
     public function offsetSet( $key, $value ) {
-    // @codingStandardsIgnoreEnd
         $this->with( $key, $value );
     }
 
     /**
      * Unset value from view data.
      *
+     * @codingStandardsIgnore
+     *
      * @param string $id
      */
-    // @codingStandardsIgnoreStart
     public function offsetUnset( $key ) {
-    // @codingStandardsIgnoreEnd
         unset( $this->data[$key] );
     }
 
@@ -252,5 +255,4 @@ class View implements ArrayAccess {
     public function __unset( $key ) {
         unset( $this->data[$key] );
     }
-
 }
