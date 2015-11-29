@@ -4,7 +4,6 @@ namespace Frozzare\Digster;
 
 use ArrayAccess;
 use Frozzare\Digster\Engines\Engine;
-use Frozzare\Digster\Contracts\Model;
 
 class View implements ArrayAccess {
 
@@ -48,6 +47,7 @@ class View implements ArrayAccess {
         $this->engine  = $engine;
         $this->view    = $view;
         $this->data    = $data;
+        var_dump( $data );exit;
     }
 
     /**
@@ -143,7 +143,7 @@ class View implements ArrayAccess {
     public function with( $key, $value = null ) {
         if ( is_array( $key ) ) {
             $this->data = array_merge( $this->data, $key );
-        } else if ($key instanceof Model) {
+        } else if ( is_object( $data ) && method_exists( $data, 'to_array' ) ) {
             $this->data = array_merge( $this->data, $key->to_array() );
         } else {
             $this->data[$key] = $value;
