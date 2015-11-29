@@ -5,7 +5,6 @@ namespace Frozzare\Digster;
 use Closure;
 use Frozzare\Digster\Engines\Engine;
 use Frozzare\Digster\Finder;
-use Frozzare\Digster\Contracts\Model;
 
 class Factory {
 
@@ -153,7 +152,7 @@ class Factory {
      * @return array
      */
     public function create_data( $data = [] ) {
-        if ( $data instanceof Model ) {
+        if ( is_object( $data ) && method_exists( $data, 'to_array' )  ) {
             return $data->to_array();
         }
 
@@ -216,6 +215,7 @@ class Factory {
      * @return \Frozzare\Digster\View
      */
     public function make( $view, $data = [] ) {
+var_dump( $this->create_data( $data ) );
         return new View( $this, $this->engine, $this->view( $view ), $this->create_data( $data ) );
     }
 
