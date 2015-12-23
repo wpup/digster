@@ -51,7 +51,7 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $output = Digster::fetch( 'index.html' );
 
-        $this->assertSame( 'class=""', $output );
+        $this->assertTrue( strpos( $output, 'class' ) === 0 );
     }
 
     public function test_fn() {
