@@ -144,18 +144,4 @@ class Function_Extensions_Test extends \WP_UnitTestCase {
 
         $this->assertNotEmpty( $output );
     }
-
-    public function test_wp_title() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html' => '{{ wp_title() }}'
-        ] );
-
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
-
-        $output = Digster::fetch( 'index.html' );
-
-        $this->assertNotEmpty( $output );
-    }
-
 }

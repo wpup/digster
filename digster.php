@@ -18,10 +18,6 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
     require __DIR__ . '/vendor/autoload.php';
 }
 
-// Register the Digster namespace with the WordPress autoload
-// that understands `class-` prefix.
-register_wp_autoload( 'Frozzare\\Digster\\', __DIR__ . '/src' );
-
 /**
  * Get the Digster instance.
  *
