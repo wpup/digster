@@ -4,7 +4,7 @@
  * Plugin Name: Digster
  * Description: Twig templates for WordPress
  * Author: Fredrik Forsmo
- * Author URI: https://forsmo.me/
+ * Author URI: https://frozzare.com
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
  * Version: 1.5.4
