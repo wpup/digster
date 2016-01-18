@@ -361,6 +361,6 @@ You can check if your contribution passes the styleguide by installing [PHP Code
 $ vendor/bin/phpcs -s --extensions=php --standard=phpcs.xml src/
 ```
 
-# License
+## License
 
 MIT © [Fredrik Forsmo](https://github.com/frozzare)
