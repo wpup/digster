@@ -15,11 +15,27 @@ class Function_Extensions extends \Twig_Extension {
 
     /**
      * Call PHP function.
+     *
+     * @return mixed
      */
     public function call_function() {
         $args = func_get_args();
         $name = array_shift( $args );
+
         return call_user_func_array( trim( $name ), $args );
+    }
+
+    /**
+     * Call static method on class.
+     *
+     * @return mixed
+     */
+    public function call_static() {
+        $args  = func_get_args();
+        $class = array_shift( $args );
+        $name  = array_shift( $args );
+
+        return call_user_func_array( [$class, $name], $args );
     }
 
     /**
@@ -42,6 +58,7 @@ class Function_Extensions extends \Twig_Extension {
             'apply_filters'       => [$this, 'apply_filters'],
             'body_class'          => 'body_class',
             'fn'                  => [$this, 'call_function'],
+            'static'              => [$this, 'call_static'],
             'language_attributes' => 'language_attributes',
             'wp_head'             => 'wp_head',
             'wp_footer'           => 'wp_footer',
