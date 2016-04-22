@@ -2,7 +2,7 @@
 
 namespace Frozzare\Digster\Extensions;
 
-class Global_Extensions extends \Twig_Extension {
+class Global_Extensions extends \Twig_Extension implements \Twig_Extension_GlobalsInterface {
 
     /**
      * Get global variable.
