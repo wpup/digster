@@ -98,5 +98,4 @@ class Function_Extensions extends \Twig_Extension {
     public function ngettext() {
         return call_user_func_array( '_n', func_get_args() );
     }
-
 }

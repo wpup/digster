@@ -43,5 +43,4 @@ class Filter_Extensions extends \Twig_Extension {
     public function getName() {
         return 'digster-filters';
     }
-
 }

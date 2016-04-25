@@ -232,5 +232,4 @@ class Factory {
 
         return $this->extension( str_replace( '.', '/', $view ) );
     }
-
 }

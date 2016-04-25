@@ -156,5 +156,4 @@ final class Digster {
 
 		return self::factory()->make( $view, $data );
 	}
-
 }

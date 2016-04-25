@@ -151,5 +151,4 @@ class Twig_Engine extends Engine {
     public function view_exists( $view ) {
         return $this->instance()->getLoader()->exists( $view );
     }
-
 }

@@ -23,5 +23,4 @@ class Global_Extensions extends \Twig_Extension implements \Twig_Extension_Globa
     public function getName() {
         return 'digster-globals';
     }
-
 }

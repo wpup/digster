@@ -48,5 +48,4 @@ class I18n_Extensions extends \Twig_Extension {
         $domain = $theme->get('TextDomain');
         return __( $message, $domain );
     }
-
 }

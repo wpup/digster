@@ -130,5 +130,4 @@ abstract class Engine extends Container {
      * @return bool
      */
     abstract public function view_exists( $view );
-
 }

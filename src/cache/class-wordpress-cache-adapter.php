@@ -69,5 +69,4 @@ class WordPress_Cache_Adapter implements CacheProviderInterface  {
         $key = $this->get_key( $key );
         wp_cache_set( $key, $value, $this->group, $expire );
     }
-
 }
