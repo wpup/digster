@@ -4,7 +4,7 @@
   "description": "Twig templates for WordPress",
   "homepage": "https://github.com/frozzare/wp-digster",
   "license": "MIT",
-  "keywords": ["wordpress","plugin"],
+  "keywords": ["wordpress","plugin", "twig"],
   "authors": [
     {
       "name": "Fredrik Forsmo",
