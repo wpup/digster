@@ -189,9 +189,11 @@ class Twig_Engine extends Engine {
         $view = 'error.php';
         $path = __DIR__ . '/../views/';
         $path = rtrim( $path, '/' ) . '/';
+        $path = $path . $view;
+        $path = apply_filters( 'digster/twig_error_view', $path );
 
-        if ( file_exists( $path . $view ) ) {
-            require $path . $view;
+        if ( file_exists( $path ) ) {
+            require $path;
             die;
         }
 
