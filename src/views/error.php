@@ -41,6 +41,7 @@
           line-height: 1.3;
           font-family: monospace, monospace;
           color: #909090;
+          word-break: break-all;
         }
 
         p {
