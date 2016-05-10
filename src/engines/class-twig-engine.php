@@ -144,9 +144,10 @@ class Twig_Engine extends Engine {
         $file    = '';
         $code    = '';
 
-        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-            $template_file     = $e->getTemplateFile();
-            list( $locations ) = $this->get_engine_config();
+        list( $locations, $config ) = $this->get_engine_config();
+
+        if ( $config['debug'] ) {
+            $template_file = $e->getTemplateFile();
 
             foreach ( $locations as $location ) {
                 if ( file_exists( $location . '/' . $template_file ) ) {
