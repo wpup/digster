@@ -3,6 +3,7 @@
 namespace Frozzare\Digster\Engines;
 
 use Twig_Environment;
+use Twig_Error;
 use Twig_ExtensionInterface;
 use Twig_Extension_Debug;
 use Twig_Loader_Filesystem;
@@ -126,10 +127,75 @@ class Twig_Engine extends Engine {
 
         try {
             return $this->instance()->render( $view, $data );
-        } catch ( \Exception $e ) {
+        } catch ( Twig_Error $e ) {
             do_action( 'digster/twig_render_exception', $e );
-            throw $e;
+            $this->render_error( $e );
         }
+    }
+
+    /**
+     * Render error view.
+     *
+     * @param  \Twig_Error $e
+     */
+    protected function render_error( Twig_Error $e ) {
+        $title   = 'Error';
+        $message = 'An error occurred while rendering the template for this page. Turn on the "debug" option for more information.';
+        $file    = '';
+        $code    = '';
+
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            $template_file     = $e->getTemplateFile();
+            list( $locations ) = $this->get_engine_config();
+
+            foreach ( $locations as $location ) {
+                if ( file_exists( $location . '/' . $template_file ) ) {
+                    $file = $locations[0] . '/' . $template_file;
+                    break;
+                }
+            }
+
+            if ( ! file_exists( $file ) ) {
+                throw $e;
+                return;
+            }
+
+            $line    = $e->getTemplateLine();
+            $plus    = 4;
+            $content = file_get_contents( $file );
+            $lines   = preg_split( "/(\r\n|\n|\r)/", $content );
+            $start   = max( 1, $line - $plus );
+            $limit   = min( count( $lines ), $line + $plus );
+            $excerpt = [];
+
+            for ( $i = $start - 1; $i < $limit; $i++ ) {
+                $attr = sprintf( 'data-line="%d"', ( $i+1 ) );
+
+                if ( $i === $line - 1 ) {
+                    $excerpt[] = sprintf( '<mark %s>%s</mark>', $attr, $lines[$i] );
+                    continue;
+                }
+
+                $excerpt[] = sprintf( '<span %s>%s</span>', $attr, $lines[$i] );
+            }
+
+            $title   = get_class( $e );
+            $message = $e->getMessage();
+            $code    = implode( "\n", $excerpt );
+            $file    = $file . ':' . $line;
+            $message = $e->getRawMessage();
+        }
+
+        $view = 'error.php';
+        $path = __DIR__ . '/../views/';
+        $path = rtrim( $path, '/' ) . '/';
+
+        if ( file_exists( $path . $view ) ) {
+            require $path . $view;
+            die;
+        }
+
+        throw $e;
     }
 
     /**
