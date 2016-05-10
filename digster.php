@@ -7,10 +7,10 @@
  * Author URI: https://frozzare.com
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.5.5
+ * Version: 1.6.0
  */
 
-// Make sure the plugin does not expose any info if called directly
+// Make sure the plugin does not expose any info if called directly.
 defined( 'ABSPATH' ) || exit;
 
 // Load Composer autoloader.
