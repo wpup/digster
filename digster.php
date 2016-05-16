@@ -30,4 +30,7 @@ function digster() {
 /**
  * Load Digster plugin.
  */
-add_action( 'plugins_loaded', 'digster' );
+$GLOBALS['wp_filter']['plugins_loaded'][10]['digster'] = [
+    'function'      => 'digster',
+    'accepted_args' => 0
+];

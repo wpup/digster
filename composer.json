@@ -1,6 +1,6 @@
 {
   "name": "frozzare/digster",
-  "type": "wordpress-plugin",
+  "type": "library",
   "description": "Twig templates for WordPress",
   "homepage": "https://github.com/frozzare/wp-digster",
   "license": "MIT",
