@@ -48,7 +48,7 @@ Example of `page.twig`
 
 ## Configuration
 
-Digster has a few WordPress filters, one is the config filter.
+Digster has a few WordPress filters, one is the config filter. Debug is turn on by default if `WP_ENV` equals `development`
 
 ```php
 add_filter( 'digster/config', function ( $config ) {
