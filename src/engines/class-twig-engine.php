@@ -89,7 +89,7 @@ class Twig_Engine extends Engine {
             'base_template_class' => 'Twig_Template',
             'cache'               => false,
             'charset'             => 'UTF-8',
-            'debug'               => false,
+            'debug'               => defined( 'WP_ENV' ) && WP_ENV === 'development',
             'optimizations'       => -1,
             'strict_variables'    => false
         ] );
