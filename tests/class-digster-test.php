@@ -90,9 +90,6 @@ class Digster_Test extends \WP_UnitTestCase {
 
         $this->expectOutputString( 'Hello Fredrik!' );
     }
-    public function test_plugins_loaded_action() {
-        $this->assertGreaterThan( 0, has_action( 'plugins_loaded', 'digster' ) );
-    }
 
 	public function test_setup_actions() {
 		$plugin_loader = Digster::instance();
