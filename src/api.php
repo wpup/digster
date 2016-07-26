@@ -9,7 +9,7 @@ use Frozzare\Digster\Digster;
  * @param \Closure     $callback
  */
 function digster_composer( $views, $callback ) {
-    Digster::composer( $views, $callback );
+	Digster::composer( $views, $callback );
 }
 
 /**
@@ -21,14 +21,14 @@ function digster_composer( $views, $callback ) {
  * @return string
  */
 function digster_fetch( $view, array $data = [] ) {
-    return Digster::fetch( $view, $data );
+	return Digster::fetch( $view, $data );
 }
 
 /**
  * Reigster extensions with view engine.
  */
 function digster_register_extensions() {
-    Digster::register_extensions( func_get_args() );
+	Digster::register_extensions( func_get_args() );
 }
 
 /**
@@ -38,7 +38,7 @@ function digster_register_extensions() {
  * @param array  $data
  */
 function digster_render( $view, array $data = [] ) {
-    echo Digster::render( $view, $data );
+	echo Digster::render( $view, $data );
 }
 
 /**
@@ -50,7 +50,7 @@ function digster_render( $view, array $data = [] ) {
  * @return \Frozzare\Digster\Factory
  */
 function digster_share( $key, $value ) {
-    return Digster::share( $key, $value );
+	return Digster::share( $key, $value );
 }
 
 /**

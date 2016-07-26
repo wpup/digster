@@ -6,86 +6,86 @@ use Frozzare\Digster\Digster;
 
 class View_Test extends \WP_UnitTestCase {
 
-    public function test_nest() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ profile }}!',
-            'profile.html' => 'Fredrik'
-        ] );
+	public function test_nest() {
+		$loader = new \Twig_Loader_Array( [
+			'index.html'   => 'Hello {{ profile }}!',
+			'profile.html' => 'Fredrik'
+		] );
 
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
+		$engine = Digster::factory()->engine();
+		$engine->set_loader( $loader );
 
-        $view = Digster::view( 'index.html' )
-            ->nest( 'profile', 'profile.html' );
+		$view = Digster::view( 'index.html' )
+			->nest( 'profile', 'profile.html' );
 
-        $this->assertSame( 'Hello Fredrik!', $view->render() );
-    }
+		$this->assertSame( 'Hello Fredrik!', $view->render() );
+	}
 
-    public function test_with_array() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name }}!'
-        ] );
+	public function test_with_array() {
+		$loader = new \Twig_Loader_Array( [
+			'index.html'   => 'Hello {{ name }}!'
+		] );
 
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
+		$engine = Digster::factory()->engine();
+		$engine->set_loader( $loader );
 
-        $view = Digster::view( 'index.html' )
-            ->with( [
-                'name' => 'Fredrik'
-            ] );
+		$view = Digster::view( 'index.html' )
+			->with( [
+				'name' => 'Fredrik'
+			] );
 
-        $this->assertSame( 'Hello Fredrik!', $view->render() );
-    }
+		$this->assertSame( 'Hello Fredrik!', $view->render() );
+	}
 
-    public function test_with_key_value() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name }}!'
-        ] );
+	public function test_with_key_value() {
+		$loader = new \Twig_Loader_Array( [
+			'index.html'   => 'Hello {{ name }}!'
+		] );
 
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
+		$engine = Digster::factory()->engine();
+		$engine->set_loader( $loader );
 
-        $view = Digster::view( 'index.html' )
-            ->with( 'name', 'Fredrik' );
+		$view = Digster::view( 'index.html' )
+			->with( 'name', 'Fredrik' );
 
-        $this->assertSame( 'Hello Fredrik!', $view->render() );
-    }
+		$this->assertSame( 'Hello Fredrik!', $view->render() );
+	}
 
-    public function test_array_data() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name2 }}!'
-        ] );
+	public function test_array_data() {
+		$loader = new \Twig_Loader_Array( [
+			'index.html'   => 'Hello {{ name2 }}!'
+		] );
 
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
+		$engine = Digster::factory()->engine();
+		$engine->set_loader( $loader );
 
-        $view = Digster::view( 'index.html' );
-        $view['name2'] = 'Fredrik';
+		$view = Digster::view( 'index.html' );
+		$view['name2'] = 'Fredrik';
 
-        $this->assertSame( 'Fredrik', $view['name2'] );
-        $this->assertSame( 'Hello Fredrik!', $view->render() );
-        $this->assertTrue( isset( $view['name2'] ) );
+		$this->assertSame( 'Fredrik', $view['name2'] );
+		$this->assertSame( 'Hello Fredrik!', $view->render() );
+		$this->assertTrue( isset( $view['name2'] ) );
 
-        unset( $view['name2'] );
-        $this->assertSame( 'Hello !', $view->render() );
-    }
+		unset( $view['name2'] );
+		$this->assertSame( 'Hello !', $view->render() );
+	}
 
-    public function test_object_data() {
-        $loader = new \Twig_Loader_Array( [
-            'index.html'   => 'Hello {{ name2 }}!'
-        ] );
+	public function test_object_data() {
+		$loader = new \Twig_Loader_Array( [
+			'index.html'   => 'Hello {{ name2 }}!'
+		] );
 
-        $engine = Digster::factory()->engine();
-        $engine->set_loader( $loader );
+		$engine = Digster::factory()->engine();
+		$engine->set_loader( $loader );
 
-        $view = Digster::view( 'index.html' );
-        $view->name2 = 'Fredrik';
+		$view = Digster::view( 'index.html' );
+		$view->name2 = 'Fredrik';
 
-        $this->assertSame( 'Fredrik', $view->name2 );
-        $this->assertSame( 'Hello Fredrik!', $view->render() );
-        $this->assertTrue( isset( $view->name2 ) );
+		$this->assertSame( 'Fredrik', $view->name2 );
+		$this->assertSame( 'Hello Fredrik!', $view->render() );
+		$this->assertTrue( isset( $view->name2 ) );
 
-        unset( $view->name2 );
-        $this->assertSame( 'Hello !', $view->render() );
-    }
+		unset( $view->name2 );
+		$this->assertSame( 'Hello !', $view->render() );
+	}
 }
