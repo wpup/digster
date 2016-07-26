@@ -7,11 +7,8 @@
  * Author URI: https://frozzare.com
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.6.1
+ * Version: 1.7.0
  */
-
-// Make sure the plugin does not expose any info if called directly.
-defined( 'ABSPATH' ) || exit;
 
 // Load Composer autoloader.
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
@@ -30,4 +27,4 @@ function digster() {
 /**
  * Load Digster plugin.
  */
-add_action( 'plugins_loaded', 'digster' );
+idx_add_action( 'plugins_loaded', 'digster' );
