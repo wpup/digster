@@ -27,4 +27,8 @@ function digster() {
 /**
  * Load Digster plugin.
  */
-idx_add_action( 'plugins_loaded', 'digster' );
+if ( function_exists( 'idx_add_action' ) ) {
+	idx_add_action( 'plugins_loaded', 'digster' );
+} else {
+	add_action( 'plugins_loaded', 'digster' );
+}
