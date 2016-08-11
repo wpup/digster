@@ -7,7 +7,7 @@
  * Author URI: https://frozzare.com
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.7.0
+ * Version: 1.7.1
  */
 
 // Load Composer autoloader.
