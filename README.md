@@ -273,6 +273,8 @@ Append p tags to the text
 
 ## Twig functions
 
+Since `1.7.1` you can call `esc_html__`, `esc_html_e`, `esc_attr__`, `esc_attr_e`, `esc_js`, `esc_textarea`, `esc_url` and `esc_url_raw` with the same arguments as you should use in WordPress.
+
 #### Call `__`
 
 The same argument as WordPress's [__](https://codex.wordpress.org/Function_Reference/_2).
