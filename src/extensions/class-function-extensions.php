@@ -57,8 +57,19 @@ class Function_Extensions extends \Twig_Extension {
 			'wp_title'            => 'wp_title'
 		];
 
+		/**
+		 * Modify functions or add custom.
+		 *
+		 * @param array $callables
+		 */
+		$callables = apply_filters( 'digster/functions', $callables );
+		$callables = is_array( $callables ) ? $callables : [];
+
+		// Add callables.
 		foreach ( $callables as $fn => $callable ) {
-			$callables[$fn] = new \Twig_SimpleFunction( $fn, $callable );
+			if ( is_string( $fn ) && is_callable( $callable ) ) {
+				$callables[$fn] = new \Twig_SimpleFunction( $fn, $callable );
+			}
 		}
 
 		return $callables;

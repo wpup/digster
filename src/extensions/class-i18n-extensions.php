@@ -45,7 +45,7 @@ class I18n_Extensions extends \Twig_Extension {
 	 */
 	public function trans( $message ) {
 		$theme  = wp_get_theme();
-		$domain = $theme->get('TextDomain');
+		$domain = $theme->get( 'TextDomain' );
 		return __( $message, $domain );
 	}
 }

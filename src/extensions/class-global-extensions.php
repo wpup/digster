@@ -10,9 +10,19 @@ class Global_Extensions extends \Twig_Extension implements \Twig_Extension_Globa
 	 * @return array
 	 */
 	public function getGlobals() {
-		return [
+		$globals = [
 			'post' => get_post( get_the_ID() )
 		];
+
+		/**
+		 * Modify globals or add custom.
+		 *
+		 * @param array $globals
+		 */
+		$globals = apply_filters( 'digster/globals', $globals );
+		$globals = is_array( $globals ) ? $globals : [];
+
+		return $globals;
 	}
 
 	/**

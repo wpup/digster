@@ -168,6 +168,7 @@ class Factory {
 	 */
 	public function gather_data( View $view ) {
 		$data = array_merge( $this->get_composer( $view ), $view->get_data() );
+
 		return array_merge( $this->get_wildcard_composer(), $data );
 	}
 

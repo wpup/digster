@@ -98,8 +98,14 @@ final class Digster {
 			new \Frozzare\Digster\Extensions\I18n_Extensions()
 		];
 
+		/**
+		 * Modify extensions or add custom.
+		 *
+		 * @param array $extensions
+		 */
 		$extensions = apply_filters( 'digster/extensions', $extensions );
 
+		// Register extensions with engine.
 		$this->factory->engine()->register_extensions( $extensions );
 	}
 

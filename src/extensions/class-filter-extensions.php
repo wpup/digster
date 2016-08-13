@@ -28,8 +28,19 @@ class Filter_Extensions extends \Twig_Extension {
 			'wpautop'       => 'wpautop'
 		];
 
+		/**
+		 * Modify filters or add custom.
+		 *
+		 * @param array $callables
+		 */
+		$filters = apply_filters( 'digster/filters', $filters );
+		$filters = is_array( $filters ) ? $filters : [];
+
+		// Add filters.
 		foreach ( $filters as $filter => $callable ) {
-			$filters[$filter] = new \Twig_SimpleFilter( $filter, $callable );
+			if ( is_string( $filter ) && is_callable( $callable ) ) {
+				$filters[$filter] = new \Twig_SimpleFilter( $filter, $callable );
+			}
 		}
 
 		return $filters;
