@@ -171,6 +171,8 @@ digster_composer( 'user.profile', 'Profile_Composer' );
 
 #### Register custom filters
 
+Since `1.7.1`
+
 ```php
 add_filter( 'digster/filters', function ( $filters ) {
   return array_merge( $filters, [
@@ -183,6 +185,8 @@ add_filter( 'digster/filters', function ( $filters ) {
 
 #### Register custom functions
 
+Since `1.7.1`
+
 ```php
 add_filter( 'digster/functions', function ( $functions ) {
   return array_merge( $functions, [
@@ -192,6 +196,8 @@ add_filter( 'digster/functions', function ( $functions ) {
 ```
 
 #### Register custom globals
+
+Since `1.7.1`
 
 ```php
 add_filter( 'digster/globals', function ( $globals ) {
