@@ -48,6 +48,7 @@ class Function_Extensions extends \Twig_Extension {
 			'esc_js'              => 'esc_js',
 			'esc_textarea'        => 'esc_textarea',
 			'esc_url'             => 'esc_url',
+			'esc_url_raw'         => 'esc_url_raw',
 			'fn'                  => [$this, 'call_function'],
 			'static'              => [$this, 'call_static'],
 			'language_attributes' => 'language_attributes',
