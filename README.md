@@ -169,6 +169,38 @@ class Profile_Composer {
 digster_composer( 'user.profile', 'Profile_Composer' );
 ```
 
+#### Register custom filters
+
+```php
+add_filter( 'digster/filters', function ( $filters ) {
+  return array_merge( $filters, [
+    'hello' => function ( $text ) {
+      return 'hello';
+    }
+  ] )
+} );
+```
+
+#### Register custom functions
+
+```php
+add_filter( 'digster/functions', function ( $functions ) {
+  return array_merge( $functions, [
+    'uniqid' => 'uniqid'
+  ] )
+} );
+```
+
+#### Register custom globals
+
+```php
+add_filter( 'digster/globals', function ( $globals ) {
+  return array_merge( $globals, [
+    'num' => 1
+  ] )
+} );
+```
+
 #### Register extension
 
 Register [Twig extension](http://twig.sensiolabs.org/doc/advanced.html) classes with Digster.
