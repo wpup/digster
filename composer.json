@@ -1,5 +1,6 @@
 {
   "name": "frozzare/digster",
+  "type": "wordpress-muplugin",
   "description": "Twig templates for WordPress",
   "homepage": "https://github.com/frozzare/wp-digster",
   "license": "MIT",
@@ -15,8 +16,7 @@
     "classmap": ["src/"],
     "files": [
       "src/api.php",
-      "src/helpers.php",
-      "digster.php"
+      "src/helpers.php"
     ]
   },
   "require": {
@@ -26,8 +26,7 @@
     "frozzare/tank": "~1.0",
     "composer/installers": "~1.0",
     "twig/extensions": "~1.0",
-    "umpirsky/twig-gettext-extractor": "~1.0",
-    "frozzare/wp-idx": "^1.0"
+    "umpirsky/twig-gettext-extractor": "~1.0"
   },
   "require-dev": {
     "frozzare/wp-test-suite": "~1.0",

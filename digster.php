@@ -7,7 +7,7 @@
  * Author URI: https://frozzare.com
  * Plugin URI: https://github.com/frozzare/digster
  * Text Domain: digster
- * Version: 1.7.1
+ * Version: 1.8.0
  */
 
 // Load Composer autoloader.
@@ -23,12 +23,4 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 function digster() {
 	return \Frozzare\Digster\Digster::instance();
 }
-
-/**
- * Load Digster plugin.
- */
-if ( function_exists( 'idx_add_action' ) ) {
-	idx_add_action( 'plugins_loaded', 'digster' );
-} else {
-	add_action( 'plugins_loaded', 'digster' );
-}
+add_action( 'plugins_loaded', 'digster' );
