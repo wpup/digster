@@ -17,7 +17,7 @@ class Twig_Engine extends Engine {
 	 *
 	 * @var \Twig_Environment
 	 */
-	private static $instance = null;
+	private static $environment = null;
 
 	/**
 	 * Twig extension.
@@ -70,11 +70,11 @@ class Twig_Engine extends Engine {
 	 * @return \Twig_Environment
 	 */
 	private function instance() {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = $this->boot();
+		if ( ! isset( self::$environment ) ) {
+			self::$environment = $this->boot();
 		}
 
-		return self::$instance;
+		return self::$environment;
 	}
 
 	/**
