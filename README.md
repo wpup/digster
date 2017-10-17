@@ -12,7 +12,7 @@ It's easy to register your own [extensions](#register-extension) or [composers](
 ## Install
 
 ```
-$ composer require frozzare/digster
+composer require frozzare/digster
 ```
 
 ## Example
