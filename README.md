@@ -397,7 +397,7 @@ digster_register_extensions( $cache_extension );
 You can check if your contribution passes the styleguide by installing [PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) and running the following in your project directory:
 
 ```
-$ vendor/bin/phpcs -s --extensions=php --standard=phpcs.xml src/
+vendor/bin/phpcs -s --extensions=php --standard=phpcs.xml src/
 ```
 
 ## License
