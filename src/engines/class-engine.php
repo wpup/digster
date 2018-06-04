@@ -31,7 +31,7 @@ abstract class Engine extends Container {
 				return $this->bind( $key, $value );
 			}
 
-			if ( $this->exists( $key ) ) {
+			if ( $this->bound( $key ) ) {
 				return $this->make( $key );
 			} else {
 				$default = $this->get_default_config();
