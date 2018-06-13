@@ -59,7 +59,7 @@ class View implements ArrayAccess {
 
 		foreach ( $data as $index => $value ) {
 			if ( is_array( $value ) ) {
-				$this->data = array_merge( $this->data, $value );
+				$this->data = array_merge( $value, $this->data );
 			} else if ( is_string( $value ) && class_exists( $value ) ) {
 				$class = new $value();
 				$class->compose( $this );
