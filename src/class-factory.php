@@ -5,6 +5,7 @@ namespace Frozzare\Digster;
 use Closure;
 use Frozzare\Digster\Engines\Engine;
 use Frozzare\Digster\Finder;
+use Frozzare\Tank\Container;
 
 class Factory {
 
@@ -14,6 +15,13 @@ class Factory {
 	 * @var \Frozzare\Digster\Engines\Engine
 	 */
 	protected $engine;
+
+	/**
+	 * Factory container.
+	 *
+	 * @var \Frozzare\Tank\Container
+	 */
+	protected $container;
 
 	/**
 	 * The view composers.
@@ -38,6 +46,7 @@ class Factory {
 	 */
 	public function __construct( Engine $engine ) {
 		$this->engine = $engine;
+		$this->container = new Container;
 	}
 
 	/**
@@ -167,9 +176,27 @@ class Factory {
 	 * @return array
 	 */
 	public function gather_data( View $view ) {
-		$data = array_merge( $this->get_composer( $view ), $view->get_data() );
+		$data = [];
 
-		return array_merge( $this->get_wildcard_composer(), $data );
+		if ( $this->engine->bound( 'data' ) ) {
+			$data = $this->engine->make( 'data' );
+		}
+
+		$data = array_merge( $view->get_data(), $data );
+		$data = array_merge( $this->get_composer( $view ), $data );
+		$data = array_merge( $this->get_wildcard_composer(), $data );
+
+		foreach ( $data as $key => $value ) {
+			if ( is_callable( $value ) ) {
+				$data[$key] = call_user_func( $value, $view );
+			}
+		}
+
+		$this->engine->bind( 'data', $data );
+		$this->reset_composer( $view );
+		$this->reset_wildcard_composer();
+
+		return $data;
 	}
 
 	/**
@@ -232,5 +259,25 @@ class Factory {
 		}
 
 		return $this->extension( str_replace( '.', '/', $view ) );
+	}
+
+	/**
+	 * Reset view composer.
+	 *
+	 * @param  \Frozzare\Digster\View $view
+	 */
+	protected function reset_composer( View $view ) {
+		$view_name = $view->get_name();
+
+		if ( isset( $this->composers[$view_name] ) ) {
+			unset( $this->composers[$view_name] );
+		}
+	}
+
+	/**
+	 * Reset wildcard composer.
+	 */
+	public function reset_wildcard_composer() {
+		$this->composers['*'] = [];
 	}
 }
