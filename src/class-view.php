@@ -57,21 +57,9 @@ class View implements ArrayAccess {
 	protected function gather_data() {
 		$data = $this->factory->gather_data( $this );
 
-		foreach ( $data as $index => $callback ) {
-			if ( is_callable( $callback ) ) {
-				$value = call_user_func( $callback, $this );
-			} else {
-				continue;
-			}
-
+		foreach ( $data as $index => $value ) {
 			if ( is_array( $value ) ) {
 				$this->data = array_merge( $this->data, $value );
-				$keys = array_diff( array_keys( $this->data ), array_keys( $value ) );
-				foreach ( $keys as $key ) {
-					if ( isset( $this->data[$key] ) ) {
-						unset( $this->data[$key] );
-					}
-				}
 			} else if ( is_string( $value ) && class_exists( $value ) ) {
 				$class = new $value();
 				$class->compose( $this );
