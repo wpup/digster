@@ -41,12 +41,18 @@ class Factory {
 
 	/**
 	 * The constructor.
+	 */
+	public function __construct() {
+		$this->container = new Container;
+	}
+
+	/**
+	 * Set engine.
 	 *
 	 * @param \Frozzare\Digster\Engine $engine
 	 */
-	public function __construct( Engine $engine ) {
+	public function setEngine(Engine $engine) {
 		$this->engine = $engine;
-		$this->container = new Container;
 	}
 
 	/**

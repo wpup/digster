@@ -40,20 +40,8 @@ final class Digster {
 	 * Boot the view factory.
 	 */
 	private function boot() {
-		/**
-		 * Modify which engine is used.
-		 *
-		 * @param  null $pre_engine
-		 *
-		 * @return mixed
-		 */
-		$pre_engine = apply_filters( 'digster/pre_engine', null );
-
-		if ( $pre_engine instanceof $engine ) {
-			$this->factory = new Factory( $pre_engine );
-		} else {
-			$this->factory = new Factory( new Twig_Engine );
-		}
+		$this->factory = new Factory();
+		$this->factory->setEngine( new Twig_Engine );
 	}
 
 	/**
