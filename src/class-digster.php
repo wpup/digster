@@ -2,6 +2,7 @@
 
 namespace Frozzare\Digster;
 
+use Frozzare\Digster\Engines\Engine;
 use Frozzare\Digster\Engines\Twig_Engine;
 
 final class Digster {
@@ -39,7 +40,20 @@ final class Digster {
 	 * Boot the view factory.
 	 */
 	private function boot() {
-		$this->factory = new Factory( new Twig_Engine );
+		/**
+		 * Modify which engine is used.
+		 *
+		 * @param  null $pre_engine
+		 *
+		 * @return mixed
+		 */
+		$pre_engine = apply_filters( 'digster/pre_engine', null );
+
+		if ( $pre_engine instanceof $engine ) {
+			$this->factory = new Factory( $pre_engine );
+		} else {
+			$this->factory = new Factory( new Twig_Engine );
+		}
 	}
 
 	/**
