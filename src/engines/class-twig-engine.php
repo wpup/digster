@@ -69,7 +69,7 @@ class Twig_Engine extends Engine {
 	 *
 	 * @return \Twig_Environment
 	 */
-	private function instance() {
+	public function instance() {
 		if ( ! isset( self::$environment ) ) {
 			self::$environment = $this->boot();
 		}
