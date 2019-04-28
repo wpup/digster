@@ -1,6 +1,7 @@
 # Digster
 
 [![Build Status](https://travis-ci.org/wpup/digster.svg?branch=master)](https://travis-ci.org/wpup/digster)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 > Twig templates for WordPress
 
